@@ -1,0 +1,7 @@
+{%- set klasy = { "ok": "ok", "czeka": "wait", "po_terminie": "late", "plan": "plan" } -%}
+{%- set url = "/akta/" + (a.sygnatura | slugSyg) + "/" -%}
+<a class="file" href="{{ url }}" data-typ="{{ a.typ }}" data-szukaj="{{ (a.sygnatura + ' ' + a.tytul + ' ' + a.opis + ' ' + a.adresat) | lower }}">
+  <div class="sig">{{ a.sygnatura }}<small>{% if a.data %}{{ a.data | data }}{% else %}{{ a.dataOpis }}{% endif %}</small></div>
+  <div><span class="tab">{{ typy[a.typ].nazwa }}</span><h3 style="margin-top:8px">{{ a.tytul }}</h3><p>{{ a.opis }}</p></div>
+  <span class="pill {{ klasy[a.status] }}">{{ a.statusOpis }}</span>
+</a>

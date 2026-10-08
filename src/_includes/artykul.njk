@@ -1,0 +1,25 @@
+---
+layout: base.njk
+nav: publikacje
+---
+{%- set cyk = cykle | znajdz("id", cykl) -%}
+{%- set poprz = collections.artykuly | artykulCyklu(cykl, czesc - 1) -%}
+{%- set nast = collections.artykuly | artykulCyklu(cykl, czesc + 1) -%}
+<div class="phead"><div class="wrap">
+  <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / <a href="/publikacje/">Publikacje</a> / {{ cyk.nazwa }} · {{ czesc }}/{{ cyk.czesci.length }}</nav>
+  <h1>{{ title }}</h1>
+  <div class="byline"><span>{{ sygnatura or "MD/KOM/2026/[nr]" }}</span><span>{{ page.date | dataDzien }}</span><span>{{ content | czasCzytania }} min czytania</span><span>Fundacja MAMY DOŚĆ</span></div>
+</div></div>
+<div class="wrap article">
+  <article class="prose">
+    <p class="lead">{{ lead }}</p>
+    {{ content | safe }}
+    {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{{ z }}</li>{% endfor %}</ul></div>{% endif %}
+    <div class="btns">
+      {% if poprz %}<a class="btn line" href="{{ poprz.url }}">← Poprzednia część</a>{% endif %}
+      {% if nast %}<a class="btn line" href="{{ nast.url }}">Następna część →</a>{% endif %}
+      <a class="btn red" href="/przekaz-dokumenty/">Masz podobną sprawę? Przekaż dokumenty</a>
+    </div>
+  </article>
+  {% if obraz %}<aside><figure><img src="{{ obraz }}" alt="{{ obrazAlt }}" width="864" height="1080" loading="lazy"><figcaption>Grafika do posta na Facebooku</figcaption></figure></aside>{% endif %}
+</div>

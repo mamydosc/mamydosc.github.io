@@ -1,0 +1,13 @@
+---
+layout: base.njk
+title: Kontakt
+nav: kontakt
+wstep: Odpowiadamy na wiadomości od osób, które mają podobne sprawy, od dziennikarzy i od urzędów.
+okruszki: [{ t: "Kontakt" }]
+---
+{% include "naglowek.njk" %}
+<div class="wrap contacts">
+  <div class="contact"><span class="tab">Oficjalny</span><h3>E-mail fundacji</h3><a href="mailto:{{ site.email }}"><code id="c1">{{ site.email }}</code></a><br><button class="copy" type="button" data-c="c1">Kopiuj adres</button></div>
+  <div class="contact"><span class="tab" style="background:var(--slate)">Anonimowy</span><h3>E-mail bez podpisu</h3><a href="mailto:{{ site.emailAnonimowy }}"><code id="c2">{{ site.emailAnonimowy }}</code></a><br><button class="copy" type="button" data-c="c2">Kopiuj adres</button></div>
+  <div class="contact"><span class="tab" style="background:var(--slate)">Listownie</span><h3>Skrytka pocztowa</h3><p style="margin:0;color:var(--slate)">Szukamy wirtualnego biura. Adres podamy tutaj.</p></div>
+</div>

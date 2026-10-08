@@ -1,0 +1,86 @@
+---
+layout: base.njk
+title: Fundacja MAMY DOŚĆ
+nav: start
+---
+{%- set L = akta | licznik -%}
+{%- set wsa = cykle | znajdz("id", "wydzial-iii") -%}
+{%- set kas = cykle | znajdz("id", "skarbowka") -%}
+{%- set a2 = collections.artykuly | artykulCyklu("wydzial-iii", 2) -%}
+{%- set a1 = collections.artykuly | artykulCyklu("wydzial-iii", 1) -%}
+<div class="hero">
+  <div class="wrap grid">
+    <div>
+      <div class="kick">Fundacja MAMY DOŚĆ · non-profit · zero polityki</div>
+      <h1>Sprawdzamy urzędy i sądy. <em>Na dokumentach.</em></h1>
+      <p class="lead">Ujawniamy nieprawidłowości w administracji publicznej. Publikujemy pisma, odpowiedzi urzędów i orzeczenia: z sygnaturą, datą i źródłem. Nasze oceny zawsze oznaczamy jako nasze.</p>
+      <div class="btns">
+        <a class="btn red" href="/akta/">Zobacz akta spraw</a>
+        <a class="btn ghost" href="/przekaz-dokumenty/">Przekaż dokumenty</a>
+      </div>
+    </div>
+    {% if a2 %}
+    <a class="hero-file" href="{{ a2.url }}" style="text-decoration:none">
+      <div class="row"><span class="tab">Komunikat</span><span>{{ a2.data.sygnatura or "MD/KOM/2026/[nr]" }}</span></div>
+      <h3>{{ a2.data.title }}</h3>
+      <p>Cykl „{{ wsa.nazwa }}”, część {{ a2.data.czesc }} z {{ wsa.czesci.length }} · {{ a2.date | dataDzien }}</p>
+    </a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="counter">
+  <div class="wrap">
+    <div class="head"><h2>Licznik fundacji</h2><span class="note">LICZONE Z „AKT SPRAW” · {{ site.stanTresci | data }}</span></div>
+    <div class="tiles">
+      <div class="tile"><b>{{ L.wyslane }}</b><span>pisma wysłane</span></div>
+      <div class="tile"><b>{{ L.wTerminie }}</b><span>odpowiedzi w terminie</span></div>
+      <div class="tile alert"><b>{{ L.poTerminie }}</b><span>odpowiedzi po terminie lub brak</span></div>
+      <div class="tile"><b>{{ L.skargi }}</b><span>skargi na bezczynność</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><h2>Najnowsze w aktach</h2><a href="/akta/">Wszystkie akta →</a></div>
+    <div class="files">
+      {% for a in akta | reverse %}{% if loop.index <= 3 %}{% include "teczka.njk" %}{% endif %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div>
+      <h2>Masz dokumenty ze swojej sprawy?</h2>
+      <p>Przyjmujemy pisma, decyzje i odpowiedzi urzędów. Każdy materiał sprawdzamy, zanim cokolwiek z nim zrobimy.</p>
+      <div class="btns"><a class="btn red" href="/przekaz-dokumenty/">Przekaż dokumenty</a></div>
+    </div>
+    <div class="split">
+      <div><b>Podpisane</b><span>Z podpisem elektronicznym możemy je opublikować po usunięciu danych osobowych.</span></div>
+      <div><b>Anonimowe</b><span>Czytamy i sprawdzamy. Nie publikujemy.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h"><h2>Cykle publikacji</h2><a href="/publikacje/">Wszystkie publikacje →</a></div>
+    <div class="cards">
+      {% if a1 %}<a class="card" href="{{ a1.url }}"><img src="{{ a1.data.obraz }}" alt="{{ a1.data.obrazAlt }}" width="864" height="1080" loading="lazy"><div class="in"><span class="mono" style="color:var(--red)">{{ wsa.skrot }} · 1/{{ wsa.czesci.length }} · {{ a1.date | data }}</span><h3>{{ a1.data.title }}</h3><p>{{ wsa.opis }}</p></div></a>{% endif %}
+      {% if a2 %}<a class="card" href="{{ a2.url }}"><img src="{{ a2.data.obraz }}" alt="{{ a2.data.obrazAlt }}" width="864" height="1080" loading="lazy"><div class="in"><span class="mono" style="color:var(--red)">{{ wsa.skrot }} · 2/{{ wsa.czesci.length }} · {{ a2.date | data }}</span><h3>{{ a2.data.title }}</h3><p>{{ a2.data.lead | truncate(120) }}</p></div></a>{% endif %}
+      <a class="card" href="/publikacje/#skarbowka"><img src="{{ kas.obraz }}" alt="Grafika cyklu {{ kas.nazwa }}" width="864" height="1080" loading="lazy"><div class="in"><span class="mono" style="color:var(--red)">{{ kas.skrot }} · 1/{{ kas.czesci.length }} · od {{ kas.czesci[0].data | data }}</span><h3>{{ kas.czesci[0].tytul }}</h3><p>{{ kas.opis }}</p></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><h2>Narzędzia w przygotowaniu</h2></div>
+    <div class="tools">
+      <div class="tool"><span class="tab" style="background:var(--slate)">Baza</span><h3>Kartoteka funkcjonariuszy</h3><p>Kto, w jakiej komórce i na jakim stanowisku podpisywał pisma w US Warszawa-Praga i IAS w Warszawie. Sprawdzisz, czy osoba, która ocenia decyzję, wcześniej przy niej pracowała. Tylko dane o pełnieniu funkcji publicznych.</p></div>
+      <div class="tool"><span class="tab" style="background:var(--slate)">Wyszukiwarka</span><h3>Metryki akt</h3><p>Wpisz znak sprawy i zobacz, czy urząd wydał metrykę z systemu EZD, tabelę z Worda, czy odpowiedział, że metryki nie ma.</p></div>
+    </div>
+  </div>
+</section>

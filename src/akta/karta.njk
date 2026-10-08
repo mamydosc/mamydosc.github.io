@@ -1,0 +1,64 @@
+---
+layout: base.njk
+nav: akta
+pagination:
+  data: akta
+  size: 1
+  alias: a
+permalink: "/akta/{{ a.sygnatura | slugSyg }}/"
+eleventyComputed:
+  title: "{{ a.tytul }}"
+  wstep: "{{ a.wstep }}"
+  opisStrony: "{{ a.opis }}"
+---
+{%- set klasy = { "ok": "ok", "czeka": "wait", "po_terminie": "late", "plan": "plan" } -%}
+{%- set slug = a.sygnatura | slugSyg -%}
+<div class="phead"><div class="wrap">
+  <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / <a href="/akta/">Akta spraw</a> / {{ a.sygnatura }}</nav>
+  <h1>{{ a.tytul }}</h1>
+  {% if a.wstep %}<p>{{ a.wstep }}</p>{% endif %}
+</div></div>
+<div class="wrap doc">
+  <article class="sheet">
+    <span class="tab">{{ typy[a.typ].nazwa }}</span>
+    <dl class="meta">
+      <dt>Sygnatura</dt><dd class="mono" style="font-size:.95rem">{{ a.sygnatura }}</dd>
+      <dt>Data</dt><dd>{% if a.data %}{{ a.data | dataSlownie }}{% else %}{{ a.dataOpis or "–" }}{% endif %}</dd>
+      {% if a.adresat %}<dt>Adresat</dt><dd>{{ a.adresat }}</dd>{% endif %}
+      {% if a.tryb %}<dt>Tryb</dt><dd>{{ a.tryb }}</dd>{% endif %}
+      {% if a.termin %}<dt>Termin</dt><dd>{{ a.termin }}{% if a.terminData %} (do {{ a.terminData | data }}){% endif %}</dd>{% endif %}
+      <dt>Status</dt><dd><span class="pill {{ klasy[a.status] }}">{{ a.statusOpis }}</span></dd>
+    </dl>
+    {% if a.tresc %}<h2>Co ustaliliśmy</h2><div class="prose" style="margin-top:12px">{{ a.tresc | safe }}</div>{% endif %}
+    {% if a.przebieg.length %}
+    <h3>Przebieg</h3>
+    <ol class="timeline">
+      {% for k in a.przebieg %}<li{% if k.uwaga %} class="r"{% endif %}><span class="mono">{{ k.kiedy | upper }}</span>{{ k.co }}</li>{% endfor %}
+    </ol>
+    {% endif %}
+    <div class="btns">
+      {% if a.pdf %}<a class="btn line" href="/pliki/{{ slug | upper }}.pdf">Pobierz PDF: {{ slug | upper }}.pdf</a>
+      {% else %}<span class="note">PDF dołączymy przy publikacji.</span>{% endif %}
+    </div>
+  </article>
+  <aside class="side">
+    {% if a.terminData and a.odpowiedz == "brak" %}
+    <div class="box days">
+      <h4>Dni bez odpowiedzi</h4>
+      <b data-od="{{ a.terminData | iso }}">–</b>
+      <p class="note" style="margin:8px 0 0">liczone od upływu terminu {{ a.terminData | data }}</p>
+    </div>
+    {% endif %}
+    <div class="box">
+      <h4>Kod QR z pisma</h4>
+      <div class="qr">{% qr site.url + "/akta/" + slug %}</div>
+      <p class="note" style="margin:10px 0 0">mamydosc.org/akta/{{ slug }}</p>
+    </div>
+    {% if a.powiazane.length %}
+    <div class="box">
+      <h4>Powiązane</h4>
+      {% for p in a.powiazane %}<p style="margin:0 0 6px"><a href="{{ p.url }}">{{ p.tytul }}</a></p>{% endfor %}
+    </div>
+    {% endif %}
+  </aside>
+</div>

@@ -1,0 +1,5 @@
+<div class="phead"><div class="wrap">
+  <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a>{% for c in okruszki %} / {% if c.url %}<a href="{{ c.url }}">{{ c.t }}</a>{% else %}{{ c.t }}{% endif %}{% endfor %}</nav>
+  <h1>{{ title }}</h1>
+  {% if wstep %}<p>{{ wstep }}</p>{% endif %}
+</div></div>

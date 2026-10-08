@@ -1,0 +1,19 @@
+---
+layout: base.njk
+title: Publikacje
+nav: publikacje
+wstep: Teksty w cyklach. Każdy oparty na dokumentach z sygnaturą lub znakiem pisma. Nowe części ukazują się w poniedziałki i czwartki.
+okruszki: [{ t: "Publikacje" }]
+---
+{% include "naglowek.njk" %}
+<div class="wrap sec" style="padding-top:40px">
+  {% for c in cykle %}
+  <div class="sec-h" id="{{ c.id }}"{% if not loop.first %} style="margin-top:56px"{% endif %}><h2>{{ c.nazwa }}</h2><span class="mono" style="color:var(--slate)">{{ c.czesci.length }} CZĘŚCI · {{ c.czesci[0].data | data }}–{{ (c.czesci | last).data | data }}</span></div>
+  <div class="series"><ol>
+    {% for cz in c.czesci %}
+    {%- set art = collections.artykuly | artykulCyklu(c.id, loop.index) -%}
+    <li><span class="n">CZ. {{ loop.index }}/{{ c.czesci.length }}</span>{% if art %}<a href="{{ art.url }}">{{ art.data.title }}</a>{% else %}<span>{{ cz.tytul }}</span>{% endif %}<span class="d">{{ cz.data | data }}</span></li>
+    {% endfor %}
+  </ol></div>
+  {% endfor %}
+</div>

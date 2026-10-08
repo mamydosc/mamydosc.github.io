@@ -1,0 +1,39 @@
+[
+  {
+    "id": "wydzial-iii",
+    "nazwa": "Wydział III pod lupą",
+    "skrot": "WSA III",
+    "opis": "Dziewięć tekstów o jednym wydziale WSA w Warszawie. Tylko dokumenty, sygnatury i liczby.",
+    "obraz": "/assets/img/wsa3-01.jpg",
+    "czesci": [
+      { "data": "2026-10-12", "tytul": "Wydział III pod lupą. Otwieramy akta" },
+      { "data": "2026-10-15", "tytul": "Metryka akt: jedna kartka, o którą trzeba walczyć w sądzie" },
+      { "data": "2026-10-19", "tytul": "Dwie w całym sądzie, potem kolejne trzy. I te same zdania w uzasadnieniach" },
+      { "data": "2026-10-22", "tytul": "98 metryk w jeden dzień. Urząd przyznaje: tworzy je system" },
+      { "data": "2026-10-26", "tytul": "11 z 12. Ta sama osoba kieruje sprawę i ją kończy" },
+      { "data": "2026-10-29", "tytul": "Wyznaczony skład trzech sędziów – i po kilku tygodniach go nie ma" },
+      { "data": "2026-11-02", "tytul": "Pięć skarg, pięć pism. Co odpowiedział Rzecznik Dyscyplinarny NSA" },
+      { "data": "2026-11-05", "tytul": "Niezawisły nie znaczy nieodpowiedzialny. Kiedy sędzia odpowiada dyscyplinarnie" },
+      { "data": "2026-11-09", "tytul": "Tylko Warszawa? Odpowiedzi 16 sądów administracyjnych" }
+    ]
+  },
+  {
+    "id": "skarbowka",
+    "nazwa": "Skarbówka pod lupą",
+    "skrot": "SKARBÓWKA",
+    "opis": "US Warszawa-Praga i IAS w Warszawie. Dziesięć części, także o sprawach przegranych.",
+    "obraz": "/assets/img/kas-01.jpg",
+    "czesci": [
+      { "data": "2026-11-16", "tytul": "Siedem lat, dwa urzędy, setki pism. Otwieramy akta skarbówki" },
+      { "data": "2026-11-19", "tytul": "Zabezpieczenie bez długu: 4,5 roku" },
+      { "data": "2026-11-23", "tytul": "Siedem dni później – nowa decyzja na „przybliżoną kwotę”" },
+      { "data": "2026-11-26", "tytul": "96 312 zł: zwrot VAT, który czekał 3,5 roku" },
+      { "data": "2026-11-30", "tytul": "Wygrana w dwóch sądach – a pieniędzy nadal nie ma" },
+      { "data": "2026-12-03", "tytul": "„Wyrok wykonany” – a sąd: grzywna i rażące naruszenie prawa" },
+      { "data": "2026-12-07", "tytul": "149 ponagleń, 2 uznane" },
+      { "data": "2026-12-10", "tytul": "Metryki: „nie istnieją” – a potem 127 czynności z systemu" },
+      { "data": "2026-12-14", "tytul": "Przyznali sami: 12 dokumentów, w których urzędy potwierdziły błędy" },
+      { "data": "2026-12-17", "tytul": "Jak rozliczyć urząd? 10 kroków, które naprawdę działają" }
+    ]
+  }
+]

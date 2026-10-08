@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: Przekaż dokumenty
+nav: przekaz
+wstep: Przyjmujemy pisma, decyzje, postanowienia i odpowiedzi urzędów, które pokazują nieprawidłowości. Zanim prześlesz, wybierz, jak chcesz to zrobić. Od tego zależy, co możemy z materiałem zrobić.
+okruszki: [{ t: "Przekaż dokumenty" }]
+---
+{% include "naglowek.njk" %}
+<div class="wrap formwrap">
+  <form id="send" novalidate>
+    <div class="mode" role="radiogroup" aria-label="Sposób przekazania">
+      <label><input type="radio" name="tryb" id="tryb-p" value="p" checked> <b>Z podpisem</b><span>Plik z podpisem elektronicznym (kwalifikowanym, zaufanym lub osobistym). Możemy opublikować go po usunięciu danych osobowych.</span></label>
+      <label><input type="radio" name="tryb" id="tryb-a" value="a"> <b>Anonimowo</b><span>Bez imienia i nazwiska. Przeczytamy i sprawdzimy materiał. Nie opublikujemy go.</span></label>
+    </div>
+    <div class="field" id="f-name"><label for="imie">Imię i nazwisko</label><input id="imie" name="imie" autocomplete="name"></div>
+    <div class="field" id="f-mail"><label for="mail">E-mail do kontaktu (opcjonalnie)</label><input id="mail" name="mail" type="email" autocomplete="email"></div>
+    <div class="field"><label for="opis">Czego dotyczą dokumenty</label><textarea id="opis" name="opis" placeholder="Urząd lub sąd, znak sprawy, co Twoim zdaniem jest nie tak"></textarea></div>
+    <div class="drop"><b>Pliki PDF, JPG lub PNG</b><br>do 25 MB łącznie<br><input id="pliki" name="pliki" type="file" multiple accept=".pdf,.jpg,.jpeg,.png" aria-label="Wybierz pliki"></div>
+    <label class="check" id="f-zgoda"><input type="checkbox" id="zgoda" name="zgoda"> <span>Zgadzam się na publikację dokumentów po usunięciu moich danych osobowych. Mogę wycofać zgodę przed publikacją.</span></label>
+    <button class="btn red" type="submit">Wyślij dokumenty</button>
+    <div class="done" id="done" hidden>Formularz uruchomimy wkrótce. Do tego czasu wyślij dokumenty e-mailem na <span class="mono">{{ site.email }}</span>, a anonimowo na <span class="mono">{{ site.emailAnonimowy }}</span>.</div>
+  </form>
+  <aside class="side">
+    <div class="box">
+      <h4>Zanim wyślesz</h4>
+      <ol class="steps">
+        <li>Usuń lub zaczernij dane osób, które nie pełnią funkcji publicznych.</li>
+        <li>Przy anonimowym przekazaniu usuń z plików swoje dane, także podpis i metadane.</li>
+        <li>Nie wysyłaj oryginałów. Wystarczą skany lub zdjęcia.</li>
+        <li>Podaj znak sprawy, żebyśmy mogli sprawdzić dokument u źródła.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h4>Inne drogi</h4>
+      <p style="margin:0;font-size:.92rem">E-mail: <span class="mono">{{ site.email }}</span><br>Anonimowo: <span class="mono">{{ site.emailAnonimowy }}</span><br>Listownie: adres skrytki podamy wkrótce.</p>
+    </div>
+  </aside>
+</div>

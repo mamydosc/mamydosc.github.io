@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Akta spraw
+nav: akta
+wstep: Każde pismo fundacji ma sygnaturę. Ta sama sygnatura jest w piśmie, w nazwie PDF-u, w kodzie QR i w adresie tej strony. Wpisz ją z pisma albo przeszukaj listę.
+okruszki: [{ t: "Akta spraw" }]
+---
+{% include "naglowek.njk" %}
+<div class="wrap sec" style="padding-top:36px">
+  {% if site.robocza %}<div class="banner">Wpisy to sprawy fundacji w wersji roboczej. Sygnatury są robocze, bo format czeka na decyzję. Daty i statusy uzupełnimy z rejestru przed startem strony.</div>{% endif %}
+  <div class="filters" role="group" aria-label="Filtr typu pisma">
+    <input class="search" id="q" type="search" placeholder="Sygnatura, adresat albo temat" aria-label="Szukaj w aktach">
+    <button class="chip" type="button" data-f="all" aria-pressed="true">Wszystkie</button>
+    {% for kod, t in typy %}{% if akta | gdzie("typ", kod) | length %}<button class="chip" type="button" data-f="{{ kod }}" aria-pressed="false">{{ t.mnoga }}</button>{% endif %}{% endfor %}
+  </div>
+  <div class="files" id="lista-akt">
+    {% for a in akta | reverse %}{% include "teczka.njk" %}{% endfor %}
+  </div>
+  <p class="note" id="empty" hidden>Brak akt dla tego wyszukiwania. Sprawdź sygnaturę albo wyczyść filtr.</p>
+</div>

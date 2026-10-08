@@ -1,0 +1,9 @@
+{
+  "WNS": { "nazwa": "Wniosek", "mnoga": "Wnioski" },
+  "SKG": { "nazwa": "Skarga", "mnoga": "Skargi" },
+  "ZAW": { "nazwa": "Zawiadomienie", "mnoga": "Zawiadomienia" },
+  "OPN": { "nazwa": "Opinia", "mnoga": "Opinie" },
+  "OPR": { "nazwa": "Opracowanie", "mnoga": "Opracowania" },
+  "RAP": { "nazwa": "Raport", "mnoga": "Raporty" },
+  "KOM": { "nazwa": "Komunikat", "mnoga": "Komunikaty" }
+}
