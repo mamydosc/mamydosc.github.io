@@ -63,3 +63,79 @@
     });
   });
 })();
+
+// v2: przełącznik motywu (bez zapisu w przeglądarce – strona nie śledzi), kalendarz cykli, rozwijanie części
+(function () {
+  var root = document.documentElement;
+  document.querySelectorAll(".theme button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (b.dataset.t) root.setAttribute("data-theme", b.dataset.t); else root.removeAttribute("data-theme");
+      document.querySelectorAll(".theme button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+    });
+  });
+  var nav = document.getElementById("nav"), btn = document.getElementById("menu-btn");
+  if (nav && btn) nav.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", function () { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); });
+  });
+
+  // „Następna część · za X dni” liczone od dzisiejszej daty w przeglądarce
+  var dzis = new Date(); dzis.setHours(0, 0, 0, 0);
+  document.querySelectorAll(".series li.c-next[data-d]").forEach(function (li) {
+    var p = li.dataset.d.split("-"), d = new Date(+p[0], +p[1] - 1, +p[2]);
+    var ile = Math.round((d - dzis) / 864e5), el = li.querySelector(".soon");
+    if (el && ile >= 0) el.textContent = "Następna część · " + (ile === 0 ? "dziś" : ile === 1 ? "jutro" : "za " + ile + " dni");
+  });
+  document.querySelectorAll(".toggle").forEach(function (b) {
+    var txt = b.textContent, ol = b.previousElementSibling;
+    b.addEventListener("click", function () {
+      var o = ol.classList.toggle("open"); b.setAttribute("aria-expanded", o); b.textContent = o ? "Zwiń ↑" : txt;
+    });
+  });
+})();
+
+// Finanse: dymek na wykresie i filtry operacji
+(function () {
+  var chart = document.getElementById("wykres"), tip = document.getElementById("tip");
+  if (chart && tip) {
+    var pokaz = function (g) {
+      var r = g.querySelector(".hit").getBoundingClientRect(), c = chart.getBoundingClientRect();
+      tip.innerHTML = "<b>" + g.dataset.m + "</b><span><i style=\"background:var(--chart-in)\"></i>wpływy " + g.dataset.in + "</span><br><span><i style=\"background:var(--chart-out)\"></i>koszty " + g.dataset.out + "</span>";
+      tip.hidden = false;
+      var x = r.left - c.left + r.width / 2, w = tip.offsetWidth;
+      x = Math.max(w / 2 + 4, Math.min(c.width - w / 2 - 4, x));
+      tip.style.left = x + "px"; tip.style.top = (r.top - c.top + 18) + "px";
+    };
+    chart.querySelectorAll(".col").forEach(function (g) {
+      g.addEventListener("mouseenter", function () { pokaz(g); });
+      g.addEventListener("focus", function () { pokaz(g); });
+      g.addEventListener("mouseleave", function () { tip.hidden = true; });
+      g.addEventListener("blur", function () { tip.hidden = true; });
+    });
+  }
+  var body = document.getElementById("ops");
+  if (body) {
+    var r = "all", fund = document.getElementById("fund"), q = document.getElementById("fq"), pusto = document.getElementById("ops-empty");
+    var wiecej = document.getElementById("ops-more"), LIMIT = 12, wszystkie = false;
+    var odswiez = function () {
+      var t = q.value.trim().toLowerCase(), f = fund.value, n = 0;
+      body.querySelectorAll("tr").forEach(function (tr) {
+        var ok = (r === "all" || tr.dataset.r === r) && (!f || tr.dataset.f === f) && (!t || tr.dataset.s.indexOf(t) > -1);
+        if (ok) n++;
+        tr.hidden = !ok || (!wszystkie && n > LIMIT);
+      });
+      pusto.hidden = n > 0;
+      wiecej.hidden = wszystkie || n <= LIMIT;
+      wiecej.textContent = "Pokaż wszystkie operacje (" + n + ") ↓";
+    };
+    wiecej.addEventListener("click", function () { wszystkie = true; odswiez(); });
+    odswiez();
+    document.querySelectorAll(".chip[data-r]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        r = b.dataset.r;
+        document.querySelectorAll(".chip[data-r]").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+        odswiez();
+      });
+    });
+    fund.addEventListener("change", odswiez); q.addEventListener("input", odswiez);
+  }
+})();

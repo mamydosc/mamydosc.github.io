@@ -58,6 +58,32 @@ module.exports = function (cfg) {
   });
   cfg.addFilter("gdzie", (arr, key, val) => (arr || []).filter((x) => x[key] === val));
 
+  // Kalendarz cyklu: stan części liczony w dniu budowania strony (strona buduje się codziennie o 4:15 UTC);
+  // przeglądarka poprawia napis „za X dni” na bieżąco (main.js).
+  cfg.addFilter("stanCyklu", (czesci) => {
+    const dzis = new Date(); dzis.setUTCHours(0, 0, 0, 0);
+    let nastepna = -1, wyszlo = 0;
+    const lista = (czesci || []).map((c, i) => {
+      const d = parse(c.data);
+      let stan = "c-future";
+      if (d <= dzis) { stan = "c-done"; wyszlo++; }
+      else if (nastepna < 0) { stan = "c-next"; nastepna = i; }
+      return { ...c, nr: i + 1, stan };
+    });
+    lista.forEach((c, i) => { c.ukryta = c.stan === "c-future" && i >= wyszlo + 3; });
+    return { czesci: lista, wyszlo, nastepna, ukryte: lista.filter((c) => c.ukryta).length };
+  });
+  // kwota w złotych: 1 234,50 zł
+  cfg.addFilter("zl", (n, bezGroszy) => {
+    const v = Number(n || 0);
+    const s = v.toLocaleString("pl-PL", { minimumFractionDigits: bezGroszy ? 0 : 2, maximumFractionDigits: bezGroszy ? 0 : 2 });
+    return s + " zł";
+  });
+  cfg.addFilter("miesiac", (ym) => {
+    const [y, m] = String(ym).split("-").map(Number);
+    return ["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru"][m - 1] + " " + String(y).slice(2);
+  });
+
   // Kod QR jako SVG (wbudowany w stronę, bez zewnętrznych usług)
   cfg.addAsyncShortcode("qr", async (text) =>
     QRCode.toString(text, { type: "svg", margin: 0, color: { dark: "#1D2939", light: "#FFFFFF" }, errorCorrectionLevel: "M" })

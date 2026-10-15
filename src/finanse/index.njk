@@ -1,0 +1,145 @@
+---
+layout: base.njk
+title: Finanse fundacji
+nav: finanse
+opisStrony: Wpływy i koszty Fundacji MAMY DOŚĆ. Każda pozycja z dokumentem źródłowym.
+wstep: Ile dostajemy, ile wydajemy i na co. Każda pozycja ma dokument źródłowy, a liczby aktualizujemy z wyciągów i faktur, które trafiają do naszej Wrzutni.
+okruszki: [{ t: "Finanse" }]
+---
+{%- set S = finanseSuma -%}
+{%- set F = finanse -%}
+{% include "naglowek.njk" %}
+<div class="wrap fin">
+
+  {% if F.przyklad %}
+  <div class="banner fin-ex" role="note"><b>DANE PRZYKŁADOWE.</b> Tak będzie wyglądać rozliczenie fundacji. Liczby poniżej są zmyślone i pokazują tylko układ strony. Zastąpią je prawdziwe, gdy do Wrzutni trafią pierwsze dokumenty finansowe.</div>
+  {% endif %}
+
+  <section aria-labelledby="podsum-h">
+    <div class="head-row"><h2 id="podsum-h" class="fin-h">Podsumowanie</h2><span class="note">OKRES: {{ F.okres | upper }} · STAN {{ F.stan | data }}</span></div>
+    <dl class="tiles fin-tiles">
+      <div class="tile"><dt>wpływy</dt><dd>{{ S.wplywy | zl(true) }}</dd></div>
+      <div class="tile"><dt>koszty</dt><dd>{{ S.koszty | zl(true) }}</dd></div>
+      <div class="tile"><dt>saldo okresu</dt><dd class="{% if S.saldo < 0 %}neg{% endif %}">{{ S.saldo | zl(true) }}</dd></div>
+      <div class="tile"><dt>koszty stałe w kosztach</dt><dd>{{ S.udzialStalych }}%</dd></div>
+    </dl>
+    <p class="note" style="margin-top:12px">{{ F.operacje.length }} OPERACJI · KAŻDA Z DOKUMENTEM ŹRÓDŁOWYM</p>
+  </section>
+
+  <section aria-labelledby="mies-h">
+    <h2 id="mies-h" class="fin-h">Miesiąc po miesiącu</h2>
+    <div class="legend" aria-hidden="true"><span><i class="sw in"></i>wpływy</span><span><i class="sw out"></i>koszty</span></div>
+    {%- set W = S.wykres.W -%}{%- set H = S.wykres.H -%}{%- set L0 = S.wykres.L0 -%}{%- set B = S.wykres.B -%}{%- set kol = S.wykres.kol -%}{%- set bw = S.wykres.bw -%}
+    <figure class="chart" id="wykres">
+      <svg viewBox="0 0 {{ W }} {{ H }}" role="img" aria-labelledby="wykres-t">
+        <title id="wykres-t">Wpływy i koszty w kolejnych miesiącach. Dokładne kwoty w tabeli pod wykresem.</title>
+        {% for i in range(0, (S.skala / S.krok) + 1) %}{%- set v = i * S.krok -%}{%- set y = B - (v / S.skala) * (B - 16) -%}
+        <line class="grid{% if i == 0 %} base{% endif %}" x1="{{ L0 }}" x2="{{ W }}" y1="{{ y }}" y2="{{ y }}"/>
+        <text class="ax" x="{{ L0 - 10 }}" y="{{ y + 4 }}" text-anchor="end">{{ v | zl(true) | replace(" zł", "") }}</text>
+        {% endfor %}
+        {% for m in S.mies %}{%- set cx = L0 + kol * loop.index0 + kol / 2 -%}
+        {%- set hi = (m.wplywy / S.skala) * (B - 16) -%}{%- set ho = (m.koszty / S.skala) * (B - 16) -%}
+        <g class="col" data-m="{{ m.k | miesiac }}" data-in="{{ m.wplywy | zl }}" data-out="{{ m.koszty | zl }}" tabindex="0">
+          <rect class="hit" x="{{ cx - kol / 2 }}" y="0" width="{{ kol }}" height="{{ B }}"/>
+          {% if hi > 0 %}<path class="bar in" d="M{{ cx - bw - 1 }},{{ B }} V{{ B - hi + 4 }} q0,-4 4,-4 h{{ bw - 8 }} q4,0 4,4 V{{ B }} Z"/>{% endif %}
+          {% if ho > 0 %}<path class="bar out" d="M{{ cx + 1 }},{{ B }} V{{ B - ho + 4 }} q0,-4 4,-4 h{{ bw - 8 }} q4,0 4,4 V{{ B }} Z"/>{% endif %}
+          <text class="ax" x="{{ cx }}" y="{{ B + 22 }}" text-anchor="middle">{{ m.k | miesiac }}</text>
+        </g>
+        {% endfor %}
+      </svg>
+      <div class="tip" id="tip" hidden></div>
+    </figure>
+    <details class="how"><summary>Pokaż jako tabelę</summary>
+      <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Miesiąc</th><th class="r">Wpływy</th><th class="r">Koszty</th><th class="r">Saldo</th></tr></thead><tbody>
+      {% for m in S.mies %}<tr><td>{{ m.k | miesiac }}</td><td class="r">{{ m.wplywy | zl }}</td><td class="r">{{ m.koszty | zl }}</td><td class="r">{{ (m.wplywy - m.koszty) | zl }}</td></tr>{% endfor %}
+      </tbody></table></div>
+    </details>
+  </section>
+
+  <section aria-labelledby="fund-h">
+    <h2 id="fund-h" class="fin-h">Fundusze</h2>
+    <p class="fin-sub">Darczyńca może wskazać cel wpłaty. Wtedy pieniądze trafiają do jednego z funduszy i wydajemy je tylko na ten cel.</p>
+    <div class="funds">
+      {% for f in S.fundusze %}
+      <div class="fund">
+        <div class="fund-t"><b>{{ f.nazwa }}</b><span>{{ f.opis }}</span></div>
+        <div class="fund-b" aria-hidden="true">
+          <i class="in" style="width:{{ (f.wplywy / S.maxF * 100) | round(1) }}%"></i>
+          <i class="out" style="width:{{ (f.koszty / S.maxF * 100) | round(1) }}%"></i>
+        </div>
+        <dl class="fund-n">
+          <div><dt>wpływy</dt><dd>{{ f.wplywy | zl(true) }}</dd></div>
+          <div><dt>koszty</dt><dd>{{ f.koszty | zl(true) }}</dd></div>
+          <div><dt>zostało</dt><dd class="{% if f.saldo < 0 %}neg{% endif %}">{{ f.saldo | zl(true) }}</dd></div>
+        </dl>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="note" style="margin-top:10px">Ujemne saldo funduszu pokrywamy z wpłat bez wskazanego celu (fundusz „Gdzie najbardziej potrzeba”).</p>
+  </section>
+
+  <section class="two" aria-label="Struktura wpływów i kosztów">
+    {% for blok in [["Skąd pieniądze", S.katWplywy, S.wplywy, "in"], ["Na co wydajemy", S.katKoszty, S.koszty, "out"]] %}
+    <div>
+      <h2 class="fin-h">{{ blok[0] }}</h2>
+      <ul class="cats">
+        {% for k in blok[1] %}
+        <li><span class="c-n">{{ k.nazwa }}</span><span class="c-v">{{ k.suma | zl(true) }} <small>{{ (k.suma / blok[2] * 100) | round }}%</small></span>
+          <span class="c-b"><i class="{{ blok[3] }}" style="width:{{ (k.suma / blok[1][0].suma * 100) | round(1) }}%"></i></span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section aria-labelledby="ops-h">
+    <div class="head-row"><h2 id="ops-h" class="fin-h">Wszystkie operacje</h2><a class="more" href="/finanse/operacje.csv" download>Pobierz CSV ↓</a></div>
+    <div class="filters">
+      <div role="group" aria-label="Rodzaj" style="display:contents">
+        <button class="chip" data-r="all" aria-pressed="true">Wszystkie</button>
+        <button class="chip" data-r="in" aria-pressed="false">Wpływy</button>
+        <button class="chip" data-r="out" aria-pressed="false">Koszty</button>
+      </div>
+      <label class="sr" for="fund">Fundusz</label>
+      <select class="search fsel" id="fund"><option value="">Wszystkie fundusze</option>{% for f in F.fundusze %}<option value="{{ f.id }}">{{ f.nazwa }}</option>{% endfor %}</select>
+      <label class="sr" for="fq">Szukaj w operacjach</label>
+      <input class="search" id="fq" type="search" placeholder="Opis, kontrahent, numer, np. FINA-12">
+    </div>
+    <div class="tbl ops"><table>
+      <thead><tr><th>Nr / data</th><th>Opis</th><th>Fundusz</th><th class="r">Kwota</th></tr></thead>
+      <tbody id="ops">
+      {% for o in S.ops %}{%- set fu = F.fundusze | znajdz("id", o.fundusz) -%}
+      <tr data-r="{% if o.kwota > 0 %}in{% else %}out{% endif %}" data-f="{{ o.fundusz }}" data-s="{{ (o.nr + ' ' + o.opis + ' ' + o.kontrahent + ' ' + F.kategorie[o.kategoria].nazwa + ' ' + o.dokument) | lower }}">
+        <td><span class="nr">{{ o.nr }}</span><span class="dt">{{ o.data | data }}</span></td>
+        <td><b>{{ o.opis }}</b><span class="meta2">{{ F.kategorie[o.kategoria].nazwa }} · {{ o.kontrahent }}</span><span class="meta2 dk">DOKUMENT: {{ o.dokument }}</span></td>
+        <td>{{ fu.nazwa }}</td>
+        <td class="r amt {% if o.kwota > 0 %}in{% else %}out{% endif %}">{% if o.kwota > 0 %}+{% else %}−{% endif %}{{ (o.kwota | abs) | zl }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table></div>
+    <button class="toggle" id="ops-more" type="button" hidden></button>
+    <p class="empty" id="ops-empty" hidden>Brak operacji dla tych filtrów.</p>
+  </section>
+
+  <section class="two" aria-label="Jak powstaje rozliczenie">
+    <div>
+      <h2 class="fin-h">Skąd te liczby</h2>
+      <ol class="flow">
+        <li><div><b>Dokument trafia do Wrzutni.</b>Wyciąg bankowy, faktura, rachunek, umowa darowizny albo grantu, raport wypłaty z platformy.</div></li>
+        <li><div><b>Claude go odczytuje i opisuje.</b>Nadaje numer FINA, wpisuje datę, kwotę, kategorię i fundusz. Dokument dostaje odnośnik w rejestrze finansów fundacji, osobnym od rejestru spraw.</div></li>
+        <li><div><b>Zarząd zatwierdza.</b>Nic nie trafia na stronę bez akceptacji.</div></li>
+        <li><div><b>Strona się przelicza.</b>Podsumowanie, wykres, fundusze i tabela liczą się same z zatwierdzonych pozycji.</div></li>
+      </ol>
+    </div>
+    <div>
+      <h2 class="fin-h">Zasady</h2>
+      <ul class="zasady fin-z">
+        <li><span class="n">01</span><div><b>Każda pozycja z dokumentem</b><p>Bez dokumentu źródłowego nie ma pozycji w rozliczeniu.</p></div></li>
+        <li><span class="n">02</span><div><b>Darczyńcy bez nazwisk</b><p>Wpłaty osób prywatnych pokazujemy zbiorczo. Nazwę firmy lub instytucji podajemy tylko za jej zgodą.</p></div></li>
+        <li><span class="n">03</span><div><b>Osobne pieniądze</b><p>Fundacja ma własny rachunek. Nie finansuje prywatnych spraw członków zarządu ani ich bliskich.</p></div></li>
+        <li><span class="n">04</span><div><b>Sprawozdanie roczne</b><p>Co roku składamy sprawozdanie z działalności ministrowi właściwemu i publikujemy je tutaj.</p></div></li>
+      </ul>
+    </div>
+  </section>
+</div>

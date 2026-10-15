@@ -4,83 +4,143 @@ title: Fundacja MAMY DOŚĆ
 nav: start
 ---
 {%- set L = akta | licznik -%}
-{%- set wsa = cykle | znajdz("id", "wydzial-iii") -%}
-{%- set kas = cykle | znajdz("id", "skarbowka") -%}
-{%- set a2 = collections.artykuly | artykulCyklu("wydzial-iii", 2) -%}
-{%- set a1 = collections.artykuly | artykulCyklu("wydzial-iii", 1) -%}
-<div class="hero">
+{%- set klasy = { "ok": "ok", "czeka": "wait", "po_terminie": "late", "plan": "plan" } -%}
+<section class="hero on-navy">
   <div class="wrap grid">
     <div>
       <div class="kick">Fundacja MAMY DOŚĆ · non-profit · zero polityki</div>
       <h1>Sprawdzamy urzędy i sądy. <em>Na dokumentach.</em></h1>
-      <p class="lead">Ujawniamy nieprawidłowości w administracji publicznej. Publikujemy pisma, odpowiedzi urzędów i orzeczenia: z sygnaturą, datą i źródłem. Nasze oceny zawsze oznaczamy jako nasze.</p>
+      <p class="lead">Publikujemy pisma, odpowiedzi urzędów i orzeczenia: z sygnaturą, datą i źródłem. Każde pismo ma swoją kartę akt i licznik terminu. Nasze oceny zawsze oznaczamy jako nasze.</p>
       <div class="btns">
-        <a class="btn red" href="/akta/">Zobacz akta spraw</a>
+        <a class="btn red" href="#akta">Zobacz akta spraw</a>
         <a class="btn ghost" href="/przekaz-dokumenty/">Przekaż dokumenty</a>
       </div>
     </div>
-    {% if a2 %}
-    <a class="hero-file" href="{{ a2.url }}" style="text-decoration:none">
-      <div class="row"><span class="tab">Komunikat</span><span>{{ a2.data.sygnatura or "MD/KOM/2026/[nr]" }}</span></div>
-      <h3>{{ a2.data.title }}</h3>
-      <p>Cykl „{{ wsa.nazwa }}”, część {{ a2.data.czesc }} z {{ wsa.czesci.length }} · {{ a2.date | dataDzien }}</p>
-    </a>
-    {% endif %}
-  </div>
-</div>
-
-<div class="counter">
-  <div class="wrap">
-    <div class="head"><h2>Licznik fundacji</h2><span class="note">LICZONE Z „AKT SPRAW” · {{ site.stanTresci | data }}</span></div>
-    <div class="tiles">
-      <div class="tile"><b>{{ L.wyslane }}</b><span>pisma wysłane</span></div>
-      <div class="tile"><b>{{ L.wTerminie }}</b><span>odpowiedzi w terminie</span></div>
-      <div class="tile alert"><b>{{ L.poTerminie }}</b><span>odpowiedzi po terminie lub brak</span></div>
-      <div class="tile"><b>{{ L.skargi }}</b><span>skargi na bezczynność</span></div>
-    </div>
-  </div>
-</div>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-h"><h2>Najnowsze w aktach</h2><a href="/akta/">Wszystkie akta →</a></div>
-    <div class="files">
-      {% for a in akta | reverse %}{% if loop.index <= 3 %}{% include "teczka.njk" %}{% endif %}{% endfor %}
+    <div>
+      <ul class="stack" aria-label="Najnowsze teczki">
+        {% for a in akta | reverse %}{% if loop.index <= 3 %}
+        <li><a class="sfile" href="/akta/{{ a.sygnatura | slugSyg }}/">
+          <div class="row"><span>{{ a.sygnatura }}</span><span class="tab">{{ typy[a.typ].nazwa }}</span></div>
+          <h3>{{ a.tytul }}</h3>
+          <span class="pill {{ klasy[a.status] }}">{{ a.statusOpis }}</span>
+        </a></li>
+        {% endif %}{% endfor %}
+      </ul>
+      <p class="stack-note">OSTATNIE TECZKI W AKTACH SPRAW</p>
     </div>
   </div>
 </section>
 
-<section class="band">
+<section class="counter" aria-labelledby="licznik-h">
+  <div class="wrap">
+    <div class="head"><h2 id="licznik-h">Licznik fundacji</h2><span class="note">LICZONE Z „AKT SPRAW” · STAN {{ site.stanTresci | data }}</span></div>
+    <dl class="tiles">
+      <div class="tile"><dt>pisma wysłane</dt><dd>{{ L.wyslane }}</dd></div>
+      <div class="tile"><dt>odpowiedzi w terminie</dt><dd>{{ L.wTerminie }}</dd></div>
+      <div class="tile alert"><dt>odpowiedzi po terminie lub brak</dt><dd>{{ L.poTerminie }}</dd></div>
+      <div class="tile"><dt>skargi na bezczynność</dt><dd>{{ L.skargi }}</dd></div>
+    </dl>
+    <details class="how"><summary>Jak liczymy?</summary><p>„Pisma wysłane” to pisma z Akt spraw, które już trafiły do adresata. Odpowiedź „w terminie” liczymy, gdy przyszła przed upływem terminu ustawowego. „Po terminie lub brak” obejmuje odpowiedzi spóźnione i te, których nie ma do dziś, także wtedy, gdy brakuje choćby jednej z kilku. Skargi to skargi na bezczynność złożone do sądu.</p></details>
+  </div>
+</section>
+
+<section class="sec" id="akta" aria-labelledby="akta-h">
+  <div class="wrap">
+    <div class="sec-h"><div><h2 id="akta-h">Akta spraw</h2><p>Każde pismo fundacji z sygnaturą, adresatem i statusem. Kliknij teczkę, aby zobaczyć przebieg i odpowiedzi.</p></div><a class="more" href="/akta/">Wszystkie akta →</a></div>
+    <div class="filters">
+      <div role="group" aria-label="Typ pisma" style="display:contents">
+        <button class="chip" data-f="all" aria-pressed="true">Wszystkie<span>{{ akta.length }}</span></button>
+        {%- set widziane = [] -%}
+        {% for a in akta %}{% if not (a.typ in widziane) %}{% set _ = widziane.push(a.typ) %}{% set n = (akta | gdzie("typ", a.typ)).length %}
+        <button class="chip" data-f="{{ a.typ }}" aria-pressed="false">{% if n > 1 %}{{ typy[a.typ].mnoga }}{% else %}{{ typy[a.typ].nazwa }}{% endif %}<span>{{ n }}</span></button>
+        {% endif %}{% endfor %}
+      </div>
+      <label class="sr" for="q">Szukaj w aktach</label>
+      <input class="search" id="q" type="search" placeholder="Sygnatura, adresat albo temat, np. MD-WNS lub Rzecznik">
+    </div>
+    <div class="files" id="lista-akt">
+      {% for a in akta | reverse %}{% include "teczka.njk" %}{% endfor %}
+    </div>
+    <p class="empty" id="empty" hidden>Nic nie pasuje. Sygnaturę możesz wpisać z ukośnikami albo z myślnikami, np. MD/ZAW/2026/002.</p>
+  </div>
+</section>
+
+<section class="sec" id="cykle" aria-labelledby="cykle-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><div><h2 id="cykle-h">Cykle publikacji</h2><p>Publikujemy w poniedziałki i czwartki. Daty kolejnych części znamy z góry, więc widać, co już jest, a co przed nami.</p></div><a class="more" href="/publikacje/">Wszystkie publikacje →</a></div>
+    <div class="cycles">
+      {% for c in cykle %}
+      {%- set S = c.czesci | stanCyklu -%}
+      {%- set N = c.czesci.length -%}
+      <article class="cycle">
+        <img src="{{ c.obraz }}" alt="Grafika cyklu „{{ c.nazwa }}”" width="864" height="1080">
+        <div>
+          <span class="kick">{{ c.skrot }} · {{ N }} części</span>
+          <h3>{{ c.nazwa }}</h3>
+          <p class="desc">{{ c.opis }}</p>
+          <div class="progress" aria-hidden="true">{% for p in S.czesci %}<i class="{{ p.stan }}"></i>{% endfor %}</div>
+          <span class="note">{% if S.wyszlo == 0 %}START {{ c.czesci[0].data | dataDzien | upper }}{% elif S.wyszlo == N %}CYKL ZAKOŃCZONY{% else %}OPUBLIKOWANO {{ S.wyszlo }} Z {{ N }}{% endif %}</span>
+          <div class="series"><ol>
+            {% for p in S.czesci %}
+            {%- set art = collections.artykuly | artykulCyklu(c.id, p.nr) -%}
+            <li class="{{ p.stan }}{% if p.ukryta %} hidden-part{% endif %}" data-d="{{ p.data }}">
+              <span class="n">CZ. {{ p.nr }}/{{ N }}</span>
+              {% if p.stan == "c-done" and art %}<a href="{{ art.url }}">{{ art.data.title }}</a>
+              {% elif p.stan == "c-next" %}<span><b>{{ p.tytul }}</b><span class="soon">Następna część</span></span>
+              {% else %}<span>{{ p.tytul }}</span>{% endif %}
+              <span class="d">{{ p.data | dataDzien }}</span>
+            </li>
+            {% endfor %}
+          </ol></div>
+          {% if S.ukryte %}<button class="toggle" type="button" aria-expanded="false">Pokaż wszystkie części ({{ N }}) ↓</button>{% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="metoda" aria-labelledby="metoda-h" style="padding-top:0">
+  <div class="wrap method">
+    <div>
+      <h2 id="metoda-h">Jak pracujemy</h2>
+      <ul class="zasady">
+        <li><span class="n">01</span><div><b>Non-profit</b><p>Nie zarabiamy na sprawach, które opisujemy. Nie pobieramy opłat od osób, które przekazują dokumenty.</p></div></li>
+        <li><span class="n">02</span><div><b>Zero polityki</b><p>Nie wspieramy partii ani kandydatów. Oceniamy działanie urzędów i sądów, nie poglądy ludzi.</p></div></li>
+        <li><span class="n">03</span><div><b>Pełna jawność</b><p>Publikujemy pisma, które wysyłamy, i odpowiedzi, które dostajemy. Także te, w których nie mamy racji. Jawne są też <a href="/finanse/">nasze finanse</a>.</p></div></li>
+        <li><span class="n">04</span><div><b>Mechanizm, nie osoby</b><p>Nazwiska podajemy tylko przy czynnościach urzędowych potwierdzonych dokumentami i tylko w zakresie pełnienia funkcji publicznych. Danych osób prywatnych nie publikujemy.</p></div></li>
+      </ul>
+    </div>
+    <figure class="specimen">
+      <div class="label">Tak oddzielamy fakty od ocen</div>
+      <div class="prose">
+        <p style="margin-top:14px">W 2026 r. WSA w Warszawie odrzucił bez rozpoznania pięć skarg na bezczynność w udostępnieniu metryki akt. Sygnatury podajemy w tekście, np. <span class="ref">MD/WNS/2026/001</span>.</p>
+      </div>
+      <div class="ocena"><b>Nasza ocena</b><p class="prose" style="margin:0">Dostęp do akt sprawy jest uprawnieniem strony z Ordynacji podatkowej (art. 178). Sama administracja skarbowa wiąże z nim udostępnienie metryki. Dlatego w naszej ocenie bezczynność w tym zakresie powinna podlegać kontroli sądu administracyjnego.</p></div>
+      <figcaption class="cap">Z TEKSTU „METRYKA AKT”, CYKL WYDZIAŁ III POD LUPĄ, CZ. 2/9</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band on-navy" id="przekaz" aria-labelledby="przekaz-h">
   <div class="wrap">
     <div>
-      <h2>Masz dokumenty ze swojej sprawy?</h2>
+      <h2 id="przekaz-h">Masz dokumenty ze swojej sprawy?</h2>
       <p>Przyjmujemy pisma, decyzje i odpowiedzi urzędów. Każdy materiał sprawdzamy, zanim cokolwiek z nim zrobimy.</p>
+      <div class="modes">
+        <div><b>Z podpisem</b><span>Plik z podpisem elektronicznym. Możemy go opublikować po usunięciu danych osobowych.</span></div>
+        <div><b>Anonimowo</b><span>Bez imienia i nazwiska. Przeczytamy i sprawdzimy materiał. Nie opublikujemy go.</span></div>
+      </div>
       <div class="btns"><a class="btn red" href="/przekaz-dokumenty/">Przekaż dokumenty</a></div>
     </div>
-    <div class="split">
-      <div><b>Podpisane</b><span>Z podpisem elektronicznym możemy je opublikować po usunięciu danych osobowych.</span></div>
-      <div><b>Anonimowe</b><span>Czytamy i sprawdzamy. Nie publikujemy.</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-h"><h2>Cykle publikacji</h2><a href="/publikacje/">Wszystkie publikacje →</a></div>
-    <div class="cards">
-      {% if a1 %}<a class="card" href="{{ a1.url }}"><img src="{{ a1.data.obraz }}" alt="{{ a1.data.obrazAlt }}" width="864" height="1080" loading="lazy"><div class="in"><span class="mono" style="color:var(--red)">{{ wsa.skrot }} · 1/{{ wsa.czesci.length }} · {{ a1.date | data }}</span><h3>{{ a1.data.title }}</h3><p>{{ wsa.opis }}</p></div></a>{% endif %}
-      {% if a2 %}<a class="card" href="{{ a2.url }}"><img src="{{ a2.data.obraz }}" alt="{{ a2.data.obrazAlt }}" width="864" height="1080" loading="lazy"><div class="in"><span class="mono" style="color:var(--red)">{{ wsa.skrot }} · 2/{{ wsa.czesci.length }} · {{ a2.date | data }}</span><h3>{{ a2.data.title }}</h3><p>{{ a2.data.lead | truncate(120) }}</p></div></a>{% endif %}
-      <a class="card" href="/publikacje/#skarbowka"><img src="{{ kas.obraz }}" alt="Grafika cyklu {{ kas.nazwa }}" width="864" height="1080" loading="lazy"><div class="in"><span class="mono" style="color:var(--red)">{{ kas.skrot }} · 1/{{ kas.czesci.length }} · od {{ kas.czesci[0].data | data }}</span><h3>{{ kas.czesci[0].tytul }}</h3><p>{{ kas.opis }}</p></div></a>
-    </div>
-  </div>
-</section>
-
-<section class="sec" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-h"><h2>Narzędzia w przygotowaniu</h2></div>
-    <div class="tools">
-      <div class="tool"><span class="tab" style="background:var(--slate)">Baza</span><h3>Kartoteka funkcjonariuszy</h3><p>Kto, w jakiej komórce i na jakim stanowisku podpisywał pisma w US Warszawa-Praga i IAS w Warszawie. Sprawdzisz, czy osoba, która ocenia decyzję, wcześniej przy niej pracowała. Tylko dane o pełnieniu funkcji publicznych.</p></div>
-      <div class="tool"><span class="tab" style="background:var(--slate)">Wyszukiwarka</span><h3>Metryki akt</h3><p>Wpisz znak sprawy i zobacz, czy urząd wydał metrykę z systemu EZD, tabelę z Worda, czy odpowiedział, że metryki nie ma.</p></div>
+    <div>
+      <h3 class="steps-h">Zanim wyślesz</h3>
+      <ol class="steps-n">
+        <li>Usuń lub zaczernij dane osób, które nie pełnią funkcji publicznych.</li>
+        <li>Przy anonimowym przekazaniu usuń z plików swoje dane, także podpis i metadane.</li>
+        <li>Nie wysyłaj oryginałów. Wystarczą skany lub zdjęcia.</li>
+        <li>Podaj znak sprawy, żebyśmy mogli sprawdzić dokument u źródła.</li>
+      </ol>
     </div>
   </div>
 </section>
