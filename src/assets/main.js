@@ -139,3 +139,29 @@
     fund.addEventListener("change", odswiez); q.addEventListener("input", odswiez);
   }
 })();
+
+// archiwum: zakładki i rozwijanie
+(function () {
+  var tabs = document.querySelectorAll('.arch-tab');
+  if (!tabs.length) return;
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(i); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { var n = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length; pick(n); tabs[n].focus(); }
+    });
+  });
+  function pick(i) {
+    tabs.forEach(function (t, j) {
+      t.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      t.tabIndex = j === i ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = j !== i;
+    });
+  }
+  pick(0);
+  document.querySelectorAll('.arch-pane [data-all]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('data-all') === '1';
+      b.closest('.arch-pane').querySelectorAll('details').forEach(function (d) { d.open = open; });
+    });
+  });
+})();

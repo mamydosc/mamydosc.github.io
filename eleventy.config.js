@@ -74,6 +74,7 @@ module.exports = function (cfg) {
     return { czesci: lista, wyszlo, nastepna, ukryte: lista.filter((c) => c.ukryta).length };
   });
   // kwota w złotych: 1 234,50 zł
+  cfg.addFilter("liczba", (n) => Math.round(Number(n) || 0).toLocaleString("pl-PL").replace(/\u00a0|,/g, "\u2009").replace(/\s/g, "\u00a0"));
   cfg.addFilter("zl", (n, bezGroszy) => {
     const v = Number(n || 0);
     const s = v.toLocaleString("pl-PL", { minimumFractionDigits: bezGroszy ? 0 : 2, maximumFractionDigits: bezGroszy ? 0 : 2 });

@@ -1,0 +1,50 @@
+---
+layout: base.njk
+title: Dokumenty, którymi dysponujemy
+description: Licznik dokumentów archiwum fundacji – liczby według urzędów, sądów i rodzajów pism.
+nav: start
+---
+{%- set A = archiwum -%}
+<section class="sec arch">
+  <div class="wrap">
+    <p class="kick-d">Licznik fundacji · archiwum</p>
+    <h1>Dokumenty, którymi dysponujemy</h1>
+    <p class="lead-d">Pisma, odpowiedzi urzędów i orzeczenia sądów ze spraw, które prowadzimy lub obserwujemy. Treści dokumentów nie publikujemy, pokazujemy tylko liczby.</p>
+    <div class="arch-sum">
+      <div><b>{{ A.dokumenty | liczba }}</b><span>dokumentów</span></div>
+      <div><b>{% if A.stronySzacunek %}ok. {% endif %}{{ A.strony | liczba }}</b><span>stron{% if A.stronySzacunek %} (szacunek, liczba dokładna wkrótce){% endif %}</span></div>
+    </div>
+    <p class="note">STAN {{ A.stan | data }} · LICZBY ORIENTACYJNE · BEZ PACZEK PLIKÓW, POTWIERDZEŃ DORĘCZENIA I PISM PRZEWODNICH</p>
+
+    <div class="arch-tabs" role="tablist" aria-label="Obszar">
+      {% for o in A.obszary %}<button class="arch-tab" role="tab" id="t-{{ o.id }}" aria-controls="p-{{ o.id }}" aria-selected="{{ 'true' if loop.first else 'false' }}"><b>{{ o.c | liczba }}</b><span>{{ o.n }}</span></button>{% endfor %}
+    </div>
+    {% for o in A.obszary %}
+    <section class="arch-pane" role="tabpanel" id="p-{{ o.id }}" aria-labelledby="t-{{ o.id }}"{% if not loop.first %} hidden{% endif %}>
+      <p class="arch-opis">{{ o.opis }} · ok. {{ o.strony | liczba }} stron</p>
+      <p class="arch-ctrl"><button type="button" class="linkbtn" data-all="1">Rozwiń wszystko</button> · <button type="button" class="linkbtn" data-all="0">Zwiń</button></p>
+      {% for k in o.k %}
+      <details class="a1"><summary><span class="nm">{{ k.n }}</span><span class="ct">{{ k.c | liczba }}</span></summary>
+        <div class="a1b">
+        {% for g in k.g %}
+          <div class="ag"><div class="agh">{{ g.n }} <b>{{ g.c | liczba }}</b></div>
+          {% for p in g.p %}
+            <details class="a2{% if p.red %} red{% endif %}"><summary><span class="nm">{{ p.n }}</span><span class="ct">{{ p.c | liczba }}</span></summary>
+              <div class="a2b">
+              {% for u in p.u %}
+                {% if u.j.length %}<details class="a3"><summary><span class="nm">{{ u.n }}</span><span class="ct">{{ u.c }}</span></summary><div class="units">{% for j in u.j %}<span>{{ j.n }} <b>{{ j.c }}</b></span>{% endfor %}</div></details>
+                {% else %}<div class="a3x"><span class="nm">{{ u.n }}</span><span class="ct">{{ u.c }}</span></div>{% endif %}
+              {% else %}<p class="muted">bez podziału na urzędy</p>{% endfor %}
+              </div>
+            </details>
+          {% endfor %}
+          </div>
+        {% endfor %}
+        </div>
+      </details>
+      {% endfor %}
+    </section>
+    {% endfor %}
+    <p class="arch-foot">{% if A.pozaZakladkami %}W zakładkach pokazujemy główne rodzaje pism. Pozostałe {{ A.pozaZakladkami | liczba }} dokumentów (np. odpowiedzi urzędów na skargi, repliki, zaświadczenia, wnioski) liczymy tylko w sumie. {% endif %}Kliknij kategorię, potem podkategorię i urząd. Skróty: NUS – Naczelnik Urzędu Skarbowego, DIAS – Dyrektor Izby Administracji Skarbowej, SKAS – Szef Krajowej Administracji Skarbowej, WSA – Wojewódzki Sąd Administracyjny, NSA – Naczelny Sąd Administracyjny.</p>
+  </div>
+</section>

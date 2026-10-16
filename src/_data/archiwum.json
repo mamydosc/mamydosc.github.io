@@ -1,0 +1,3153 @@
+{
+ "_opis": "Licznik dokumentów archiwum. Liczone z Klop\\rejestr.xlsx (tylko odczyt) – stan początkowy. Aktualizuje zadanie ręczne „Licznik archiwum” po zgodzie Michała.",
+ "stan": "2026-10-16",
+ "stanRejestru": "2026-10-15",
+ "dokumenty": 8355,
+ "strony": 79800,
+ "stronySzacunek": true,
+ "obszary": [
+  {
+   "id": "kas",
+   "n": "Urzędy skarbowe (KAS)",
+   "opis": "NUS Warszawa-Praga i inne urzędy skarbowe, Dyrektor Izby Administracji Skarbowej, Szef KAS",
+   "c": 2490,
+   "strony": 16000,
+   "k": [
+    {
+     "n": "Skargi",
+     "c": 346,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 271,
+       "p": [
+        {
+         "n": "Skargi do WSA na bezczynność",
+         "c": 117,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 54,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 47
+            },
+            {
+             "n": "Piaseczno",
+             "c": 7
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 42,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 21,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi do WSA na decyzje i postanowienia",
+         "c": 89,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 25,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 21
+            },
+            {
+             "n": "Piaseczno",
+             "c": 4
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 58,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 6,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi na pracowników",
+         "c": 35,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 7,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 7
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 12,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 16,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi na urząd (art. 227 k.p.a.)",
+         "c": 29,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 15,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 15
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 13,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi do WSA na przewlekłość urzędu",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "DIAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 75,
+       "p": [
+        {
+         "n": "Skargi (art. 227) uznane za niezasadne",
+         "c": 41,
+         "red": true,
+         "u": [
+          {
+           "n": "DIAS",
+           "c": 25,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 16,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi (art. 227) – inne rozstrzygnięcia",
+         "c": 29,
+         "red": false,
+         "u": [
+          {
+           "n": "DIAS",
+           "c": 3,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 26,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi (art. 227) zasadne",
+         "c": 3,
+         "red": false,
+         "u": [
+          {
+           "n": "DIAS",
+           "c": 3,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi kasacyjne urzędów",
+         "c": 2,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 1,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Ponaglenia",
+     "c": 339,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 241,
+       "p": [
+        {
+         "n": "Wysłane ponaglenia",
+         "c": 241,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 101,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 88
+            },
+            {
+             "n": "Piaseczno",
+             "c": 13
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 90,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 46,
+           "j": []
+          },
+          {
+           "n": "inne",
+           "c": 4,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 98,
+       "p": [
+        {
+         "n": "Ponaglenia uznane za niezasadne lub bezprzedmiotowe",
+         "c": 95,
+         "red": true,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 53,
+           "j": [
+            {
+             "n": "rozstrzygał DIAS",
+             "c": 53
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 42,
+           "j": [
+            {
+             "n": "rozstrzygał Szef KAS",
+             "c": 42
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "n": "Ponaglenia zasadne",
+         "c": 3,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 3,
+           "j": [
+            {
+             "n": "rozstrzygał DIAS",
+             "c": 3
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Zażalenia, odwołania, repliki",
+     "c": 175,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 119,
+       "p": [
+        {
+         "n": "Zażalenia",
+         "c": 86,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 44,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 43
+            },
+            {
+             "n": "Piaseczno",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 42,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Odwołania",
+         "c": 33,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 20,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 17
+            },
+            {
+             "n": "Piaseczno",
+             "c": 3
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 13,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 56,
+       "p": [
+        {
+         "n": "Zażalenia – przekazanie i stanowisko urzędu",
+         "c": 56,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 40,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 36
+            },
+            {
+             "n": "Piaseczno",
+             "c": 3
+            },
+            {
+             "n": "inny US",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 16,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Wyłączenia",
+     "c": 36,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 36,
+       "p": [
+        {
+         "n": "Wnioski o wyłączenie",
+         "c": 36,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 14,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 13
+            },
+            {
+             "n": "Piaseczno",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 21,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Rozstrzygnięcia sądów",
+     "c": 3,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 3,
+       "p": [
+        {
+         "n": "Wyroki (inne)",
+         "c": 3,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 2,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 2
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Decyzje i postanowienia",
+     "c": 440,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 440,
+       "p": [
+        {
+         "n": "Postanowienia odmowne",
+         "c": 184,
+         "red": true,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 38,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 35
+            },
+            {
+             "n": "Piaseczno",
+             "c": 2
+            },
+            {
+             "n": "inny US",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 146,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Decyzje",
+         "c": 57,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 36,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 29
+            },
+            {
+             "n": "Piaseczno",
+             "c": 7
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 20,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia (inne)",
+         "c": 51,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 27,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 24
+            },
+            {
+             "n": "Piaseczno",
+             "c": 3
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 24,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia poboczne do ponagleń (sprostowanie, uzupełnienie, nieważność)",
+         "c": 35,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 1,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 34,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wyznaczenie nowego terminu załatwienia sprawy",
+         "c": 33,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 19,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 15
+            },
+            {
+             "n": "Piaseczno",
+             "c": 4
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 14,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia uchylające",
+         "c": 27,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 6,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 5
+            },
+            {
+             "n": "Piaseczno",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 21,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia utrzymujące w mocy",
+         "c": 21,
+         "red": true,
+         "u": [
+          {
+           "n": "DIAS",
+           "c": 21,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia o umorzeniu",
+         "c": 21,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 3,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 2
+            },
+            {
+             "n": "Piaseczno",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 18,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Sprostowanie omyłek",
+         "c": 11,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 3,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 3
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 8,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Metryki spraw",
+     "c": 309,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 50,
+       "p": [
+        {
+         "n": "Wnioski o metrykę i dostęp do akt",
+         "c": 50,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 12,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 10
+            },
+            {
+             "n": "Piaseczno",
+             "c": 2
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 28,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 10,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 259,
+       "p": [
+        {
+         "n": "Metryki spraw",
+         "c": 209,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 35,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 35
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 143,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 31,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Pisma urzędów o metrykach",
+         "c": 50,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 16,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 14
+            },
+            {
+             "n": "Piaseczno",
+             "c": 2
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 28,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 6,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Egzekucja i zabezpieczenie",
+     "c": 132,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 132,
+       "p": [
+        {
+         "n": "Pisma w egzekucji i zabezpieczeniu",
+         "c": 102,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 95,
+           "j": [
+            {
+             "n": "Piaseczno",
+             "c": 56
+            },
+            {
+             "n": "Warszawa-Praga",
+             "c": 35
+            },
+            {
+             "n": "inny US",
+             "c": 4
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 7,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia w egzekucji i zabezpieczeniu",
+         "c": 30,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 22,
+           "j": [
+            {
+             "n": "Piaseczno",
+             "c": 12
+            },
+            {
+             "n": "Warszawa-Praga",
+             "c": 10
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 8,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Zwroty i nadpłaty",
+     "c": 112,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 112,
+       "p": [
+        {
+         "n": "Pisma o zwrotach, nadpłatach i odsetkach",
+         "c": 53,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 39,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 35
+            },
+            {
+             "n": "Piaseczno",
+             "c": 3
+            },
+            {
+             "n": "inny US",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 11,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 3,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Zaliczenie wpłat i nadpłat",
+         "c": 34,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 32,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 28
+            },
+            {
+             "n": "Piaseczno",
+             "c": 4
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia o zwrotach i nadpłatach",
+         "c": 25,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 20,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 20
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 5,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Prawo pomocy",
+     "c": 5,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 5,
+       "p": [
+        {
+         "n": "Wnioski o prawo pomocy i dokumenty do nich",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 5,
+           "j": [
+            {
+             "n": "inny US",
+             "c": 4
+            },
+            {
+             "n": "Warszawa-Praga",
+             "c": 1
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Wezwania i zarządzenia",
+     "c": 112,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 112,
+       "p": [
+        {
+         "n": "Wezwania urzędów",
+         "c": 112,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 74,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 60
+            },
+            {
+             "n": "Piaseczno",
+             "c": 11
+            },
+            {
+             "n": "inny US",
+             "c": 3
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 30,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 8,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Pisma",
+     "c": 481,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 481,
+       "p": [
+        {
+         "n": "Nasze pisma (inne)",
+         "c": 125,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 72,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 51
+            },
+            {
+             "n": "Piaseczno",
+             "c": 11
+            },
+            {
+             "n": "inny US",
+             "c": 10
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 35,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 18,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Żądania i wnioski o wyjaśnienie",
+         "c": 76,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 31,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 30
+            },
+            {
+             "n": "Piaseczno",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 32,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 13,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o sprostowanie lub uzupełnienie rozstrzygnięcia",
+         "c": 65,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 2,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 2
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 59,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 4,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Nasze wezwania do urzędów i sądów",
+         "c": 60,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 19,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 19
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 24,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 17,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o zwrot i nadpłatę",
+         "c": 50,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 39,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 34
+            },
+            {
+             "n": "Piaseczno",
+             "c": 5
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 11,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Egzekucja i zabezpieczenie – nasze pisma",
+         "c": 35,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 18,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 11
+            },
+            {
+             "n": "Piaseczno",
+             "c": 7
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 11,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 6,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Uzupełnienia braków i odpowiedzi na wezwania",
+         "c": 20,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 14,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 12
+            },
+            {
+             "n": "Piaseczno",
+             "c": 2
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 5,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o metrykę i dostęp do akt",
+         "c": 16,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 6,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 5
+            },
+            {
+             "n": "Piaseczno",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 8,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Pełnomocnictwa i umocowania",
+         "c": 13,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 12,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 12
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o stwierdzenie nieważności i wznowienie",
+         "c": 12,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 3,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 3
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 9,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o uzasadnienie",
+         "c": 8,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 2,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 1
+            },
+            {
+             "n": "Piaseczno",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 1,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 5,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Pisma (inne) – skargi kasacyjne",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "DIAS",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sady",
+   "n": "Sądy administracyjne",
+   "opis": "WSA w Warszawie i NSA",
+   "c": 2917,
+   "strony": 40000,
+   "k": [
+    {
+     "n": "Skargi",
+     "c": 98,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 97,
+       "p": [
+        {
+         "n": "Skargi do WSA na decyzje i postanowienia",
+         "c": 48,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 37,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 11,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi do WSA na bezczynność",
+         "c": 22,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 22,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi kasacyjne – nasze",
+         "c": 14,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 3,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 11,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi do NSA na przewlekłość WSA",
+         "c": 12,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 11,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi na pracowników",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 1,
+       "p": [
+        {
+         "n": "Skargi kasacyjne urzędów",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Zażalenia, odwołania, repliki",
+     "c": 60,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 60,
+       "p": [
+        {
+         "n": "Zażalenia",
+         "c": 51,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 49,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Sprzeciwy",
+         "c": 6,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 6,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Odwołania",
+         "c": 3,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 3,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Wyłączenia",
+     "c": 61,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 37,
+       "p": [
+        {
+         "n": "Wnioski o wyłączenie",
+         "c": 37,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 36,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 24,
+       "p": [
+        {
+         "n": "Postanowienia w sprawie wyłączenia",
+         "c": 24,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 17,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 7,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Rozstrzygnięcia sądów",
+     "c": 475,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 475,
+       "p": [
+        {
+         "n": "Skargi odrzucone",
+         "c": 149,
+         "red": true,
+         "u": [
+          {
+           "n": "DIAS",
+           "c": 2,
+           "j": []
+          },
+          {
+           "n": "WSA",
+           "c": 138,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 9,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wyroki oddalające skargę",
+         "c": 84,
+         "red": true,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 82,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia w sprawie uzasadnienia",
+         "c": 61,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 60,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postępowania umorzone",
+         "c": 37,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 37,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia w sprawie zażaleń",
+         "c": 23,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 18,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 5,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia sądów (inne)",
+         "c": 22,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 20,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia w sprawie sprzeciwu",
+         "c": 21,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 21,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wyroki uwzględniające skargę",
+         "c": 18,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 18,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Przywrócenie terminu",
+         "c": 18,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 17,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wyroki (inne)",
+         "c": 15,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 15,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Grzywny dla urzędów",
+         "c": 13,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 12,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Stwierdzenie prawomocności",
+         "c": 10,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 9,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Sprostowanie i uzupełnienie orzeczeń",
+         "c": 4,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 4,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Decyzje i postanowienia",
+     "c": 3,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 3,
+       "p": [
+        {
+         "n": "Decyzje",
+         "c": 3,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 1,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Metryki spraw",
+     "c": 2,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 2,
+       "p": [
+        {
+         "n": "Wnioski o metrykę i dostęp do akt",
+         "c": 2,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Prawo pomocy",
+     "c": 230,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 139,
+       "p": [
+        {
+         "n": "Wnioski o prawo pomocy i dokumenty do nich",
+         "c": 139,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 134,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 5,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 91,
+       "p": [
+        {
+         "n": "Postanowienia o prawie pomocy",
+         "c": 91,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 91,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Wezwania i zarządzenia",
+     "c": 422,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 422,
+       "p": [
+        {
+         "n": "Zarządzenia i wezwania sądów",
+         "c": 422,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 403,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 19,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Akta sądowe",
+     "c": 729,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 729,
+       "p": [
+        {
+         "n": "Akta sądowe z PASSA",
+         "c": 729,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 711,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 18,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Pisma sądów",
+     "c": 257,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 257,
+       "p": [
+        {
+         "n": "Informacje sądów",
+         "c": 148,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 140,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 8,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Zawiadomienia o składzie orzekającym",
+         "c": 75,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 72,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 3,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Akta – przekazanie i dostęp",
+         "c": 23,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 20,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 3,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Zawiadomienia o rozprawie i posiedzeniu",
+         "c": 11,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 8,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 3,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Pisma",
+     "c": 580,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 473,
+       "p": [
+        {
+         "n": "Wnioski o metrykę i dostęp do akt",
+         "c": 189,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 171,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 18,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Nasze pisma (inne)",
+         "c": 95,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 82,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 13,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o uzasadnienie",
+         "c": 46,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 45,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o sprostowanie lub uzupełnienie rozstrzygnięcia",
+         "c": 30,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 24,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 6,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Uzupełnienia braków i odpowiedzi na wezwania",
+         "c": 27,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 27,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Żądania i wnioski o wyjaśnienie",
+         "c": 22,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 20,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Pełnomocnictwa i umocowania",
+         "c": 17,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 15,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Nasze wezwania do urzędów i sądów",
+         "c": 15,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 13,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Prawo pomocy i opinie do skarg kasacyjnych",
+         "c": 13,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 11,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o zwrot i nadpłatę",
+         "c": 7,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 7,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Egzekucja i zabezpieczenie – nasze pisma",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 5,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Pisma (inne) – skargi kasacyjne",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 4,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o stwierdzenie nieważności i wznowienie",
+         "c": 2,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 1,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 107,
+       "p": [
+        {
+         "n": "Pisma sądów (inne)",
+         "c": 107,
+         "red": false,
+         "u": [
+          {
+           "n": "WSA",
+           "c": 78,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 29,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ip",
+   "n": "Informacja publiczna",
+   "opis": "Wnioski i odpowiedzi – urzędy skarbowe i sądy razem",
+   "c": 450,
+   "strony": 1200,
+   "k": [
+    {
+     "n": "Informacja publiczna",
+     "c": 450,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 133,
+       "p": [
+        {
+         "n": "Wnioski o informację publiczną",
+         "c": 133,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 22,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 18
+            },
+            {
+             "n": "Piaseczno",
+             "c": 3
+            },
+            {
+             "n": "inny US",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 36,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 9,
+           "j": []
+          },
+          {
+           "n": "WSA",
+           "c": 49,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 14,
+           "j": []
+          },
+          {
+           "n": "inne",
+           "c": 3,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 317,
+       "p": [
+        {
+         "n": "Odpowiedzi na wnioski o informację publiczną",
+         "c": 264,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 35,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 25
+            },
+            {
+             "n": "inny US",
+             "c": 7
+            },
+            {
+             "n": "Piaseczno",
+             "c": 3
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 86,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 17,
+           "j": []
+          },
+          {
+           "n": "WSA",
+           "c": 106,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 11,
+           "j": []
+          },
+          {
+           "n": "inne",
+           "c": 9,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Odmowy udostępnienia informacji publicznej",
+         "c": 53,
+         "red": true,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 4,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 4
+            }
+           ]
+          },
+          {
+           "n": "DIAS",
+           "c": 14,
+           "j": []
+          },
+          {
+           "n": "SKAS",
+           "c": 8,
+           "j": []
+          },
+          {
+           "n": "WSA",
+           "c": 22,
+           "j": []
+          },
+          {
+           "n": "NSA",
+           "c": 4,
+           "j": []
+          },
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inne",
+   "n": "Inne",
+   "opis": "ZUS, inne instytucje, dokumenty księgowe, materiały",
+   "c": 1194,
+   "strony": 16500,
+   "k": [
+    {
+     "n": "Skargi",
+     "c": 23,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 23,
+       "p": [
+        {
+         "n": "Skargi do WSA na decyzje i postanowienia",
+         "c": 11,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 11,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi na przewlekłość (inne sądy, prokuratura)",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 2,
+           "j": [
+            {
+             "n": "Piaseczno",
+             "c": 1
+            },
+            {
+             "n": "Warszawa-Praga",
+             "c": 1
+            }
+           ]
+          },
+          {
+           "n": "inne",
+           "c": 3,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi na urząd (art. 227 k.p.a.)",
+         "c": 3,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 3,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi do WSA na bezczynność",
+         "c": 3,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 3,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Skargi na pracowników",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Ponaglenia",
+     "c": 12,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 12,
+       "p": [
+        {
+         "n": "Wysłane ponaglenia",
+         "c": 12,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 12,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Zażalenia, odwołania, repliki",
+     "c": 25,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 21,
+       "p": [
+        {
+         "n": "Zażalenia",
+         "c": 11,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 11,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Odwołania",
+         "c": 9,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 9,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Sprzeciwy",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 4,
+       "p": [
+        {
+         "n": "Zażalenia – przekazanie i stanowisko urzędu",
+         "c": 4,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 4,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Rozstrzygnięcia sądów",
+     "c": 1,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 1,
+       "p": [
+        {
+         "n": "Wyroki (inne)",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Decyzje i postanowienia",
+     "c": 39,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 39,
+       "p": [
+        {
+         "n": "Postanowienia (inne)",
+         "c": 20,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 20,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Decyzje",
+         "c": 12,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 12,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia odmowne",
+         "c": 2,
+         "red": true,
+         "u": [
+          {
+           "n": "inne",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Sprostowanie omyłek",
+         "c": 2,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia o umorzeniu",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia uchylające",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia poboczne do ponagleń (sprostowanie, uzupełnienie, nieważność)",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Metryki spraw",
+     "c": 5,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 5,
+       "p": [
+        {
+         "n": "Wnioski o metrykę i dostęp do akt",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 5,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Egzekucja i zabezpieczenie",
+     "c": 53,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 53,
+       "p": [
+        {
+         "n": "Pisma w egzekucji i zabezpieczeniu",
+         "c": 48,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 48,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia w egzekucji i zabezpieczeniu",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 5,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Zwroty i nadpłaty",
+     "c": 13,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 13,
+       "p": [
+        {
+         "n": "Pisma o zwrotach, nadpłatach i odsetkach",
+         "c": 12,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 12,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Postanowienia o zwrotach i nadpłatach",
+         "c": 1,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 1,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Wezwania i zarządzenia",
+     "c": 30,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 30,
+       "p": [
+        {
+         "n": "Wezwania urzędów",
+         "c": 30,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 30,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Pisma",
+     "c": 175,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 175,
+       "p": [
+        {
+         "n": "Nasze pisma (inne)",
+         "c": 130,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 130,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o metrykę i dostęp do akt",
+         "c": 8,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 8,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Egzekucja i zabezpieczenie – nasze pisma",
+         "c": 6,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 6,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Uzupełnienia braków i odpowiedzi na wezwania",
+         "c": 6,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 6,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Pełnomocnictwa i umocowania",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 5,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Nasze wezwania do urzędów i sądów",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 5,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Żądania i wnioski o wyjaśnienie",
+         "c": 5,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 5,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o stwierdzenie nieważności i wznowienie",
+         "c": 4,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 4,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o sprostowanie lub uzupełnienie rozstrzygnięcia",
+         "c": 2,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Wnioski o uzasadnienie",
+         "c": 2,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 2,
+           "j": []
+          }
+         ]
+        },
+        {
+         "n": "Pisma (inne) – skargi kasacyjne",
+         "c": 2,
+         "red": false,
+         "u": [
+          {
+           "n": "inne",
+           "c": 2,
+           "j": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Dokumenty księgowe",
+     "c": 511,
+     "g": [
+      {
+       "n": "Nasze pisma",
+       "c": 28,
+       "p": [
+        {
+         "n": "Dokumenty księgowe i podatkowe",
+         "c": 28,
+         "red": false,
+         "u": [
+          {
+           "n": "NUS",
+           "c": 16,
+           "j": [
+            {
+             "n": "Warszawa-Praga",
+             "c": 16
+            }
+           ]
+          },
+          {
+           "n": "SKAS",
+           "c": 1,
+           "j": []
+          },
+          {
+           "n": "WSA",
+           "c": 8,
+           "j": []
+          },
+          {
+           "n": "inne",
+           "c": 3,
+           "j": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 483,
+       "p": [
+        {
+         "n": "Dokumenty księgowe i podatkowe",
+         "c": 483,
+         "red": false,
+         "u": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "n": "Materiały",
+     "c": 307,
+     "g": [
+      {
+       "n": "Pisma do nas i rozstrzygnięcia",
+       "c": 307,
+       "p": [
+        {
+         "n": "Orzecznictwo, przepisy, oświadczenia",
+         "c": 307,
+         "red": false,
+         "u": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "pozaZakladkami": 1304
+}

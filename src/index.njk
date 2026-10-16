@@ -3,7 +3,6 @@ layout: base.njk
 title: Fundacja MAMY DOŚĆ
 nav: start
 ---
-{%- set L = akta | licznik -%}
 {%- set klasy = { "ok": "ok", "czeka": "wait", "po_terminie": "late", "plan": "plan" } -%}
 <section class="hero on-navy">
   <div class="wrap grid">
@@ -33,14 +32,13 @@ nav: start
 
 <section class="counter" aria-labelledby="licznik-h">
   <div class="wrap">
-    <div class="head"><h2 id="licznik-h">Licznik fundacji</h2><span class="note">LICZONE Z „AKT SPRAW” · STAN {{ site.stanTresci | data }}</span></div>
-    <dl class="tiles">
-      <div class="tile"><dt>pisma wysłane</dt><dd>{{ L.wyslane }}</dd></div>
-      <div class="tile"><dt>odpowiedzi w terminie</dt><dd>{{ L.wTerminie }}</dd></div>
-      <div class="tile alert"><dt>odpowiedzi po terminie lub brak</dt><dd>{{ L.poTerminie }}</dd></div>
-      <div class="tile"><dt>skargi na bezczynność</dt><dd>{{ L.skargi }}</dd></div>
+    <div class="head"><h2 id="licznik-h">Licznik fundacji</h2><span class="note">STAN {{ archiwum.stan | data }}</span></div>
+    <dl class="tiles t3">
+      <div class="tile link"><dt><a href="/archiwum/">dokumentów, którymi dysponujemy <span class="go">szczegóły →</span></a></dt><dd>{{ archiwum.dokumenty | liczba }}</dd></div>
+      <div class="tile"><dt>stron tych dokumentów{% if archiwum.stronySzacunek %} (szacunek){% endif %}</dt><dd>{% if archiwum.stronySzacunek %}ok. {% endif %}{{ archiwum.strony | liczba }}</dd></div>
+      <div class="tile"><dt>pism fundacji</dt><dd>{{ pismaFundacji.liczba }}</dd></div>
     </dl>
-    <details class="how"><summary>Jak liczymy?</summary><p>„Pisma wysłane” to pisma z Akt spraw, które już trafiły do adresata. Odpowiedź „w terminie” liczymy, gdy przyszła przed upływem terminu ustawowego. „Po terminie lub brak” obejmuje odpowiedzi spóźnione i te, których nie ma do dziś, także wtedy, gdy brakuje choćby jednej z kilku. Skargi to skargi na bezczynność złożone do sądu.</p></details>
+    <details class="how"><summary>Jak liczymy?</summary><p>Dokumenty to pisma, odpowiedzi urzędów i orzeczenia sądów ze spraw, które prowadzimy lub obserwujemy, także przekazane nam przez inne osoby. Treści tych dokumentów nie publikujemy, pokazujemy tylko liczby. Nie liczymy paczek plików, potwierdzeń doręczenia i pism przewodnich. Liczba stron jest na razie szacunkiem. Pisma fundacji to pisma, które fundacja wysłała we własnym imieniu.</p></details>
   </div>
 </section>
 

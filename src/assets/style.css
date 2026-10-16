@@ -450,3 +450,52 @@ a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-
 .nav a{white-space:nowrap}
 @media (max-width:1180px) and (min-width:1081px){.nav a{padding:8px 8px;font-size:.9rem}.theme button{padding:7px 7px}}
 .top .wrap{gap:12px}.nav a.cta{margin-left:2px}.theme{margin-left:6px}
+
+/* licznik: kafelek-link i archiwum */
+.tiles.t3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tile.link{position:relative;transition:background .15s}
+.tile.link:hover{background:var(--mist)}
+.tile.link a{color:inherit;text-decoration:none}
+.tile.link a::after{content:"";position:absolute;inset:0}
+.tile.link:focus-within{outline:3px solid var(--red);outline-offset:-3px}
+.tile.link a:focus-visible{outline:0}
+.tile.link .go{display:block;margin-top:4px;color:var(--red);font-weight:600}
+@media (max-width:700px){.tiles.t3{grid-template-columns:minmax(0,1fr)}.tiles.t3 .tile{border-right:0;border-bottom:1px solid var(--line)}.tiles.t3 .tile:last-child{border-bottom:0}}
+.arch h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:6px 0 10px}
+.arch .kick-d{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin:0}
+.arch .lead-d{max-width:62ch;color:var(--slate);margin:0 0 22px}
+.arch-sum{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:8px}
+.arch-sum b{display:block;font:800 clamp(2.4rem,6vw,3.4rem)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.arch-sum span{color:var(--slate)}
+.arch-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:28px 0 16px}
+.arch-tab{background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--line);padding:14px 16px;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.arch-tab b{display:block;font:800 1.9rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.arch-tab span{font-size:.92rem;color:var(--slate)}
+.arch-tab[aria-selected="true"]{border-top-color:var(--red);border-color:var(--slate)}
+.arch-tab:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+@media (max-width:700px){.arch-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.arch-opis{color:var(--slate);margin:0 0 4px}
+.arch-ctrl{margin:0 0 12px;font-size:.92rem}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--red);cursor:pointer;text-decoration:underline}
+.arch summary{display:flex;align-items:baseline;gap:12px;cursor:pointer;list-style:none}
+.arch summary::-webkit-details-marker{display:none}
+.arch summary::before{content:"▸";color:var(--slate);width:1em;flex:none}
+.arch details[open]>summary::before{content:"▾"}
+.arch summary .nm{flex:1;min-width:0}
+.arch summary .ct,.a3x .ct{font-weight:700;font-variant-numeric:tabular-nums}
+.a1{background:var(--paper);border:1px solid var(--line);margin-bottom:8px}
+.a1>summary{padding:14px 16px;font-size:1.1rem;font-weight:700}
+.a1b{padding:0 16px 14px}
+.ag{margin-top:10px}
+.agh{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);padding:6px 0;border-bottom:1px solid var(--line)}
+.agh b{color:var(--ink,inherit)}
+.a2{border-bottom:1px solid var(--line)}
+.a2>summary{padding:9px 0 9px 4px}
+.a2.red>summary .ct{color:var(--red)}
+.a2b{padding:0 0 8px 22px}
+.a3>summary,.a3x{padding:5px 0;font-size:.95rem}
+.a3x{display:flex;gap:12px;padding-left:1em}.a3x .nm{flex:1}
+.units{display:flex;flex-wrap:wrap;gap:6px 16px;padding:2px 0 8px 1.6em;font-size:.9rem;color:var(--slate)}
+.units b{color:var(--ink,inherit)}
+.arch .muted{color:var(--slate);font-size:.9rem;margin:4px 0}
+.arch-foot{margin-top:22px;font-size:.88rem;color:var(--slate);max-width:80ch}
