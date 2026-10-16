@@ -375,7 +375,6 @@ a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-
 .steps-n li{counter-increment:s;display:grid;grid-template-columns:2.2rem minmax(0,1fr);gap:10px;font-size:.95rem;color:#fff}
 .steps-n li::before{content:counter(s,decimal-leading-zero);font:500 .78rem var(--f-mono);color:#1D2939;background:var(--pink);width:1.8rem;height:1.8rem;display:grid;place-items:center}
 @media (max-width:480px){.modes{grid-template-columns:minmax(0,1fr)}.modes div+div{border-left:0;border-top:1px solid rgba(255,255,255,.22)}}
-.foot .wrap{grid-template-columns:1.4fr 1fr 1fr}
 
 /* ===== Finanse ===== */
 .fin{padding-block:40px 72px;display:grid;grid-template-columns:minmax(0,1fr);gap:56px}
@@ -442,3 +441,9 @@ a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-
 .flow b{display:block;color:var(--ink);font:800 1.02rem var(--f-display);margin-bottom:2px}
 .fin-z{margin-top:18px}
 @media (max-width:700px){.file .pill{justify-self:start}.chart{overflow-x:auto}.chart svg{min-width:620px}}
+/* logo zatwierdzone 16.10.2026 – wersja granatowa, bez zmian proporcji i kolorów */
+.top .wrap{min-height:92px}
+.logo{padding-block:12px}
+.logo img{display:block;height:68px;width:auto}
+.foot-logo{display:block;width:228px;height:auto}
+@media (max-width:900px){.top .wrap{min-height:80px}.logo img{height:58px}}
