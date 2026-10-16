@@ -61,7 +61,7 @@ h1,h2,h3{font-family:var(--f-display);line-height:1.12;text-wrap:balance;margin:
 .theme button[aria-pressed="true"]{background:rgba(255,255,255,.14);color:#fff}
 .nav a.cta:hover{background:#A84446}
 .menu-btn{display:none;margin-left:auto;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;font:500 .85rem var(--f-mono);padding:8px 12px;cursor:pointer}
-@media (max-width:900px){
+@media (max-width:1080px){
   .menu-btn{display:block}
   .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--navy);flex-direction:column;align-items:stretch;padding:8px 20px 16px;margin:0;border-bottom:1px solid rgba(255,255,255,.08)}
   .nav a.cta{margin:10px 0 0;text-align:center}
@@ -442,8 +442,11 @@ a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-
 .fin-z{margin-top:18px}
 @media (max-width:700px){.file .pill{justify-self:start}.chart{overflow-x:auto}.chart svg{min-width:620px}}
 /* logo zatwierdzone 16.10.2026 – wersja granatowa, bez zmian proporcji i kolorów */
-.top .wrap{min-height:92px}
+.top .wrap{min-height:126px}
 .logo{padding-block:12px}
-.logo img{display:block;height:68px;width:auto}
-.foot-logo{display:block;width:228px;height:auto}
-@media (max-width:900px){.top .wrap{min-height:80px}.logo img{height:58px}}
+.logo img{display:block;height:102px;width:auto}
+.foot-logo{display:block;width:342px;max-width:100%;height:auto}
+@media (max-width:900px){.top .wrap{min-height:110px}.logo img{height:87px}}
+.nav a{white-space:nowrap}
+@media (max-width:1180px) and (min-width:1081px){.nav a{padding:8px 8px;font-size:.9rem}.theme button{padding:7px 7px}}
+.top .wrap{gap:12px}.nav a.cta{margin-left:2px}.theme{margin-left:6px}
