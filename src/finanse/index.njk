@@ -122,6 +122,12 @@ okruszki: [{ t: "Finanse" }]
     <p class="empty" id="ops-empty" hidden>Brak operacji dla tych filtrów.</p>
   </section>
 
+  <section class="fin-acc" aria-labelledby="rach-h">
+    <h2 class="fin-h" id="rach-h">Rachunki fundacji</h2>
+    <p>Odbiorca: Fundacja MAMY DOŚĆ, {{ site.adres }}. Tytuł: darowizna na cele statutowe.</p>
+    <dl class="acc">{% for r in site.rachunki %}<div><dt>{{ r.waluta }}</dt><dd><code id="fr{{ loop.index }}">{{ r.nr }}</code> <button class="copy" type="button" data-c="fr{{ loop.index }}">Kopiuj</button></dd></div>{% endfor %}</dl>
+  </section>
+
   <section class="two" aria-label="Jak powstaje rozliczenie">
     <div>
       <h2 class="fin-h">Skąd te liczby</h2>

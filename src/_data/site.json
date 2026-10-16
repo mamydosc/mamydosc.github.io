@@ -8,6 +8,16 @@
   "emailAnonimowy": "123bjp@duck.com",
   "eDoreczenia": "AE:PL-45973-21583-JFTCA-29",
   "epuap": "/mamydosc/domyslna",
+  "rachunki": [
+    {
+      "waluta": "PLN",
+      "nr": "52 1870 1045 2078 1093 0280 0001"
+    },
+    {
+      "waluta": "EUR",
+      "nr": "PL25 1870 1045 2078 1093 0280 0002"
+    }
+  ],
   "krs": "0001270149",
   "nip": "5214181906",
   "facebook": "",
