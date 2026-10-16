@@ -21,7 +21,7 @@ nav: start
     </div>
     {% for o in A.obszary %}
     <section class="arch-pane" role="tabpanel" id="p-{{ o.id }}" aria-labelledby="t-{{ o.id }}"{% if not loop.first %} hidden{% endif %}>
-      <p class="arch-opis">{{ o.opis }} · {{ o.strony | liczba }} stron (szacunek)</p>
+      <p class="arch-opis">{{ o.opis }} · {{ o.strony | liczba }} stron</p>
       <p class="arch-ctrl"><button type="button" class="linkbtn" data-all="1">Rozwiń wszystko</button> · <button type="button" class="linkbtn" data-all="0">Zwiń</button></p>
       {% for k in o.k %}
       <details class="a1"><summary><span class="nm">{{ k.n }}</span><span class="ct">{{ k.c | liczba }}</span></summary>

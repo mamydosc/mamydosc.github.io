@@ -4,7 +4,7 @@
  "stanRejestru": "2026-10-15",
  "dokumenty": 8355,
  "strony": 79800,
- "stronySzacunek": true,
+ "stronySzacunek": false,
  "obszary": [
   {
    "id": "kas",
