@@ -12,7 +12,7 @@ nav: start
     <p class="lead-d">Pisma, odpowiedzi urzędów i orzeczenia sądów ze spraw, które prowadzimy lub obserwujemy. Treści dokumentów nie publikujemy, pokazujemy tylko liczby.</p>
     <div class="arch-sum">
       <div><b>{{ A.dokumenty | liczba }}</b><span>dokumentów</span></div>
-      <div><b>{% if A.stronySzacunek %}ok. {% endif %}{{ A.strony | liczba }}</b><span>stron{% if A.stronySzacunek %} (szacunek, liczba dokładna wkrótce){% endif %}</span></div>
+      <div><b>{{ A.strony | liczba }}</b><span>stron{% if A.stronySzacunek %} (szacunek, liczba dokładna wkrótce){% endif %}</span></div>
     </div>
     <p class="note">STAN {{ A.stan | data }} · LICZBY ORIENTACYJNE · BEZ PACZEK PLIKÓW, POTWIERDZEŃ DORĘCZENIA I PISM PRZEWODNICH</p>
 
@@ -21,7 +21,7 @@ nav: start
     </div>
     {% for o in A.obszary %}
     <section class="arch-pane" role="tabpanel" id="p-{{ o.id }}" aria-labelledby="t-{{ o.id }}"{% if not loop.first %} hidden{% endif %}>
-      <p class="arch-opis">{{ o.opis }} · ok. {{ o.strony | liczba }} stron</p>
+      <p class="arch-opis">{{ o.opis }} · {{ o.strony | liczba }} stron (szacunek)</p>
       <p class="arch-ctrl"><button type="button" class="linkbtn" data-all="1">Rozwiń wszystko</button> · <button type="button" class="linkbtn" data-all="0">Zwiń</button></p>
       {% for k in o.k %}
       <details class="a1"><summary><span class="nm">{{ k.n }}</span><span class="ct">{{ k.c | liczba }}</span></summary>

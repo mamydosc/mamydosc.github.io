@@ -35,7 +35,7 @@ nav: start
     <div class="head"><h2 id="licznik-h">Licznik fundacji</h2><span class="note">STAN {{ archiwum.stan | data }}</span></div>
     <dl class="tiles t3">
       <div class="tile link"><dt><a href="/archiwum/">dokumentów, którymi dysponujemy <span class="go">szczegóły →</span></a></dt><dd>{{ archiwum.dokumenty | liczba }}</dd></div>
-      <div class="tile"><dt>stron tych dokumentów{% if archiwum.stronySzacunek %} (szacunek){% endif %}</dt><dd>{% if archiwum.stronySzacunek %}ok. {% endif %}{{ archiwum.strony | liczba }}</dd></div>
+      <div class="tile"><dt>stron tych dokumentów{% if archiwum.stronySzacunek %} (szacunek){% endif %}</dt><dd>{{ archiwum.strony | liczba }}</dd></div>
       <div class="tile"><dt>pism fundacji</dt><dd>{{ pismaFundacji.liczba }}</dd></div>
     </dl>
     <details class="how"><summary>Jak liczymy?</summary><p>Dokumenty to pisma, odpowiedzi urzędów i orzeczenia sądów ze spraw, które prowadzimy lub obserwujemy, także przekazane nam przez inne osoby. Treści tych dokumentów nie publikujemy, pokazujemy tylko liczby. Nie liczymy paczek plików, potwierdzeń doręczenia i pism przewodnich. Liczba stron jest na razie szacunkiem. Pisma fundacji to pisma, które fundacja wysłała we własnym imieniu.</p></details>
