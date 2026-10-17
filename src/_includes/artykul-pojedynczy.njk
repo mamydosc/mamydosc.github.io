@@ -9,7 +9,6 @@ nav: publikacje
 </div></div>
 <div class="wrap article">
   <article class="prose">
-    {% if proba %}<p class="proba">WERSJA PRÓBNA</p>{% endif %}
     {%- set nad = collections.artykuly | znajdzNr(nadrzedny) if nadrzedny else false -%}
     {% if nad %}<p class="watek">Wątek tematu <a href="{{ nad.url }}">{{ nad.data.numer }} · {{ nad.data.title }}</a></p>{% endif %}
     <p class="lead">{{ lead }}</p>
