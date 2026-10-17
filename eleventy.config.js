@@ -56,6 +56,8 @@ module.exports = function (cfg) {
       skargi: w.filter((a) => a.typ === "SKG").length,
     };
   });
+  cfg.addFilter("znajdzNr", (arr, nr) => (arr || []).find((x) => x.data.numer === nr) || false);
+  cfg.addFilter("watki", (arr, nr) => (arr || []).filter((x) => x.data.nadrzedny === nr));
   cfg.addFilter("gdzieBrak", (arr, key) => (arr || []).filter((x) => !(x.data && x.data[key])));
   cfg.addFilter("gdzie", (arr, key, val) => (arr || []).filter((x) => x[key] === val));
 

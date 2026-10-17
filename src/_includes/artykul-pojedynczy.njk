@@ -10,8 +10,12 @@ nav: publikacje
 <div class="wrap article">
   <article class="prose">
     {% if proba %}<p class="proba">WERSJA PRÓBNA</p>{% endif %}
+    {%- set nad = collections.artykuly | znajdzNr(nadrzedny) if nadrzedny else false -%}
+    {% if nad %}<p class="watek">Wątek tematu <a href="{{ nad.url }}">{{ nad.data.numer }} · {{ nad.data.title }}</a></p>{% endif %}
     <p class="lead">{{ lead }}</p>
     {{ content | safe }}
+    {%- set dzieci = collections.artykuly | watki(numer) -%}
+    {% if dzieci.length %}<div class="watki"><b>Wątki w tym temacie</b><ol>{% for t in dzieci %}<li><a href="{{ t.url }}">{{ t.data.numer }} · {{ t.data.title }}</a></li>{% endfor %}</ol></div>{% endif %}
     {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{{ z }}</li>{% endfor %}</ul></div>{% endif %}
     <div class="btns"><a class="btn line" href="/publikacje/">← Wszystkie publikacje</a><a class="btn red" href="/przekaz-dokumenty/">Masz podobną sprawę? Przekaż dokumenty</a></div>
   </article>
