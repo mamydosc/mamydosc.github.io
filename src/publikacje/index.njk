@@ -8,6 +8,7 @@ okruszki: [{ t: "Publikacje" }]
 {% include "naglowek.njk" %}
 <div class="wrap sec" style="padding-top:40px">
   {%- set teksty = collections.artykuly | gdzieBrak("cykl") -%}
+  {% if not teksty.length and not cykle.length %}<div class="banner">Brak publikacji. Pierwszy tekst fundacji pojawi się tutaj po zatwierdzeniu.</div>{% endif %}
   {% if teksty.length %}
   <div class="sec-h" id="teksty"><h2>Teksty</h2></div>
   <div class="series"><ol>

@@ -16,7 +16,7 @@ nav: start
       </div>
     </div>
     <div>
-      <ul class="stack" aria-label="Najnowsze teczki">
+      {% if akta.length %}<ul class="stack" aria-label="Najnowsze teczki">
         {% for a in akta | reverse %}{% if loop.index <= 3 %}
         <li><a class="sfile" href="/akta/{{ a.sygnatura | slugSyg }}/">
           <div class="row"><span>{{ a.sygnatura }}</span><span class="tab">{{ typy[a.typ].nazwa }}</span></div>
@@ -25,7 +25,7 @@ nav: start
         </a></li>
         {% endif %}{% endfor %}
       </ul>
-      <p class="stack-note">OSTATNIE TECZKI W AKTACH SPRAW</p>
+      <p class="stack-note">OSTATNIE TECZKI W AKTACH SPRAW</p>{% endif %}
     </div>
   </div>
 </section>
@@ -42,6 +42,7 @@ nav: start
   </div>
 </section>
 
+{% if akta.length %}
 <section class="sec" id="akta" aria-labelledby="akta-h">
   <div class="wrap">
     <div class="sec-h"><div><h2 id="akta-h">Akta spraw</h2><p>Każde pismo fundacji z sygnaturą, adresatem i statusem. Kliknij teczkę, aby zobaczyć przebieg i odpowiedzi.</p></div><a class="more" href="/akta/">Wszystkie akta →</a></div>
@@ -62,6 +63,7 @@ nav: start
     <p class="empty" id="empty" hidden>Nic nie pasuje. Sygnaturę możesz wpisać z ukośnikami albo z myślnikami, np. MD/ZAW/2026/002.</p>
   </div>
 </section>
+{% endif %}
 
 {%- set teksty = collections.artykuly | gdzieBrak("cykl") -%}
 {% if teksty.length %}

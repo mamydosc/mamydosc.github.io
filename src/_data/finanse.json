@@ -1,56 +1,77 @@
 {
-  "_opis": "Rozliczenie wpływów i kosztów fundacji. Plik aktualizuje zadanie Wrzutni na podstawie dokumentów z podfolderu dla finansów fundacji (wyciągi, faktury, umowy, potwierdzenia wpłat). Każda operacja ma dokument źródłowy. Darczyńców indywidualnych nie podajemy z nazwiska bez ich zgody.",
-  "przyklad": true,
-  "stan": "2026-10-15",
+  "_opis": "Rozliczenie wpływów i kosztów fundacji. Plik aktualizuje zadanie „Funtnia – rejestr” na podstawie dokumentów z Funtni (wyciągi, faktury, umowy, potwierdzenia wpłat). Każda operacja ma dokument źródłowy. Darczyńców indywidualnych nie podajemy z nazwiska bez ich zgody.",
+  "przyklad": false,
+  "stan": "2026-10-17",
   "okres": "październik 2026 – marzec 2027",
   "rachunek": "",
   "fundusze": [
-    { "id": "akta", "nazwa": "Akta jawne", "opis": "wnioski o informację publiczną, monitoring sądów i KAS, raporty, publikacje" },
-    { "id": "interwencje", "nazwa": "Interwencje", "opis": "opłaty i wpisy w sprawach innych osób, prawnik na godziny, opinie" },
-    { "id": "zaplecze", "nazwa": "Zaplecze analityczne", "opis": "narzędzia do analizy dokumentów, archiwum, bezpieczeństwo danych" },
-    { "id": "edukacja", "nazwa": "Edukacja", "opis": "poradniki, wzory pism, bezpłatne spotkania" },
-    { "id": "ogolny", "nazwa": "Gdzie najbardziej potrzeba", "opis": "koszty stałe: księgowość, domena, opłaty bankowe" }
+    {
+      "id": "akta",
+      "nazwa": "Akta jawne",
+      "opis": "wnioski o informację publiczną, monitoring sądów i KAS, raporty, publikacje"
+    },
+    {
+      "id": "interwencje",
+      "nazwa": "Interwencje",
+      "opis": "opłaty i wpisy w sprawach innych osób, prawnik na godziny, opinie"
+    },
+    {
+      "id": "zaplecze",
+      "nazwa": "Zaplecze analityczne",
+      "opis": "narzędzia do analizy dokumentów, archiwum, bezpieczeństwo danych"
+    },
+    {
+      "id": "edukacja",
+      "nazwa": "Edukacja",
+      "opis": "poradniki, wzory pism, bezpłatne spotkania"
+    },
+    {
+      "id": "ogolny",
+      "nazwa": "Gdzie najbardziej potrzeba",
+      "opis": "koszty stałe: księgowość, domena, opłaty bankowe"
+    }
   ],
   "kategorie": {
-    "darowizna-osoba": { "nazwa": "Darowizny osób", "typ": "wplyw" },
-    "darowizna-firma": { "nazwa": "Darowizny firm i organizacji", "typ": "wplyw" },
-    "platforma": { "nazwa": "Wpłaty przez platformę", "typ": "wplyw" },
-    "grant": { "nazwa": "Granty i dotacje", "typ": "wplyw" },
-    "ksiegowosc": { "nazwa": "Księgowość", "typ": "koszt" },
-    "narzedzia": { "nazwa": "Narzędzia i oprogramowanie", "typ": "koszt" },
-    "oplaty": { "nazwa": "Opłaty urzędowe i sądowe", "typ": "koszt" },
-    "uslugi": { "nazwa": "Usługi zewnętrzne", "typ": "koszt" },
-    "bank": { "nazwa": "Opłaty bankowe i prowizje", "typ": "koszt" },
-    "druk": { "nazwa": "Druk i wysyłka", "typ": "koszt" }
+    "darowizna-osoba": {
+      "nazwa": "Darowizny osób",
+      "typ": "wplyw"
+    },
+    "darowizna-firma": {
+      "nazwa": "Darowizny firm i organizacji",
+      "typ": "wplyw"
+    },
+    "platforma": {
+      "nazwa": "Wpłaty przez platformę",
+      "typ": "wplyw"
+    },
+    "grant": {
+      "nazwa": "Granty i dotacje",
+      "typ": "wplyw"
+    },
+    "ksiegowosc": {
+      "nazwa": "Księgowość",
+      "typ": "koszt"
+    },
+    "narzedzia": {
+      "nazwa": "Narzędzia i oprogramowanie",
+      "typ": "koszt"
+    },
+    "oplaty": {
+      "nazwa": "Opłaty urzędowe i sądowe",
+      "typ": "koszt"
+    },
+    "uslugi": {
+      "nazwa": "Usługi zewnętrzne",
+      "typ": "koszt"
+    },
+    "bank": {
+      "nazwa": "Opłaty bankowe i prowizje",
+      "typ": "koszt"
+    },
+    "druk": {
+      "nazwa": "Druk i wysyłka",
+      "typ": "koszt"
+    }
   },
-  "operacje": [
-    { "nr": "FINA-1", "data": "2026-10-20", "kategoria": "darowizna-osoba", "opis": "Darowizny od 14 osób (przelewy)", "kontrahent": "darczyńcy indywidualni", "fundusz": "ogolny", "kwota": 1260, "dokument": "wyciąg bankowy 10/2026" },
-    { "nr": "FINA-2", "data": "2026-10-24", "kategoria": "narzedzia", "opis": "Abonament na narzędzie do analizy dokumentów, październik", "kontrahent": "dostawca oprogramowania", "fundusz": "zaplecze", "kwota": -430, "dokument": "faktura 10/2026" },
-    { "nr": "FINA-3", "data": "2026-10-28", "kategoria": "ksiegowosc", "opis": "Obsługa księgowa, październik", "kontrahent": "biuro rachunkowe", "fundusz": "ogolny", "kwota": -350, "dokument": "faktura 10/2026" },
-    { "nr": "FINA-4", "data": "2026-10-31", "kategoria": "bank", "opis": "Prowizje bramki płatności", "kontrahent": "operator płatności", "fundusz": "ogolny", "kwota": -18.4, "dokument": "zestawienie prowizji 10/2026" },
-    { "nr": "FINA-5", "data": "2026-11-05", "kategoria": "darowizna-osoba", "opis": "Darowizny od 31 osób, cel: Akta jawne", "kontrahent": "darczyńcy indywidualni", "fundusz": "akta", "kwota": 2140, "dokument": "wyciąg bankowy 11/2026" },
-    { "nr": "FINA-6", "data": "2026-11-12", "kategoria": "platforma", "opis": "Wypłata z platformy wpłat cyklicznych", "kontrahent": "platforma zbiórkowa", "fundusz": "ogolny", "kwota": 610, "dokument": "raport wypłaty 11/2026" },
-    { "nr": "FINA-7", "data": "2026-11-18", "kategoria": "druk", "opis": "Wysyłka 16 wniosków o informację publiczną listem poleconym", "kontrahent": "operator pocztowy", "fundusz": "akta", "kwota": -196.8, "dokument": "potwierdzenia nadania" },
-    { "nr": "FINA-8", "data": "2026-11-24", "kategoria": "narzedzia", "opis": "Abonament na narzędzie do analizy dokumentów, listopad", "kontrahent": "dostawca oprogramowania", "fundusz": "zaplecze", "kwota": -430, "dokument": "faktura 11/2026" },
-    { "nr": "FINA-9", "data": "2026-11-28", "kategoria": "ksiegowosc", "opis": "Obsługa księgowa, listopad", "kontrahent": "biuro rachunkowe", "fundusz": "ogolny", "kwota": -350, "dokument": "faktura 11/2026" },
-    { "nr": "FINA-10", "data": "2026-12-03", "kategoria": "darowizna-firma", "opis": "Darowizna firmy (zgoda na podanie nazwy – w wersji rzeczywistej)", "kontrahent": "firma", "fundusz": "edukacja", "kwota": 3000, "dokument": "umowa darowizny + wyciąg 12/2026" },
-    { "nr": "FINA-11", "data": "2026-12-09", "kategoria": "oplaty", "opis": "Wpis od skargi do WSA w sprawie osoby wspieranej przez fundację", "kontrahent": "WSA – rachunek sądu", "fundusz": "interwencje", "kwota": -200, "dokument": "potwierdzenie przelewu" },
-    { "nr": "FINA-12", "data": "2026-12-15", "kategoria": "darowizna-osoba", "opis": "Darowizny od 52 osób", "kontrahent": "darczyńcy indywidualni", "fundusz": "ogolny", "kwota": 3380, "dokument": "wyciąg bankowy 12/2026" },
-    { "nr": "FINA-13", "data": "2026-12-18", "kategoria": "uslugi", "opis": "Konsultacja prawna przed publikacją raportu", "kontrahent": "kancelaria", "fundusz": "akta", "kwota": -615, "dokument": "faktura 12/2026" },
-    { "nr": "FINA-14", "data": "2026-12-24", "kategoria": "narzedzia", "opis": "Abonament na narzędzie do analizy dokumentów, grudzień", "kontrahent": "dostawca oprogramowania", "fundusz": "zaplecze", "kwota": -430, "dokument": "faktura 12/2026" },
-    { "nr": "FINA-15", "data": "2026-12-29", "kategoria": "ksiegowosc", "opis": "Obsługa księgowa, grudzień", "kontrahent": "biuro rachunkowe", "fundusz": "ogolny", "kwota": -350, "dokument": "faktura 12/2026" },
-    { "nr": "FINA-16", "data": "2027-01-14", "kategoria": "darowizna-osoba", "opis": "Darowizny od 27 osób", "kontrahent": "darczyńcy indywidualni", "fundusz": "ogolny", "kwota": 1490, "dokument": "wyciąg bankowy 01/2027" },
-    { "nr": "FINA-17", "data": "2027-01-20", "kategoria": "uslugi", "opis": "Domena i poczta fundacji, opłata roczna", "kontrahent": "rejestrator domen", "fundusz": "ogolny", "kwota": -240, "dokument": "faktura 01/2027" },
-    { "nr": "FINA-18", "data": "2027-01-24", "kategoria": "narzedzia", "opis": "Abonament na narzędzie do analizy dokumentów, styczeń", "kontrahent": "dostawca oprogramowania", "fundusz": "zaplecze", "kwota": -430, "dokument": "faktura 01/2027" },
-    { "nr": "FINA-19", "data": "2027-01-28", "kategoria": "ksiegowosc", "opis": "Obsługa księgowa, styczeń", "kontrahent": "biuro rachunkowe", "fundusz": "ogolny", "kwota": -350, "dokument": "faktura 01/2027" },
-    { "nr": "FINA-20", "data": "2027-02-10", "kategoria": "grant", "opis": "Pierwsza transza grantu na monitoring sądów (umowa w wersji rzeczywistej)", "kontrahent": "grantodawca", "fundusz": "akta", "kwota": 8000, "dokument": "umowa grantowa + wyciąg 02/2027" },
-    { "nr": "FINA-21", "data": "2027-02-16", "kategoria": "darowizna-osoba", "opis": "Darowizny od 19 osób", "kontrahent": "darczyńcy indywidualni", "fundusz": "interwencje", "kwota": 940, "dokument": "wyciąg bankowy 02/2027" },
-    { "nr": "FINA-22", "data": "2027-02-24", "kategoria": "narzedzia", "opis": "Abonament na narzędzie do analizy dokumentów, luty", "kontrahent": "dostawca oprogramowania", "fundusz": "zaplecze", "kwota": -430, "dokument": "faktura 02/2027" },
-    { "nr": "FINA-23", "data": "2027-02-26", "kategoria": "uslugi", "opis": "Opracowanie danych z odpowiedzi sądów, umowa o dzieło", "kontrahent": "wykonawca (osoba fizyczna)", "fundusz": "akta", "kwota": -1800, "dokument": "umowa + rachunek 02/2027" },
-    { "nr": "FINA-24", "data": "2027-02-27", "kategoria": "ksiegowosc", "opis": "Obsługa księgowa, luty", "kontrahent": "biuro rachunkowe", "fundusz": "ogolny", "kwota": -350, "dokument": "faktura 02/2027" },
-    { "nr": "FINA-25", "data": "2027-03-11", "kategoria": "darowizna-osoba", "opis": "Darowizny od 33 osób", "kontrahent": "darczyńcy indywidualni", "fundusz": "ogolny", "kwota": 1720, "dokument": "wyciąg bankowy 03/2027" },
-    { "nr": "FINA-26", "data": "2027-03-17", "kategoria": "druk", "opis": "Druk poradnika „Jak napisać ponaglenie” (200 egz.)", "kontrahent": "drukarnia", "fundusz": "edukacja", "kwota": -980, "dokument": "faktura 03/2027" },
-    { "nr": "FINA-27", "data": "2027-03-24", "kategoria": "narzedzia", "opis": "Abonament na narzędzie do analizy dokumentów, marzec", "kontrahent": "dostawca oprogramowania", "fundusz": "zaplecze", "kwota": -430, "dokument": "faktura 03/2027" },
-    { "nr": "FINA-28", "data": "2027-03-27", "kategoria": "ksiegowosc", "opis": "Obsługa księgowa, marzec", "kontrahent": "biuro rachunkowe", "fundusz": "ogolny", "kwota": -350, "dokument": "faktura 03/2027" }
-  ]
+  "operacje": []
 }

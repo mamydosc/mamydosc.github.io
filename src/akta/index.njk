@@ -7,7 +7,7 @@ okruszki: [{ t: "Akta spraw" }]
 ---
 {% include "naglowek.njk" %}
 <div class="wrap sec" style="padding-top:36px">
-  {% if site.robocza %}<div class="banner">Wpisy to sprawy fundacji w wersji roboczej. Sygnatury są robocze, bo format czeka na decyzję. Daty i statusy uzupełnimy z rejestru przed startem strony.</div>{% endif %}
+  {% if not akta.length %}<div class="banner">Brak pism. Pierwsze pismo fundacji pojawi się tutaj razem z sygnaturą, adresatem i terminem odpowiedzi.</div>{% endif %}
   <div class="filters" role="group" aria-label="Filtr typu pisma">
     <input class="search" id="q" type="search" placeholder="Sygnatura, adresat albo temat" aria-label="Szukaj w aktach">
     <button class="chip" type="button" data-f="all" aria-pressed="true">Wszystkie</button>

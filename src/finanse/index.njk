@@ -3,7 +3,7 @@ layout: base.njk
 title: Finanse fundacji
 nav: finanse
 opisStrony: Wpływy i koszty Fundacji MAMY DOŚĆ. Każda pozycja z dokumentem źródłowym.
-wstep: Ile dostajemy, ile wydajemy i na co. Każda pozycja ma dokument źródłowy, a liczby aktualizujemy z wyciągów i faktur, które trafiają do naszej Wrzutni.
+wstep: Ile dostajemy, ile wydajemy i na co. Każda pozycja ma dokument źródłowy, a liczby aktualizujemy z wyciągów i faktur, które trafiają do Funtni – skrzynki dokumentów fundacji.
 okruszki: [{ t: "Finanse" }]
 ---
 {%- set S = finanseSuma -%}
@@ -15,6 +15,7 @@ okruszki: [{ t: "Finanse" }]
   <div class="banner fin-ex" role="note"><b>DANE PRZYKŁADOWE.</b> Tak będzie wyglądać rozliczenie fundacji. Liczby poniżej są zmyślone i pokazują tylko układ strony. Zastąpią je prawdziwe, gdy do Wrzutni trafią pierwsze dokumenty finansowe.</div>
   {% endif %}
 
+  {% if F.operacje.length %}
   <section aria-labelledby="podsum-h">
     <div class="head-row"><h2 id="podsum-h" class="fin-h">Podsumowanie</h2><span class="note">OKRES: {{ F.okres | upper }} · STAN {{ F.stan | data }}</span></div>
     <dl class="tiles fin-tiles">
@@ -121,6 +122,9 @@ okruszki: [{ t: "Finanse" }]
     <button class="toggle" id="ops-more" type="button" hidden></button>
     <p class="empty" id="ops-empty" hidden>Brak operacji dla tych filtrów.</p>
   </section>
+  {% else %}
+  <div class="banner" role="note">Rozliczenie pokażemy tutaj, gdy zarejestrujemy pierwsze wpływy i koszty fundacji. Każda pozycja będzie miała dokument źródłowy.</div>
+  {% endif %}
 
   <section class="fin-acc" aria-labelledby="rach-h">
     <h2 class="fin-h" id="rach-h">Rachunki fundacji</h2>
@@ -132,7 +136,7 @@ okruszki: [{ t: "Finanse" }]
     <div>
       <h2 class="fin-h">Skąd te liczby</h2>
       <ol class="flow">
-        <li><div><b>Dokument trafia do Wrzutni.</b>Wyciąg bankowy, faktura, rachunek, umowa darowizny albo grantu, raport wypłaty z platformy.</div></li>
+        <li><div><b>Dokument trafia do Funtni.</b>Wyciąg bankowy, faktura, rachunek, umowa darowizny albo grantu, raport wypłaty z platformy.</div></li>
         <li><div><b>Claude go odczytuje i opisuje.</b>Nadaje numer FINA, wpisuje datę, kwotę, kategorię i fundusz. Dokument dostaje odnośnik w rejestrze finansów fundacji, osobnym od rejestru spraw.</div></li>
         <li><div><b>Zarząd zatwierdza.</b>Nic nie trafia na stronę bez akceptacji.</div></li>
         <li><div><b>Strona się przelicza.</b>Podsumowanie, wykres, fundusze i tabela liczą się same z zatwierdzonych pozycji.</div></li>
