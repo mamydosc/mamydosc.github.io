@@ -63,6 +63,18 @@ nav: start
   </div>
 </section>
 
+{%- set teksty = collections.artykuly | gdzieBrak("cykl") -%}
+{% if teksty.length %}
+<section class="sec" id="teksty" aria-labelledby="teksty-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><div><h2 id="teksty-h">Publikacje</h2><p>Najnowsze teksty fundacji. Każdy oparty na dokumentach z sygnaturą lub znakiem pisma.</p></div><a class="more" href="/publikacje/">Wszystkie publikacje →</a></div>
+    <div class="series"><ol>
+      {% for t in teksty | reverse %}{% if loop.index <= 5 %}<li><span class="n">{{ t.data.numer }}</span><a href="{{ t.url }}">{{ t.data.title }}</a><span class="d">{{ t.date | dataDzien }}</span></li>{% endif %}{% endfor %}
+    </ol></div>
+  </div>
+</section>
+{% endif %}
+{% if cykle.length %}
 <section class="sec" id="cykle" aria-labelledby="cykle-h" style="padding-top:0">
   <div class="wrap">
     <div class="sec-h"><div><h2 id="cykle-h">Cykle publikacji</h2><p>Publikujemy w poniedziałki i czwartki. Daty kolejnych części znamy z góry, więc widać, co już jest, a co przed nami.</p></div><a class="more" href="/publikacje/">Wszystkie publikacje →</a></div>
@@ -97,6 +109,7 @@ nav: start
     </div>
   </div>
 </section>
+{% endif %}
 
 <section class="sec" id="metoda" aria-labelledby="metoda-h" style="padding-top:0">
   <div class="wrap method">
@@ -115,7 +128,7 @@ nav: start
         <p style="margin-top:14px">W 2026 r. WSA w Warszawie odrzucił bez rozpoznania pięć skarg na bezczynność w udostępnieniu metryki akt. Sygnatury podajemy w tekście, np. <span class="ref">MD/WNS/2026/001</span>.</p>
       </div>
       <div class="ocena"><b>Nasza ocena</b><p class="prose" style="margin:0">Dostęp do akt sprawy jest uprawnieniem strony z Ordynacji podatkowej (art. 178). Sama administracja skarbowa wiąże z nim udostępnienie metryki. Dlatego w naszej ocenie bezczynność w tym zakresie powinna podlegać kontroli sądu administracyjnego.</p></div>
-      <figcaption class="cap">Z TEKSTU „METRYKA AKT”, CYKL WYDZIAŁ III POD LUPĄ, CZ. 2/9</figcaption>
+      <figcaption class="cap">PRZYKŁAD UKŁADU TEKSTU</figcaption>
     </figure>
   </div>
 </section>

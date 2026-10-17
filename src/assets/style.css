@@ -508,3 +508,8 @@ a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-
 .acc code{font-size:1.05rem;letter-spacing:.02em}
 .contact code[id^="r"],.acc code{display:inline-block;word-break:normal;overflow-wrap:normal;white-space:normal}
 .contact code[id^="r"]{display:block;margin-top:2px}
+
+.proba{display:inline-block;background:var(--red);color:#fff;font:600 .78rem var(--f-mono);letter-spacing:.06em;padding:4px 10px;margin:0 0 14px}
+.prose table{border-collapse:collapse;width:100%;margin:12px 0 20px;font-size:.95rem}
+.prose th,.prose td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.prose th{background:var(--mist)}

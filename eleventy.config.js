@@ -56,6 +56,7 @@ module.exports = function (cfg) {
       skargi: w.filter((a) => a.typ === "SKG").length,
     };
   });
+  cfg.addFilter("gdzieBrak", (arr, key) => (arr || []).filter((x) => !(x.data && x.data[key])));
   cfg.addFilter("gdzie", (arr, key, val) => (arr || []).filter((x) => x[key] === val));
 
   // Kalendarz cyklu: stan części liczony w dniu budowania strony (strona buduje się codziennie o 4:15 UTC);

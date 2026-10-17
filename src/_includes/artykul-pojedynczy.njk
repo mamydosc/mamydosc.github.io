@@ -1,0 +1,18 @@
+---
+layout: base.njk
+nav: publikacje
+---
+<div class="phead"><div class="wrap">
+  <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / <a href="/publikacje/">Publikacje</a> / {{ numer }}</nav>
+  <h1>{{ title }}</h1>
+  <div class="byline"><span>{{ numer }}</span><span>{{ page.date | dataDzien }}</span><span>{{ content | czasCzytania }} min czytania</span><span>Fundacja MAMY DOŚĆ</span></div>
+</div></div>
+<div class="wrap article">
+  <article class="prose">
+    {% if proba %}<p class="proba">WERSJA PRÓBNA</p>{% endif %}
+    <p class="lead">{{ lead }}</p>
+    {{ content | safe }}
+    {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{{ z }}</li>{% endfor %}</ul></div>{% endif %}
+    <div class="btns"><a class="btn line" href="/publikacje/">← Wszystkie publikacje</a><a class="btn red" href="/przekaz-dokumenty/">Masz podobną sprawę? Przekaż dokumenty</a></div>
+  </article>
+</div>
