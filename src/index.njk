@@ -1,159 +1,151 @@
 ---
 layout: base.njk
-title: Fundacja MAMY DOŚĆ
-nav: start
+title: "Fundacja MAMY DOŚĆ"
+nav: "start"
+opisStrony: "Tropimy bezprawie w urzędach i sądach. Zbieramy dowody, publikujemy je z sygnaturą, datą i źródłem, zawiadamiamy organy."
 ---
-{%- set klasy = { "ok": "ok", "czeka": "wait", "po_terminie": "late", "plan": "plan" } -%}
-<section class="hero on-navy">
+<div class="verbs">
+  <div class="wrap"><span>Tropimy bezprawie</span><span>Zbieramy dowody</span><span>Zawiadamiamy organy</span><span>Protestujemy publicznie</span><span>Nie odpuszczamy</span></div>
+</div>
+
+<section class="hero2" aria-labelledby="h-hero">
   <div class="wrap grid">
     <div>
-      <div class="kick">Fundacja MAMY DOŚĆ · non-profit · zero polityki</div>
-      <h1>Sprawdzamy urzędy i sądy. <em>Na dokumentach.</em></h1>
-      <p class="lead">Publikujemy pisma, odpowiedzi urzędów i orzeczenia: z sygnaturą, datą i źródłem. Każde pismo ma swoją kartę akt i licznik terminu. Nasze oceny zawsze oznaczamy jako nasze.</p>
+      <span class="kick">Fundacja MAMY DOŚĆ · bezkarności urzędników</span>
+      <h1 id="h-hero">Bezprawie w urzędach i sądach <span class="mark">nie będzie bezkarne.</span></h1>
+      <p class="lead">Tropimy naruszenia prawa przez urzędy i sądy. Zbieramy dowody, publikujemy je z sygnaturą, datą i źródłem, zawiadamiamy właściwe organy – <b>i pilnujemy, żeby ktoś za to odpowiedział.</b></p>
       <div class="btns">
-        <a class="btn red" href="#akta">Zobacz akta spraw</a>
-        <a class="btn ghost" href="/przekaz-dokumenty/">Przekaż dokumenty</a>
+        <a class="btn red" href="/zglos/">Zgłoś nieprawidłowość</a>
+        <a class="btn ghost" href="/sledztwa/">Zobacz, co wytropiliśmy</a>
       </div>
     </div>
-    <div>
-      {% if akta.length %}<ul class="stack" aria-label="Najnowsze teczki">
-        {% for a in akta | reverse %}{% if loop.index <= 3 %}
-        <li><a class="sfile" href="/akta/{{ a.sygnatura | slugSyg }}/">
-          <div class="row"><span>{{ a.sygnatura }}</span><span class="tab">{{ typy[a.typ].nazwa }}</span></div>
-          <h3>{{ a.tytul }}</h3>
-          <span class="pill {{ klasy[a.status] }}">{{ a.statusOpis }}</span>
-        </a></li>
-        {% endif %}{% endfor %}
-      </ul>
-      <p class="stack-note">OSTATNIE TECZKI W AKTACH SPRAW</p>{% endif %}
-    </div>
-  </div>
-</section>
-
-<section class="counter" aria-labelledby="licznik-h">
-  <div class="wrap">
-    <div class="head"><h2 id="licznik-h">Licznik fundacji</h2><span class="note">STAN {{ archiwum.stan | data }}</span></div>
-    <dl class="tiles t3">
-      <div class="tile link"><dt><a href="/archiwum/">dokumentów, którymi dysponujemy <span class="go">szczegóły →</span></a></dt><dd>{{ archiwum.dokumenty | liczba }}</dd></div>
-      <div class="tile"><dt>stron tych dokumentów{% if archiwum.stronySzacunek %} (szacunek){% endif %}</dt><dd>{{ archiwum.strony | liczba }}</dd></div>
-      <div class="tile"><dt>pism fundacji</dt><dd>{{ pismaFundacji.liczba }}</dd></div>
-    </dl>
-    <details class="how"><summary>Jak liczymy?</summary><p>Dokumenty to pisma, odpowiedzi urzędów i orzeczenia sądów ze spraw, które prowadzimy lub obserwujemy, także przekazane nam przez inne osoby. Treści tych dokumentów nie publikujemy, pokazujemy tylko liczby. Nie liczymy paczek plików, potwierdzeń doręczenia i pism przewodnich. Pisma fundacji to pisma, które fundacja wysłała we własnym imieniu.</p></details>
-  </div>
-</section>
-
-{% if akta.length %}
-<section class="sec" id="akta" aria-labelledby="akta-h">
-  <div class="wrap">
-    <div class="sec-h"><div><h2 id="akta-h">Akta spraw</h2><p>Każde pismo fundacji z sygnaturą, adresatem i statusem. Kliknij teczkę, aby zobaczyć przebieg i odpowiedzi.</p></div><a class="more" href="/akta/">Wszystkie akta →</a></div>
-    <div class="filters">
-      <div role="group" aria-label="Typ pisma" style="display:contents">
-        <button class="chip" data-f="all" aria-pressed="true">Wszystkie<span>{{ akta.length }}</span></button>
-        {%- set widziane = [] -%}
-        {% for a in akta %}{% if not (a.typ in widziane) %}{% set _ = widziane.push(a.typ) %}{% set n = (akta | gdzie("typ", a.typ)).length %}
-        <button class="chip" data-f="{{ a.typ }}" aria-pressed="false">{% if n > 1 %}{{ typy[a.typ].mnoga }}{% else %}{{ typy[a.typ].nazwa }}{% endif %}<span>{{ n }}</span></button>
-        {% endif %}{% endfor %}
+    <aside class="zg" aria-labelledby="h-apel">
+      <span class="tab">Apel</span>
+      <h2 id="h-apel">Wiesz, co naprawdę dzieje się w Twoim urzędzie albo sądzie? Powiedz nam.</h2>
+      <p>Najwięcej wiedzą ci, którzy pracują w środku – i ci, którzy bezprawie odczuli na własnej skórze. Każdy trop prześwietlamy w dokumentach, zanim go nagłośnimy.</p>
+      <div class="zg-opts">
+        <a class="zg-opt" href="/zglos/"><b>Pracuję w urzędzie albo w sądzie</b><small>Zgłoś anonimowo. Nie pytamy, kim jesteś.</small><span class="go">ZGŁOŚ →</span></a>
+        <a class="zg-opt" href="/zglos/"><b>Urząd albo sąd łamie prawo w mojej sprawie</b><small>Opisz sprawę – albo przyślij pismo z podpisem, a zajmiemy się nią oficjalnie.</small><span class="go">ZGŁOŚ →</span></a>
       </div>
-      <label class="sr" for="q">Szukaj w aktach</label>
-      <input class="search" id="q" type="search" placeholder="Sygnatura, adresat albo temat, np. MD-WNS lub Rzecznik">
-    </div>
-    <div class="files" id="lista-akt">
-      {% for a in akta | reverse %}{% include "teczka.njk" %}{% endfor %}
-    </div>
-    <p class="empty" id="empty" hidden>Nic nie pasuje. Sygnaturę możesz wpisać z ukośnikami albo z myślnikami, np. MD/ZAW/2026/002.</p>
+      <div class="zg-foot"><span>Anonimowo albo z podpisem</span><span>Zawsze bezpłatnie</span><span>Nie ujawniamy zgłaszających</span></div>
+    </aside>
   </div>
 </section>
-{% endif %}
 
-{%- set teksty = collections.artykuly | gdzieBrak("cykl") -%}
-{% if teksty.length %}
-<section class="sec" id="teksty" aria-labelledby="teksty-h" style="padding-top:0">
+<section class="sec" aria-labelledby="h-najnowsze" style="padding-top: 48px;">
   <div class="wrap">
-    <div class="sec-h"><div><h2 id="teksty-h">Publikacje</h2><p>Najnowsze teksty fundacji. Każdy oparty na dokumentach z sygnaturą lub znakiem pisma.</p></div><a class="more" href="/publikacje/">Wszystkie publikacje →</a></div>
-    <div class="series"><ol>
-      {% for t in teksty | reverse %}{% if loop.index <= 5 %}<li><span class="n">{{ t.data.numer }}</span><a href="{{ t.url }}">{{ t.data.title }}</a><span class="d">{{ t.date | dataDzien }}</span></li>{% endif %}{% endfor %}
-    </ol></div>
-  </div>
-</section>
-{% endif %}
-{% if cykle.length %}
-<section class="sec" id="cykle" aria-labelledby="cykle-h" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-h"><div><h2 id="cykle-h">Cykle publikacji</h2><p>Publikujemy w poniedziałki i czwartki. Daty kolejnych części znamy z góry, więc widać, co już jest, a co przed nami.</p></div><a class="more" href="/publikacje/">Wszystkie publikacje →</a></div>
-    <div class="cycles">
-      {% for c in cykle %}
-      {%- set S = c.czesci | stanCyklu -%}
-      {%- set N = c.czesci.length -%}
-      <article class="cycle">
-        <img src="{{ c.obraz }}" alt="Grafika cyklu „{{ c.nazwa }}”" width="864" height="1080">
-        <div>
-          <span class="kick">{{ c.skrot }} · {{ N }} części</span>
-          <h3>{{ c.nazwa }}</h3>
-          <p class="desc">{{ c.opis }}</p>
-          <div class="progress" aria-hidden="true">{% for p in S.czesci %}<i class="{{ p.stan }}"></i>{% endfor %}</div>
-          <span class="note">{% if S.wyszlo == 0 %}START {{ c.czesci[0].data | dataDzien | upper }}{% elif S.wyszlo == N %}CYKL ZAKOŃCZONY{% else %}OPUBLIKOWANO {{ S.wyszlo }} Z {{ N }}{% endif %}</span>
-          <div class="series"><ol>
-            {% for p in S.czesci %}
-            {%- set art = collections.artykuly | artykulCyklu(c.id, p.nr) -%}
-            <li class="{{ p.stan }}{% if p.ukryta %} hidden-part{% endif %}" data-d="{{ p.data }}">
-              <span class="n">CZ. {{ p.nr }}/{{ N }}</span>
-              {% if p.stan == "c-done" and art %}<a href="{{ art.url }}">{{ art.data.title }}</a>
-              {% elif p.stan == "c-next" %}<span><b>{{ p.tytul }}</b><span class="soon">Następna część</span></span>
-              {% else %}<span>{{ p.tytul }}</span>{% endif %}
-              <span class="d">{{ p.data | dataDzien }}</span>
-            </li>
-            {% endfor %}
-          </ol></div>
-          {% if S.ukryte %}<button class="toggle" type="button" aria-expanded="false">Pokaż wszystkie części ({{ N }}) ↓</button>{% endif %}
-        </div>
-      </article>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-{% endif %}
-
-<section class="sec" id="metoda" aria-labelledby="metoda-h" style="padding-top:0">
-  <div class="wrap method">
-    <div>
-      <h2 id="metoda-h">Jak pracujemy</h2>
-      <ul class="zasady">
-        <li><span class="n">01</span><div><b>Non-profit</b><p>Nie zarabiamy na sprawach, które opisujemy. Nie pobieramy opłat od osób, które przekazują dokumenty.</p></div></li>
-        <li><span class="n">02</span><div><b>Zero polityki</b><p>Nie wspieramy partii ani kandydatów. Oceniamy działanie urzędów i sądów, nie poglądy ludzi.</p></div></li>
-        <li><span class="n">03</span><div><b>Pełna jawność</b><p>Publikujemy pisma, które wysyłamy, i odpowiedzi, które dostajemy. Także te, w których nie mamy racji. Jawne są też <a href="/finanse/">nasze finanse</a>.</p></div></li>
-        <li><span class="n">04</span><div><b>Mechanizm, nie osoby</b><p>Nazwiska podajemy tylko przy czynnościach urzędowych potwierdzonych dokumentami i tylko w zakresie pełnienia funkcji publicznych. Danych osób prywatnych nie publikujemy.</p></div></li>
-      </ul>
-    </div>
-    <figure class="specimen">
-      <div class="label">Tak oddzielamy fakty od ocen</div>
-      <div class="prose">
-        <p style="margin-top:14px">W 2026 r. WSA w Warszawie odrzucił bez rozpoznania pięć skarg na bezczynność w udostępnieniu metryki akt. Sygnatury podajemy w tekście, np. <span class="ref">MD/WNS/2026/001</span>.</p>
+    <div class="sec-h"><h2 id="h-najnowsze">Najnowsze</h2><a href="/publikacje/">Wszystkie publikacje →</a></div>
+    <a class="pinned" href="/sledztwa/">
+      <div class="in">
+        <span class="pin">Przypięte · śledztwo</span>
+        <h3>Metryki spraw: wysłaliśmy wnioski do 500 urzędów. Ponad setka w ogóle nie odpowiedziała.</h3>
+        <p>Pytamy, kto i kiedy prowadził sprawy obywateli. Każdy wniosek ma swoją kartę w aktach, a każda odpowiedź – albo jej brak – jest policzona. Urzędom, które milczą, składamy skargi na bezczynność.</p>
+        <span class="metaline">pn 05.10.2026 · KAMPANIA K001 · 500 SPRAW W AKTACH</span>
       </div>
-      <div class="ocena"><b>Nasza ocena</b><p class="prose" style="margin:0">Dostęp do akt sprawy jest uprawnieniem strony z Ordynacji podatkowej (art. 178). Sama administracja skarbowa wiąże z nim udostępnienie metryki. Dlatego w naszej ocenie bezczynność w tym zakresie powinna podlegać kontroli sądu administracyjnego.</p></div>
-      <figcaption class="cap">PRZYKŁAD UKŁADU TEKSTU</figcaption>
-    </figure>
+      <div class="side ondark">
+        <span><span class="sample">Dane przykładowe</span></span>
+        <div class="bignum"><b>118</b><span>urzędów w ogóle nie odpowiedziało na wniosek o informację publiczną</span></div>
+        <div class="sbar big" aria-hidden="true"><span class="s-ok" style="width: 42.4%;" title="W terminie: 212"></span><span class="s-late" style="width: 19.2%;" title="Po terminie: 96"></span><span class="s-ref" style="width: 8.2%;" title="Odmowa: 41"></span><span class="s-sil" style="width: 23.6%;" title="Milczenie: 118"></span><span class="s-wait" style="width: 6.6%;" title="Termin biegnie: 33"></span></div>
+        <div class="slegend"><span><i class="s-ok"></i>w terminie <b>212</b></span><span><i class="s-late"></i>po terminie <b>96</b></span><span><i class="s-ref"></i>odmowa <b>41</b></span><span><i class="s-sil"></i>milczenie <b>118</b></span><span><i class="s-wait"></i>termin biegnie <b>33</b></span></div>
+      </div>
+    </a>
+    <div class="news">
+      <a class="newscard" href="/publikacje/winu-17-skarga/">
+        <span><span class="tab">Skarga</span></span>
+        <h3>[Urząd skarbowy A] milczy od [liczba] dni. Idziemy do sądu</h3>
+        <p>Ustawa daje urzędowi 14 dni na odpowiedź. Termin minął, odpowiedzi nie ma. Składamy skargę na bezczynność.</p>
+        <span class="metaline">pn 19.10.2026 · WINU-17</span>
+      </a>
+      <a class="newscard" href="/publikacje/winu-17-skarga/">
+        <span><span class="tab">Zawiadomienie</span></span>
+        <h3>[Urząd B] odmówił informacji publicznej bez decyzji. Zawiadamiamy prokuraturę</h3>
+        <p>Kto wbrew obowiązkowi nie udostępnia informacji publicznej, popełnia przestępstwo (art. 23 u.d.i.p.).</p>
+        <span class="metaline">czw 15.10.2026 · WINU-42</span>
+      </a>
+      <a class="newscard" href="/publikacje/winu-17-skarga/">
+        <span><span class="tab">Protest</span></span>
+        <h3>Wyroki, których nie przeczytasz. Protestujemy</h3>
+        <p>[Sąd C] nie publikuje uzasadnień w bazie orzeczeń. Domagamy się publikacji i pytamy, kto o tym decyduje.</p>
+        <span class="metaline">pn 12.10.2026 · K003</span>
+      </a>
+    </div>
   </div>
 </section>
 
-<section class="band on-navy" id="przekaz" aria-labelledby="przekaz-h">
+<section class="sec" aria-labelledby="h-trop" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="sec-h"><div><h2 id="h-trop">Tropimy teraz</h2><p class="note" style="margin: 8px 0 0;">STAN NA 19.10.2026 · <span class="sample">Dane przykładowe</span></p></div><a href="/sledztwa/">Wszystkie śledztwa →</a></div>
+    <div class="camp">
+      <a class="campcard" href="/sledztwa/">
+        <span class="metaline">KAMPANIA K001 · 500 WNIOSKÓW</span>
+        <h3>Kto naprawdę prowadzi Twoją sprawę?</h3>
+        <p>Pytamy 500 urzędów o metryki spraw – zapis tego, kto i kiedy podejmował czynności.</p>
+        <div class="sbar" aria-hidden="true"><span class="s-ok" style="width: 42.4%;"></span><span class="s-late" style="width: 19.2%;"></span><span class="s-ref" style="width: 8.2%;"></span><span class="s-sil" style="width: 23.6%;"></span><span class="s-wait" style="width: 6.6%;"></span></div>
+        <div class="slegend"><span><i class="s-ok"></i>w terminie <b>212</b></span><span><i class="s-late"></i>po terminie <b>96</b></span><span><i class="s-ref"></i>odmowa <b>41</b></span><span><i class="s-sil"></i>milczenie <b>118</b></span><span><i class="s-wait"></i>biegnie <b>33</b></span></div>
+      </a>
+      <a class="campcard" href="/sledztwa/">
+        <span class="metaline">KAMPANIA K002 · 31 WNIOSKÓW</span>
+        <h3>Kto nas sądzi?</h3>
+        <p>Pytamy sądy administracyjne i izby skarbowe, gdzie sędziowie pracowali przed powołaniem. Bezstronność sądu musi dać się sprawdzić.</p>
+        <div class="sbar" aria-hidden="true"><span class="s-ok" style="width: 38.7%;"></span><span class="s-late" style="width: 22.6%;"></span><span class="s-ref" style="width: 16.1%;"></span><span class="s-sil" style="width: 16.1%;"></span><span class="s-wait" style="width: 6.5%;"></span></div>
+        <div class="slegend"><span><i class="s-ok"></i>w terminie <b>12</b></span><span><i class="s-late"></i>po terminie <b>7</b></span><span><i class="s-ref"></i>odmowa <b>5</b></span><span><i class="s-sil"></i>milczenie <b>5</b></span><span><i class="s-wait"></i>biegnie <b>2</b></span></div>
+      </a>
+      <a class="campcard" href="/sledztwa/">
+        <span class="metaline">KAMPANIA K003 · 15 WNIOSKÓW</span>
+        <h3>Ile wyroków nigdy nie trafia do bazy orzeczeń?</h3>
+        <p>Pytamy sądy, ilu orzeczeń nie opublikowały i kto o tym zdecydował.</p>
+        <div class="sbar" aria-hidden="true"><span class="s-ok" style="width: 60%;"></span><span class="s-late" style="width: 20%;"></span><span class="s-ref" style="width: 6.7%;"></span><span class="s-sil" style="width: 13.3%;"></span></div>
+        <div class="slegend"><span><i class="s-ok"></i>w terminie <b>9</b></span><span><i class="s-late"></i>po terminie <b>3</b></span><span><i class="s-ref"></i>odmowa <b>1</b></span><span><i class="s-sil"></i>milczenie <b>2</b></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="counter" aria-labelledby="h-licznik" style="padding-block: 48px;">
+  <div class="wrap">
+    <div class="head"><h2 id="h-licznik">Licznik fundacji</h2><span class="note">STAN {{ archiwum.stan | data }} · <a href="/archiwum/" style="color: inherit;">SZCZEGÓŁY →</a></span></div>
+    <div class="tiles">
+      <div class="tile"><b>{{ archiwum.dokumenty | liczba }}</b><span>dokumentów, którymi dysponujemy</span></div>
+      <div class="tile"><b>{{ archiwum.strony | liczba }}</b><span>stron tych dokumentów</span></div>
+      <div class="tile"><b>{{ pismaFundacji.liczba }}</b><span>pism fundacji wysłanych we własnym imieniu</span></div>
+      <div class="tile alert"><b>[liczba]</b><span>skarg i zawiadomień złożonych przez fundację</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-ludzie">
+  <div class="wrap">
+    <div class="sec-h"><div><h2 id="h-ludzie">Ludzie władzy</h2><p style="margin: 8px 0 0; color: var(--slate); max-width: 46em;">Kto podpisał decyzję, kto odpowiedział po terminie, kto odmówił – zawsze z dokumentem, który to pokazuje. Publikujemy tylko dane służbowe: stanowisko, komórkę, wcześniejsze stanowiska. Każda informacja ma źródło.</p></div><a href="/ludzie-wladzy/">Cała baza →</a></div>
+    <div class="people">
+      <a class="pcard" href="/ludzie-wladzy/"><b>[Imię Nazwisko]</b><span>Naczelnik urzędu skarbowego · [Urząd skarbowy A]</span><span class="metaline">4 CZYNNOŚCI W NASZYCH AKTACH · ŹRÓDŁO: BIP</span></a>
+      <a class="pcard" href="/ludzie-wladzy/"><b>[Imię Nazwisko]</b><span>Sędzia WSA · [wydział]</span><span class="metaline">2 CZYNNOŚCI W NASZYCH AKTACH · ŹRÓDŁO: STRONA SĄDU</span></a>
+      <a class="pcard" href="/ludzie-wladzy/"><b>[Imię Nazwisko]</b><span>Kierownik działu · [Izba Administracji Skarbowej]</span><span class="metaline">3 CZYNNOŚCI W NASZYCH AKTACH · ŹRÓDŁO: BIP</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="h-wesprzyj">
   <div class="wrap">
     <div>
-      <h2 id="przekaz-h">Masz dokumenty ze swojej sprawy?</h2>
-      <p>Przyjmujemy pisma, decyzje i odpowiedzi urzędów. Każdy materiał sprawdzamy, zanim cokolwiek z nim zrobimy.</p>
-      <div class="modes">
-        <div><b>Z podpisem</b><span>Plik z podpisem elektronicznym. Możemy go opublikować po usunięciu danych osobowych.</span></div>
-        <div><b>Anonimowo</b><span>Bez imienia i nazwiska. Przeczytamy i sprawdzimy materiał. Nie opublikujemy go.</span></div>
-      </div>
-      <div class="btns"><a class="btn red" href="/przekaz-dokumenty/">Przekaż dokumenty</a></div>
+      <span class="kick">Wesprzyj</span>
+      <h2 id="h-wesprzyj" style="margin-top: 12px;">Każde śledztwo kosztuje. Nie bierzemy pieniędzy od ludzi, którym pomagamy.</h2>
+      <p>Utrzymują nas darczyńcy. Wpłacasz na wybrany cel, a rozliczenie każdej złotówki publikujemy w dziale Finanse.</p>
+      <div class="btns"><a class="btn red" href="/wesprzyj/">Wybierz cel i wesprzyj</a></div>
     </div>
-    <div>
-      <h3 class="steps-h">Zanim wyślesz</h3>
-      <ol class="steps-n">
-        <li>Usuń lub zaczernij dane osób, które nie pełnią funkcji publicznych.</li>
-        <li>Przy anonimowym przekazaniu usuń z plików swoje dane, także podpis i metadane.</li>
-        <li>Nie wysyłaj oryginałów. Wystarczą skany lub zdjęcia.</li>
-        <li>Podaj znak sprawy, żebyśmy mogli sprawdzić dokument u źródła.</li>
-      </ol>
+    <div class="split">
+      <div><b>Rachunek PLN</b><span class="acct">52 1870 1045 2078 1093 0280 0001</span></div>
+      <div><b>Tytuł przelewu</b><span>Darowizna na cele statutowe – Akta jawne</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-zasady">
+  <div class="wrap">
+    <div class="sec-h"><h2 id="h-zasady">Nasze zasady</h2><a href="/o-fundacji/">O fundacji →</a></div>
+    <div class="rules">
+      <div class="rule"><b>Zawsze bezpłatnie</b><p>Nie pobieramy opłat od nikogo, kto zgłasza sprawę. Ani teraz, ani później.</p></div>
+      <div class="rule"><b>Dowody, nie pogłoski</b><p>Każdy zarzut opieramy na dokumentach z sygnaturą, datą i źródłem. Nasze oceny oznaczamy jako nasze.</p></div>
+      <div class="rule"><b>Zero polityki</b><p>Nie wspieramy partii ani kandydatów. Rozliczamy urzędy i sądy, nie poglądy ludzi.</p></div>
     </div>
   </div>
 </section>

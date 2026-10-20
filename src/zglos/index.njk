@@ -1,0 +1,90 @@
+---
+layout: base.njk
+title: "Zgłoś nieprawidłowość"
+nav: "zglos"
+opisStrony: "Zgłoś bezprawie w urzędzie albo w sądzie – anonimowo albo pismem z podpisem. Zawsze bezpłatnie."
+---
+<section class="phead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / Zgłoś nieprawidłowość</nav>
+    <span class="kick" style="display: block; margin-top: 18px;">Zgłoś · anonimowo albo z podpisem · zawsze bezpłatnie</span>
+    <h1>Bezprawie trwa, dopóki wszyscy milczą. Powiedz nam.</h1>
+    <p>Pracujesz w urzędzie albo w sądzie i widzisz, co się dzieje? Jesteś stroną sprawy, w której urząd łamie prawo? Każdy trop prześwietlamy w dokumentach – a potem działamy: wnioski, skargi, zawiadomienia, publikacja.</p>
+  </div>
+</section>
+
+<div class="wrap formwrap">
+  <div>
+    <fieldset class="fs">
+      <legend><i>1</i>Kim jesteś?</legend>
+      <div class="mode">
+        <label><input type="radio" name="kto" id="kto-urz" value="urz" checked> <b>Pracuję w urzędzie albo w sądzie</b><span>Widzisz bezprawie od środka – w swoim urzędzie, wydziale, sądzie.</span></label>
+        <label><input type="radio" name="kto" id="kto-str" value="str"> <b>Jestem stroną sprawy</b><span>Podatnik, przedsiębiorca, obywatel. Urząd albo sąd łamie prawo w mojej sprawie.</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="fs">
+      <legend><i>2</i>Jak chcesz to zrobić?</legend>
+      <div class="mode">
+        <label><input type="radio" name="jak" id="jak-anon" value="anon" checked> <b>Anonimowo</b><span>Przekazujesz trop. Nie pytamy, kim jesteś. Sprawdzimy go w dokumentach.</span></label>
+        <label><input type="radio" name="jak" id="jak-podpis" value="podpis"> <b>Pismem z podpisem</b><span>Chcesz, żebyśmy oficjalnie zajęli się sprawą. Pismo trafia do akt i nie jest ujawniane.</span></label>
+      </div>
+    </fieldset>
+
+    <div id="sek-anon">
+      <section aria-labelledby="h-anon" style="margin-top: 18px;">
+        <h2 id="h-anon" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;">Zgłoszenie anonimowe</h2>
+        <p id="lead-anon" style="margin: 0 0 20px; color: var(--slate);">Napisz, co widzisz od środka: kto, gdzie, od kiedy, jakie dokumenty to pokazują. Nie podawaj niczego, po czym można Cię rozpoznać.</p>
+        <div class="field"><label for="co">Co się dzieje i gdzie</label><textarea id="co" placeholder="Urząd albo sąd, wydział, czego dotyczy nieprawidłowość, od kiedy trwa"></textarea></div>
+        <div class="field"><label for="gdzie">Urząd albo sąd</label><input id="gdzie" placeholder="np. [Urząd skarbowy A], wydział, referat"></div>
+        <div class="field"><label for="kontakt">Kontakt zwrotny (nieobowiązkowy)</label><input id="kontakt" placeholder="np. anonimowy adres e-mail, jeśli chcesz odpowiedzi"></div>
+        <div class="drop"><b>Dokumenty (PDF, JPG, PNG)</b><br>Przed wysłaniem usuń z plików swoje dane, podpis i metadane.<br><input type="file" id="pliki" multiple accept=".pdf,.jpg,.jpeg,.png" aria-label="Wybierz pliki"></div>
+        <div class="btns"><button class="btn red" type="button" id="wyslij-anon">Wyślij anonimowo</button></div>
+        <p class="done" id="info-anon" hidden>Formularz zacznie działać po wyborze usługi do wysyłki. Do tego czasu zgłoszenia przyjmujemy e-mailem: 123bjp@duck.com.</p>
+        <p class="note" style="margin: 14px 0 0;">WOLISZ E-MAIL? NAPISZ NA <span style="color: var(--ink);">123bjp@duck.com</span> – NIE PODPISUJ SIĘ.</p>
+      </section>
+    </div>
+
+    <div id="sek-podpis" hidden>
+      <section aria-labelledby="h-podpis" style="margin-top: 18px;">
+        <h2 id="h-podpis" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;">Pismo z podpisem – sprawę bierzemy oficjalnie</h2>
+        <p id="lead-podpis" style="margin: 0 0 20px; color: var(--slate);">Jeśli chcesz, żebyśmy oficjalnie zbadali sprawę z Twojego urzędu lub sądu, przyślij pismo z podpisem. Twoje dane znamy tylko my.</p>
+        <ol class="steps">
+          <li>Napisz pismo: kim jesteś, czego dotyczy sprawa i czego oczekujesz. Dołącz dokumenty, które masz.</li>
+          <li>Podpisz je podpisem elektronicznym – kwalifikowanym, zaufanym albo osobistym.</li>
+          <li>Wyślij na jeden z adresów poniżej.</li>
+          <li>Pismo trafia do akt fundacji pod sygnaturą. Nie publikujemy go i nie ujawniamy, kim jesteś.</li>
+          <li>Badamy sprawę w imieniu fundacji i o każdym kroku piszemy do Ciebie.</li>
+        </ol>
+        <div class="chan">
+          <div><b>e-Doręczenia</b><code>AE:PL-45973-21583-JFTCA-29</code></div>
+          <div><b>ePUAP</b><code>/mamydosc/domyslna</code></div>
+          <div><b>E-mail z podpisanym plikiem</b><code>mamydosc@mail.com</code></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <aside class="side">
+    <div class="free"><b>Zawsze bezpłatnie.</b><p>Nie pobieramy żadnych opłat – ani za zgłoszenie, ani za zajęcie się sprawą. Ani teraz, ani później.</p></div>
+    <div id="box-urz">
+      <div class="alertbox">
+        <h4>Pracujesz w urzędzie lub sądzie</h4>
+        <p>Ustawa o ochronie sygnalistów chroni zgłoszenie do pracodawcy albo do organu – m.in. do Rzecznika Praw Obywatelskich – a ujawnienie publiczne tylko w określonych warunkach (art. 6, art. 51).</p>
+        <p>Wiadomość do fundacji nie jest takim zgłoszeniem. Dlatego pisz do nas anonimowo, z prywatnego urządzenia i adresu, który Cię nie zdradza.</p>
+      </div>
+    </div>
+    <div class="box">
+      <h4>Czego nie przesyłaj</h4>
+      <ol class="steps">
+        <li>Informacji niejawnych ani tego, co objęte tajemnicą narady sędziowskiej – ustawa o ochronie sygnalistów ich nie obejmuje (art. 5 ust. 1).</li>
+        <li>Danych osób, które nie pełnią funkcji publicznych – zaczernij je.</li>
+        <li>Oryginałów. Wystarczą skany albo zdjęcia.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h4>Co robimy ze zgłoszeniem</h4>
+      <p style="margin: 0; font-size: 0.92rem;">Prześwietlamy je w dokumentach. Jeśli się potwierdza – wnioski o informację, skargi, zawiadomienia i publikacja. Bez Twojej zgody nie ujawniamy, kim jesteś.</p>
+    </div>
+  </aside>
+</div>
