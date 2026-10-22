@@ -1,4 +1,4 @@
-// Nowy wygląd strony: Nasze publikacje, lista łobuziaków, dokumenty obok siebie, Zgłoś, Wesprzyj, finanse (22.10.2026).
+// Nowy wygląd strony: Nasze publikacje, lista ciekawostek, dokumenty obok siebie, Zgłoś, Wesprzyj, finanse (22.10.2026).
 (function () {
   'use strict';
 
@@ -56,7 +56,7 @@
     if (zHasha) filtruj(zHasha);
   }
 
-  /* Lista łobuziaków: wpis z adresu (#l1) otwiera się sam */
+  /* Lista ciekawostek: wpis z adresu (#l1) otwiera się sam */
   var otworzWpis = function () {
     if (!location.hash) return;
     var el = document.getElementById(location.hash.slice(1));
