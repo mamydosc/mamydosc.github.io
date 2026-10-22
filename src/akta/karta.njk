@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-nav: akta
+nav: start
 pagination:
   data: akta
   size: 1
@@ -14,7 +14,6 @@ eleventyComputed:
 {%- set klasy = { "ok": "ok", "czeka": "wait", "po_terminie": "late", "plan": "plan" } -%}
 {%- set slug = a.sygnatura | slugSyg -%}
 <div class="phead"><div class="wrap">
-  <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / <a href="/akta/">Akta spraw</a> / {{ a.sygnatura }}</nav>
   <h1>{{ a.tytul }}</h1>
   {% if a.wstep %}<p>{{ a.wstep }}</p>{% endif %}
 </div></div>

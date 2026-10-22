@@ -97,6 +97,57 @@ module.exports = function (cfg) {
     api.getFilteredByGlob("src/publikacje/**/*.md").sort((a, b) => a.date - b.date)
   );
 
+  // „Nasze publikacje” na stronie głównej: śledztwa, artykuły i akta spraw w jednej liście (najnowsze na górze).
+  // Strony dołączają się front matterem: tags: nasze, typ (sledztwo | artykul | akta), lead, numer, duzy, przypiety.
+  cfg.addCollection("nasze", (api) =>
+    api.getAll().filter((p) => (p.data.tags || []).includes("nasze") || p.inputPath.includes("/publikacje/teksty/"))
+  );
+  const TYPY_PUB = { sledztwo: "Śledztwo", artykul: "Artykuł", akta: "Akta sprawy" };
+  cfg.addFilter("naszePublikacje", (strony, akta) => {
+    const lista = (strony || []).map((p) => ({
+      typ: p.data.typ || "artykul",
+      tytul: p.data.title,
+      url: p.url,
+      data: parse(p.date),
+      syg: p.data.numer || "",
+      lead: p.data.lead || "",
+      duzy: !!p.data.duzy,
+      przypiety: !!p.data.przypiety,
+      przyklad: !!p.data.przyklad,
+    }));
+    (akta || []).forEach((a) => lista.push({
+      typ: "akta",
+      tytul: a.tytul,
+      url: "/akta/" + String(a.sygnatura).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "/",
+      data: parse(a.data || "2000-01-01"),
+      syg: a.sygnatura,
+      lead: a.opis || "",
+      duzy: false, przypiety: false, przyklad: false,
+    }));
+    lista.forEach((x) => { x.typNazwa = TYPY_PUB[x.typ] || "Publikacja"; });
+    lista.sort((a, b) => b.data - a.data);
+    const lead = lista.find((x) => x.przypiety) || lista.find((x) => x.duzy) || null;
+    return { lead, reszta: lista.filter((x) => x !== lead), wszystkie: lista };
+  });
+
+  // Finanse w „O fundacji”: najnowsze na górze, saldo całkowite po każdej operacji.
+  // Wpłaty: tylko data i kwota – bez danych wpłacającego i bez dokumentu do otwarcia.
+  cfg.addFilter("tabelaFinansow", (operacje) => {
+    const ops = [...(operacje || [])].sort((a, b) => a.data.localeCompare(b.data) || String(a.nr).localeCompare(String(b.nr), "pl", { numeric: true }));
+    let saldo = 0;
+    const wiersze = ops.map((o) => {
+      saldo = Math.round((saldo + Number(o.kwota)) * 100) / 100;
+      const wplata = Number(o.kwota) > 0;
+      return {
+        nr: o.nr, data: o.data, kwota: Number(o.kwota), saldo, fundusz: o.fundusz, wplata,
+        opis: wplata ? "Wpłata" : o.opis,
+        plik: wplata ? "" : (o.plik || ""),
+      };
+    });
+    return wiersze.reverse();
+  });
+  cfg.addFilter("najnowszeNaGorze", (arr, klucz) => [...(arr || [])].sort((a, b) => String(b[klucz]).localeCompare(String(a[klucz]))));
+
   return {
     dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },
     markdownTemplateEngine: "njk",

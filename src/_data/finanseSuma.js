@@ -37,9 +37,10 @@ module.exports = () => {
     return { id, nazwa: k.nazwa, suma };
   }).filter((k) => k.suma > 0).sort((a, b) => b.suma - a.suma);
 
-  const csv = ["nr;data;rodzaj;kategoria;opis;kontrahent;fundusz;kwota;dokument"].concat(
-    ops.map((o) => [o.nr, o.data, o.kwota > 0 ? "wpływ" : "koszt", F.kategorie[o.kategoria].nazwa, o.opis, o.kontrahent,
-      (F.fundusze.find((f) => f.id === o.fundusz) || {}).nazwa, String(o.kwota).replace(".", ","), o.dokument]
+  // wpłaty: tylko data i kwota – bez danych wpłacającego (decyzja 22.10.2026)
+  const csv = ["nr;data;rodzaj;kategoria;opis;fundusz;kwota"].concat(
+    ops.map((o) => [o.nr, o.data, o.kwota > 0 ? "wpływ" : "koszt", F.kategorie[o.kategoria].nazwa, o.kwota > 0 ? "Wpłata" : o.opis,
+      (F.fundusze.find((f) => f.id === o.fundusz) || {}).nazwa, String(o.kwota).replace(".", ",")]
       .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`).join(";"))
   ).join("\r\n");
 

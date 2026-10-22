@@ -1,0 +1,46 @@
+{
+  "_opis": "Lista łobuziaków: rażące naruszenia prawa przez urzędników, potwierdzone dokumentami. Każdy wpis to wyłącznie fakty z datami i sygnaturami dokumentów, tylko czynności służbowe. Najnowszy wpis na górze. Wpisy z zaślepkami [ ] to przykłady układu.",
+  "wpisy": [
+    {
+      "id": "l1",
+      "imie": "[Imię Nazwisko]",
+      "funkcja": "Kierownik [Urzędu B]",
+      "krotko": "Odmówił informacji publicznej zwykłym pismem, bez decyzji",
+      "data": "2026-10-09",
+      "tresc": [
+        "30.09.2026 złożyliśmy wniosek o udostępnienie informacji publicznej (WINU-42.MD.1).",
+        "09.10.2026 [Imię Nazwisko] podpisał pismo, w którym urząd odmówił udostępnienia informacji (WINU-42.DM.1.1). Odmowa udostępnienia informacji publicznej przez organ władzy publicznej następuje w drodze decyzji (art. 16 ust. 1 u.d.i.p.). Decyzji nie wydano."
+      ],
+      "dokumenty": ["WINU-42.MD.1", "WINU-42.DM.1.1"],
+      "link": "/akta/winu-42/",
+      "przyklad": true
+    },
+    {
+      "id": "l2",
+      "imie": "[Imię Nazwisko]",
+      "funkcja": "Naczelnik [Urzędu skarbowego A]",
+      "krotko": "Nie odpowiedział na wniosek w ustawowym terminie",
+      "data": "2026-10-14",
+      "tresc": [
+        "30.09.2026 złożyliśmy wniosek o udostępnienie informacji publicznej (WINU-17.MD.1). Termin na odpowiedź minął 14.10.2026 (art. 13 ust. 1 u.d.i.p.).",
+        "Urząd nie odpowiedział i nie powiadomił o przyczynach opóźnienia (art. 13 ust. 2 u.d.i.p.). 19.10.2026 złożyliśmy skargę na bezczynność (WINU-17.MD.2)."
+      ],
+      "dokumenty": ["WINU-17.MD.1", "WINU-17.MD.2"],
+      "link": "/publikacje/winu-17-skarga/",
+      "przyklad": true
+    },
+    {
+      "id": "l3",
+      "imie": "[Imię Nazwisko]",
+      "funkcja": "[stanowisko] · [urząd]",
+      "krotko": "[Krótki opis rażącego naruszenia]",
+      "data": "2026-10-01",
+      "tresc": [
+        "[Fakty z datami: co zrobił albo czego nie zrobił urzędnik, z sygnaturą każdego dokumentu i przepisem, który naruszył.]"
+      ],
+      "dokumenty": ["[sygnatura dokumentu]"],
+      "link": "",
+      "przyklad": true
+    }
+  ]
+}

@@ -1,16 +1,7 @@
 ---
-layout: base.njk
-title: Kontakt
-nav: kontakt
-wstep: Odpowiadamy na wiadomości od osób, które mają podobne sprawy, od dziennikarzy i od urzędów.
-okruszki: [{ t: "Kontakt" }]
+layout: przekierowanie.njk
+title: "Kontakt – O fundacji"
+cel: "/o-fundacji/#kontakt"
+permalink: "/kontakt/"
+eleventyExcludeFromCollections: true
 ---
-{% include "naglowek.njk" %}
-<div class="wrap contacts">
-  <div class="contact"><span class="tab">Oficjalny</span><h3>E-mail fundacji</h3><a href="mailto:{{ site.email }}"><code id="c1">{{ site.email }}</code></a><br><button class="copy" type="button" data-c="c1">Kopiuj adres</button></div>
-  <div class="contact"><span class="tab" style="background:var(--slate)">Anonimowy</span><h3>E-mail bez podpisu</h3><a href="mailto:{{ site.emailAnonimowy }}"><code id="c2">{{ site.emailAnonimowy }}</code></a><br><button class="copy" type="button" data-c="c2">Kopiuj adres</button></div>
-  <div class="contact"><span class="tab" style="background:var(--slate)">Listownie</span><h3>Adres siedziby</h3><p style="margin:0">Fundacja MAMY DOŚĆ<br>{{ site.adres }}</p><p class="note" style="margin:10px 0 0">KRS {{ site.krs }} · NIP {{ site.nip }}</p></div>
-  <div class="contact"><span class="tab">Urzędowo</span><h3>e-Doręczenia</h3><p style="margin:0 0 4px">Adres do doręczeń elektronicznych</p><code id="c3">{{ site.eDoreczenia }}</code><br><button class="copy" type="button" data-c="c3">Kopiuj adres</button></div>
-  <div class="contact"><span class="tab">Urzędowo</span><h3>ePUAP</h3><p style="margin:0 0 4px">Adres skrytki</p><code id="c4">{{ site.epuap }}</code><br><button class="copy" type="button" data-c="c4">Kopiuj adres</button></div>
-  <div class="contact"><span class="tab">Darowizny</span><h3>Rachunki bankowe</h3><p style="margin:0 0 6px">Odbiorca: Fundacja MAMY DOŚĆ<br>{{ site.adres }}</p>{% for r in site.rachunki %}<p style="margin:8px 0 0"><b>{{ r.waluta }}</b> <code id="r{{ loop.index }}">{{ r.nr }}</code><br><button class="copy" type="button" data-c="r{{ loop.index }}">Kopiuj numer</button></p>{% endfor %}<p class="note" style="margin:10px 0 0">Tytuł: darowizna na cele statutowe</p></div>
-</div>

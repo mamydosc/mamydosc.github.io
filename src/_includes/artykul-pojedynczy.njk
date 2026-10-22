@@ -1,9 +1,8 @@
 ---
 layout: base.njk
-nav: publikacje
+nav: start
 ---
 <div class="phead"><div class="wrap">
-  <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / <a href="/publikacje/">Publikacje</a> / {{ numer }}</nav>
   <h1>{{ title }}</h1>
   <div class="byline"><span>{{ numer }}</span><span>{{ page.date | dataDzien }}</span><span>{{ content | czasCzytania }} min czytania</span><span>Fundacja MAMY DOŚĆ</span></div>
 </div></div>
@@ -16,6 +15,6 @@ nav: publikacje
     {%- set dzieci = collections.artykuly | watki(numer) -%}
     {% if dzieci.length %}<div class="watki"><b>Wątki w tym temacie</b><ol>{% for t in dzieci %}<li><a href="{{ t.url }}">{{ t.data.numer }} · {{ t.data.title }}</a></li>{% endfor %}</ol></div>{% endif %}
     {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{{ z }}</li>{% endfor %}</ul></div>{% endif %}
-    <div class="btns"><a class="btn line" href="/publikacje/">← Wszystkie publikacje</a><a class="btn red" href="/przekaz-dokumenty/">Masz podobną sprawę? Przekaż dokumenty</a></div>
+    <div class="btns"><a class="btn line" href="/">← Nasze publikacje</a><a class="btn red" href="/zglos/">Masz podobną sprawę? Zgłoś</a></div>
   </article>
 </div>

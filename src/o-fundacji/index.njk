@@ -4,12 +4,12 @@ title: "O fundacji"
 nav: "fundacja"
 opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
 ---
+{%- set T = finanse.operacje | tabelaFinansow -%}
 <section class="phead">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / O fundacji</nav>
-    <span class="kick" style="display: block; margin-top: 18px;">O fundacji · KRS 0001270149 · wpis 30.09.2026</span>
+    <span class="kick" style="display: block;">O fundacji</span>
     <h1>Mamy dość bezkarności urzędników. Dlatego powstała ta fundacja.</h1>
-    <p>Fundację MAMY DOŚĆ założyliśmy po latach sporu z administracją skarbową, który zaczął się od kontroli podatkowej w 2018 r. Z jednej sprawy zostały setki pism, dziesiątki wyroków i wiedza, którą chcemy się dzielić. Wiemy, ile kosztuje walka z urzędem w pojedynkę – dlatego nie zostawiamy nikogo samego i nie odpuszczamy tym, którzy łamią prawo.</p>
+    <p>Fundację MAMY DOŚĆ założyliśmy po latach sporu z administracją skarbową, który zaczął się od absurdalnej i destrukcyjnej kontroli podatkowej w 2018 r. Z jednej sprawy zostały setki pism, dziesiątki wyroków i wiedza, którą chcemy się dzielić. Wiemy, ile kosztuje walka z urzędem w pojedynkę – dlatego nie zostawiamy nikogo samego i nie odpuszczamy tym, którzy łamią prawo.</p>
     <nav class="filters" style="margin: 24px 0 0;" aria-label="Na tej stronie">
       <a class="chip" href="#misja" style="text-decoration: none;">Misja</a>
       <a class="chip" href="#zasady" style="text-decoration: none;">Zasady</a>
@@ -23,50 +23,55 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
 <section class="sec" id="misja" aria-labelledby="h-misja">
   <div class="wrap duo">
     <div class="prose">
-      <h2 id="h-misja" style="margin-top: 0;">Po co jesteśmy</h2>
+      <h2 id="h-misja" style="margin-top: 0;">Nasza misja</h2>
+      <p>Naszą misją jest praca w sprawach, które – jak mówi ustawa – są „szczególnie istotne dla interesu publicznego”. Nikt z zarządu nie bierze i nie będzie brał nigdy pieniędzy za to. Jeśli ktoś kiedyś zechce pracować u nas na etacie, to maksymalnie za najniższą krajową. Nikt z nas nie robi tego dla pieniędzy.</p>
+      <p>Wszystkie pozyskane środki idą wyłącznie na działalność statutową, a każdą złotówkę rozliczamy na tej stronie.</p>
       <p>Tropimy naruszenia prawa przez urzędy i sądy, dokumentujemy je i doprowadzamy do konsekwencji: skarg, zawiadomień, publikacji. Pomagamy ludziom, którzy zostali z urzędem sami – zawsze bezpłatnie.</p>
-      <p>Każde nasze pismo ma sygnaturę i trafia do Akt spraw razem z odpowiedzią urzędu i licznikiem terminu. Każdy tekst opieramy na dokumentach, które można sprawdzić pod sygnaturą lub znakiem pisma.</p>
-      <p>Piszemy otwarcie, gdy fundacja wspiera stronę opisywanej sprawy albo gdy pełnomocnikiem jest prezes fundacji.</p>
+      <p>Każde nasze pismo ma sygnaturę i trafia do akt razem z odpowiedzią urzędu i licznikiem terminu. Każdy tekst opieramy na dokumentach, które można sprawdzić pod sygnaturą lub znakiem pisma.</p>
+      <p>Dopiero się rozkręcamy i uczymy tej całej medialno-internetowej sztuki komunikacji. Bądźcie wyrozumiali. Będziemy wdzięczni za każdą podpowiedź i pomoc.</p>
     </div>
-    <div class="free"><b>Zawsze bezpłatnie.</b><p>Nie pobieramy opłat od osób, które zgłaszają sprawy, i nie zarabiamy na sprawach, które opisujemy.</p></div>
+    <div class="free"><b>Zawsze bezpłatnie.</b><p>Nie wymagamy i nie pobieramy opłat od osób, którym pomagamy, i nie zarabiamy na sprawach, które opisujemy.</p></div>
   </div>
 </section>
 
 <section class="sec" id="zasady" aria-labelledby="h-zasady" style="padding-top: 0;">
   <div class="wrap">
     <div class="sec-h"><h2 id="h-zasady">Zasady</h2></div>
-    <div class="rules">
-      <div class="rule"><b>Non-profit</b><p>Nie zarabiamy na sprawach, które opisujemy. Nie pobieramy opłat od osób, które przekazują dokumenty.</p></div>
-      <div class="rule"><b>Zero polityki</b><p>Nie wspieramy partii ani kandydatów. Oceniamy działanie urzędów i sądów, nie poglądy ludzi.</p></div>
-      <div class="rule"><b>Pełna jawność</b><p>Publikujemy pisma, które wysyłamy, i odpowiedzi, które dostajemy. Także te, w których nie mamy racji. Jawne są też nasze finanse.</p></div>
+    <div class="rules r2">
+      <div class="rule"><b>Non-profit</b><p>Nie zarabiamy na sprawach, które opisujemy. Nie wymagamy i nie pobieramy opłat od osób, którym pomagamy.</p></div>
+      <div class="rule"><b>Zero polityki</b><p>Nie wspieramy partii ani kandydatów. Oceniamy działanie urzędów i sądów, nie poglądy ludzi. O większości polityków mamy gorsze zdanie niż nawet o urzędnikach.</p></div>
     </div>
-    <p style="margin: 22px 0 0; max-width: 46em; color: var(--slate);">Nazwiska podajemy tylko przy czynnościach urzędowych potwierdzonych dokumentami i tylko w zakresie pełnienia funkcji publicznych. Danych osób prywatnych nie publikujemy.</p>
+    <p style="margin: 22px 0 0; max-width: 46em; color: var(--slate);">Nazwiska i fakty podajemy tylko potwierdzone dokumentami i tylko w zakresie pełnienia funkcji publicznych. Danych osób prywatnych nie publikujemy.</p>
   </div>
 </section>
 
 <section class="counter" id="finanse" aria-labelledby="h-finanse" style="padding-block: 56px;">
   <div class="wrap">
-    <div class="head"><h2 id="h-finanse" style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;">Finanse</h2><span class="note">OKRES PAŹDZIERNIK 2026 – MARZEC 2027 · STAN 17.10.2026</span></div>
-    <div class="tiles">
-      <div class="tile"><b>[kwota]</b><span>wpływy w okresie</span></div>
-      <div class="tile"><b>[kwota]</b><span>wydatki w okresie</span></div>
-      <div class="tile"><b>[kwota]</b><span>saldo</span></div>
-      <div class="tile"><b>[liczba]</b><span>operacji – każda z dokumentem źródłowym</span></div>
-    </div>
-    <div class="tbl" style="margin-top: 24px;">
+    <div class="head"><h2 id="h-finanse" style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;">Finanse</h2><span class="note">OKRES {{ finanse.okres | upper }} · STAN {{ finanse.stan | data }}</span></div>
+    <p class="fin-zasada">Każda operacja ma dokument źródłowy. Dokument kosztu otworzysz kliknięciem w opis. Przy wpłatach podajemy tylko datę i kwotę.</p>
+    <div class="tbl fin">
       <table>
-        <thead><tr><th>Fundusz</th><th>Na co</th><th>Wpływy</th><th>Wydatki</th></tr></thead>
+        <thead><tr><th>Nr</th><th>Opis</th><th>Fundusz</th><th class="r">Kwota</th><th class="r">Saldo</th></tr></thead>
         <tbody>
-          <tr><td>Akta jawne</td><td>wnioski o informację publiczną, monitoring sądów i KAS, raporty, publikacje</td><td>[kwota]</td><td>[kwota]</td></tr>
-          <tr><td>Interwencje</td><td>opłaty i wpisy w sprawach innych osób, prawnik na godziny, opinie</td><td>[kwota]</td><td>[kwota]</td></tr>
-          <tr><td>Zaplecze analityczne</td><td>narzędzia do analizy dokumentów, archiwum, bezpieczeństwo danych</td><td>[kwota]</td><td>[kwota]</td></tr>
-          <tr><td>Edukacja</td><td>poradniki, wzory pism, bezpłatne spotkania</td><td>[kwota]</td><td>[kwota]</td></tr>
-          <tr><td>Gdzie najbardziej potrzeba</td><td>koszty stałe: księgowość, domena, opłaty bankowe</td><td>[kwota]</td><td>[kwota]</td></tr>
+        {% for o in T %}{%- set fu = finanse.fundusze | znajdz("id", o.fundusz) -%}
+          <tr>
+            <td>{{ o.nr }}<small>{{ o.data | data }}</small></td>
+            <td>{% if o.plik %}<button type="button" class="dokbtn" data-plik="{{ o.plik }}" data-tytul="{{ o.nr }} · {{ o.opis }}">{{ o.opis }}</button>{% else %}{{ o.opis }}{% endif %}</td>
+            <td>{{ fu.nazwa }}</td>
+            <td class="r {% if o.wplata %}in{% else %}out{% endif %}">{% if o.wplata %}+{% else %}−{% endif %}{{ (o.kwota | abs) | zl }}</td>
+            <td class="r">{{ o.saldo | zl }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="5" class="pusto">Pierwsze operacje pojawią się tutaj, gdy zarejestrujemy wpływy i koszty fundacji. Najnowsze będą na górze.</td></tr>
+        {% endfor %}
         </tbody>
       </table>
     </div>
-    <p class="note" style="margin: 14px 0 0;">KAŻDA OPERACJA MA DOKUMENT ŹRÓDŁOWY. DARCZYŃCÓW INDYWIDUALNYCH NIE PODAJEMY Z NAZWISKA BEZ ICH ZGODY.</p>
-    <div class="btns"><a class="btn line" href="/finanse/">Zestawienie wszystkich operacji</a><a class="btn red" href="/wesprzyj/">Wesprzyj wybrany cel</a></div>
+    <div class="fin-rach">
+      <p style="margin: 0 0 8px;">Odbiorca: Fundacja MAMY DOŚĆ, {{ site.adres }}. Tytuł: darowizna na cele statutowe.</p>
+      {% for r in site.rachunki %}<p style="margin: 0 0 6px;"><span class="note">{{ r.waluta }}</span> <code id="rach{{ loop.index }}">{{ r.nr }}</code> <button class="copy" type="button" data-c="rach{{ loop.index }}">Kopiuj</button></p>{% endfor %}
+    </div>
+    <div class="btns"><a class="btn red" href="/wesprzyj/">Wesprzyj wybrany cel</a></div>
   </div>
 </section>
 
@@ -74,10 +79,9 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
   <div class="wrap">
     <div class="sec-h"><div><h2 id="h-dokumenty">Dokumenty fundacji</h2><p style="margin: 8px 0 0; color: var(--slate);">Statut i dokumenty założycielskie opublikujemy tutaj.</p></div></div>
     <div class="files">
-      <div class="file"><span class="sig">KRS<small>0001270149</small></span><div><h3>Wpis do Krajowego Rejestru Sądowego</h3><p>Data wpisu: 30.09.2026 · NIP 5214181906 · REGON [do uzupełnienia]</p></div><span class="pill ok">wpisana</span></div>
+      <div class="file"><span class="sig">KRS<small>{{ site.krs }}</small></span><div><h3>Wpis do Krajowego Rejestru Sądowego</h3><p>Data wpisu: {{ site.dataWpisuKrs | data }} · NIP {{ site.nip }}{% if site.regon %} · REGON {{ site.regon }}{% endif %}</p></div><span class="pill ok">wpisana</span></div>
       <div class="file"><span class="sig">STATUT<small>PDF</small></span><div><h3>Statut fundacji</h3><p>[Miejsce na plik statutu]</p></div><span class="pill plan">do dodania</span></div>
       <div class="file"><span class="sig">AKT<small>PDF</small></span><div><h3>Akt założycielski</h3><p>[Miejsce na plik aktu założycielskiego]</p></div><span class="pill plan">do dodania</span></div>
-      <div class="file"><span class="sig">SPRAW.<small>2026</small></span><div><h3>Sprawozdania</h3><p>[Pierwsze sprawozdanie za 2026 r.]</p></div><span class="pill plan">do dodania</span></div>
     </div>
   </div>
 </section>
@@ -85,10 +89,19 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
 <section class="sec" id="kontakt" aria-labelledby="h-kontakt" style="padding-top: 0;">
   <div class="wrap">
     <div class="sec-h"><h2 id="h-kontakt">Kontakt</h2><a href="/zglos/">Zgłoś nieprawidłowość →</a></div>
-    <div class="contacts" style="padding-block: 0;">
-      <div class="contact"><span class="tab">E-mail</span><h3>Napisz do nas</h3><code>mamydosc@mail.com</code><p style="margin: 10px 0 0; font-size: 0.9rem; color: var(--slate);">Anonimowo: <span class="mono">123bjp@duck.com</span></p></div>
-      <div class="contact"><span class="tab">Skrzynki urzędowe</span><h3>e-Doręczenia i ePUAP</h3><code>AE:PL-45973-21583-JFTCA-29</code><p style="margin: 10px 0 0; font-size: 0.9rem; color: var(--slate);">ePUAP: <span class="mono">/mamydosc/domyslna</span></p></div>
-      <div class="contact"><span class="tab">Adres</span><h3>Siedziba fundacji</h3><code>ul. Puławska 77 lok. U5, 02-595 Warszawa</code></div>
+    <div class="kontakty">
+      <div class="contact"><span class="tab">Oficjalnie</span><h3>Napisz do nas oficjalnie</h3><code id="k1">{{ site.email }}</code><br><button class="copy" type="button" data-c="k1">Kopiuj</button></div>
+      <div class="contact"><span class="tab">Anonimowo</span><h3>Napisz do nas anonimowo</h3><code id="k2">{{ site.emailAnonimowy }}</code><br><button class="copy" type="button" data-c="k2">Kopiuj</button>{% include "anonimowo.njk" %}</div>
+      <div class="contact"><span class="tab">Urzędowo</span><h3>e-Doręczenia</h3><code id="k3">{{ site.eDoreczenia }}</code><br><button class="copy" type="button" data-c="k3">Kopiuj</button></div>
+      <div class="contact"><span class="tab">Urzędowo</span><h3>ePUAP</h3><code id="k4">{{ site.epuap }}</code><br><button class="copy" type="button" data-c="k4">Kopiuj</button></div>
+      <div class="contact wide"><span class="tab">Listownie</span><h3>Siedziba fundacji i adres korespondencyjny, także dla listów anonimowych</h3><code>ul. Puławska 77-U5<br>02-595 Warszawa</code></div>
     </div>
   </div>
 </section>
+
+<div class="viewer" id="dokmodal" role="dialog" aria-modal="true" aria-labelledby="dokmodal-t" hidden>
+  <div class="vin wide">
+    <div class="vhead"><span id="dokmodal-t">Dokument</span><button type="button" class="vclose" id="dokmodal-zamknij">Zamknij</button></div>
+    <div id="dokmodal-tresc"></div>
+  </div>
+</div>

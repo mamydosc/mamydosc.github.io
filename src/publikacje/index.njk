@@ -1,27 +1,7 @@
 ---
-layout: base.njk
-title: Publikacje
-nav: publikacje
-wstep: Teksty fundacji. Każdy oparty na dokumentach z sygnaturą lub znakiem pisma.
-okruszki: [{ t: "Publikacje" }]
+layout: przekierowanie.njk
+title: "Nasze publikacje"
+cel: "/#artykuly"
+permalink: "/publikacje/"
+eleventyExcludeFromCollections: true
 ---
-{% include "naglowek.njk" %}
-<div class="wrap sec" style="padding-top:40px">
-  {%- set teksty = collections.artykuly | gdzieBrak("cykl") -%}
-  {% if not teksty.length and not cykle.length %}<div class="banner">Brak publikacji. Pierwszy tekst fundacji pojawi się tutaj po zatwierdzeniu.</div>{% endif %}
-  {% if teksty.length %}
-  <div class="sec-h" id="teksty"><h2>Teksty</h2></div>
-  <div class="series"><ol>
-    {% for t in teksty | reverse %}<li><span class="n">{{ t.data.numer }}</span><a href="{{ t.url }}">{{ t.data.title }}</a><span class="d">{{ t.date | data }}</span></li>{% endfor %}
-  </ol></div>
-  {% endif %}
-  {% for c in cykle %}
-  <div class="sec-h" id="{{ c.id }}"{% if not loop.first or teksty.length %} style="margin-top:56px"{% endif %}><h2>{{ c.nazwa }}</h2><span class="mono" style="color:var(--slate)">{{ c.czesci.length }} CZĘŚCI · {{ c.czesci[0].data | data }}–{{ (c.czesci | last).data | data }}</span></div>
-  <div class="series"><ol>
-    {% for cz in c.czesci %}
-    {%- set art = collections.artykuly | artykulCyklu(c.id, loop.index) -%}
-    <li><span class="n">CZ. {{ loop.index }}/{{ c.czesci.length }}</span>{% if art %}<a href="{{ art.url }}">{{ art.data.title }}</a>{% else %}<span>{{ cz.tytul }}</span>{% endif %}<span class="d">{{ cz.data | data }}</span></li>
-    {% endfor %}
-  </ol></div>
-  {% endfor %}
-</div>

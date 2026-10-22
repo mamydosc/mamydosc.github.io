@@ -6,7 +6,6 @@ opisStrony: "Zgłoś bezprawie w urzędzie albo w sądzie – anonimowo albo pis
 ---
 <section class="phead">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Ścieżka"><a href="/">Start</a> / Zgłoś nieprawidłowość</nav>
     <span class="kick" style="display: block; margin-top: 18px;">Zgłoś · anonimowo albo z podpisem · zawsze bezpłatnie</span>
     <h1>Bezprawie trwa, dopóki wszyscy milczą. Powiedz nam.</h1>
     <p>Pracujesz w urzędzie albo w sądzie i widzisz, co się dzieje? Jesteś stroną sprawy, w której urząd łamie prawo? Każdy trop prześwietlamy w dokumentach – a potem działamy: wnioski, skargi, zawiadomienia, publikacja.</p>
@@ -37,11 +36,11 @@ opisStrony: "Zgłoś bezprawie w urzędzie albo w sądzie – anonimowo albo pis
         <p id="lead-anon" style="margin: 0 0 20px; color: var(--slate);">Napisz, co widzisz od środka: kto, gdzie, od kiedy, jakie dokumenty to pokazują. Nie podawaj niczego, po czym można Cię rozpoznać.</p>
         <div class="field"><label for="co">Co się dzieje i gdzie</label><textarea id="co" placeholder="Urząd albo sąd, wydział, czego dotyczy nieprawidłowość, od kiedy trwa"></textarea></div>
         <div class="field"><label for="gdzie">Urząd albo sąd</label><input id="gdzie" placeholder="np. [Urząd skarbowy A], wydział, referat"></div>
-        <div class="field"><label for="kontakt">Kontakt zwrotny (nieobowiązkowy)</label><input id="kontakt" placeholder="np. anonimowy adres e-mail, jeśli chcesz odpowiedzi"></div>
         <div class="drop"><b>Dokumenty (PDF, JPG, PNG)</b><br>Przed wysłaniem usuń z plików swoje dane, podpis i metadane.<br><input type="file" id="pliki" multiple accept=".pdf,.jpg,.jpeg,.png" aria-label="Wybierz pliki"></div>
         <div class="btns"><button class="btn red" type="button" id="wyslij-anon">Wyślij anonimowo</button></div>
         <p class="done" id="info-anon" hidden>Formularz zacznie działać po wyborze usługi do wysyłki. Do tego czasu zgłoszenia przyjmujemy e-mailem: 123bjp@duck.com.</p>
-        <p class="note" style="margin: 14px 0 0;">WOLISZ E-MAIL? NAPISZ NA <span style="color: var(--ink);">123bjp@duck.com</span> – NIE PODPISUJ SIĘ.</p>
+        <p class="note" style="margin: 14px 0 0;">WOLISZ E-MAIL? NAPISZ NA <span style="color: var(--ink);">{{ site.emailAnonimowy }}</span> – NIE PODPISUJ SIĘ.</p>
+        {% include "anonimowo.njk" %}
       </section>
     </div>
 
