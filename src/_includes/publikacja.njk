@@ -2,24 +2,20 @@
 layout: base.njk
 nav: artykul
 ---
-{#- Strona artykułu (23.10.2026): baner z tytułem, krótkim opisem i wykresem albo grafiką, po prawej w banerze
-    (zamiast listy ciekawostek) wyszukiwarka i lista pozostałych artykułów; pod banerem treść artykułu na całą szerokość -#}
+{#- Strona artykułu (23.10.2026, wersja 3): jedna strona bez osobnego banera. Po lewej artykuł – rodzaj, sygnatura i data,
+    tytuł, krótki opis, wykres albo grafika, treść; po prawej przez całą długość artykułu wyszukiwarka i lista artykułów
+    (stoją w miejscu przy przewijaniu, lista przewija się osobno) -#}
 {%- set WSZA = collections.nasze | artykuly(akta) -%}
 {%- set jaA = WSZA | znajdz("url", page.url) -%}
-<section class="phead">
-  <div class="wrap baner">
-    <div class="baner-tresc">
-      <span class="kick" style="display: block; margin-top: 18px;">{{ jaA.rodzajNazwa if jaA else "Artykuł" }}{% if numer %} · {{ numer }}{% endif %} · {{ page.date | dataDzien }}</span>
+<div class="wrap artstrona">
+  <article class="artmain">
+    <header class="artnag">
+      <span class="kick">{{ jaA.rodzajNazwa if jaA else "Artykuł" }}{% if numer %} · {{ numer }}{% endif %} · {{ page.date | dataDzien }}</span>
       <h1>{{ title }}</h1>
-      {% if opisBanera or lead %}<p>{{ opisBanera or lead }}</p>{% endif %}
-      {% if wykres %}{% set w = wykres %}{% include "wykres.njk" %}{% elif grafika %}<figure class="grafika-b"><img src="{{ grafika.src }}" alt="{{ grafika.opis }}"></figure>{% endif %}
+      {% if opisBanera or lead %}<p class="artlead">{{ opisBanera or lead }}</p>{% endif %}
+      {% if wykres %}{% set w = wykres %}{% set wJasny = true %}{% include "wykres.njk" %}{% elif grafika %}<figure class="grafika"><img src="{{ grafika.src }}" alt="{{ grafika.opis }}"><figcaption>{{ grafika.opis }}</figcaption></figure>{% endif %}
       <div class="byline"><span>FUNDACJA MAMY DOŚĆ</span><span>CZYTANIE: {{ content | czasCzytania }} MIN</span>{% for b in byline %}<span>{{ b }}</span>{% endfor %}{% if przyklad %}<span class="sample">Dane przykładowe</span>{% endif %}</div>
-    </div>
-    {% include "szukaj-panel.njk" %}
-  </div>
-</section>
-<div class="wrap artpelna">
-  <article class="artcala">
+    </header>
     {%- set nad = WSZA | znajdz("numer", nadrzedny) if nadrzedny else false -%}
     {% if nad %}<p class="watek">Część tematu <a href="{{ nad.url }}">{{ nad.numer }} · {{ nad.tytul }}</a></p>{% endif %}
     {% if proza %}<div class="prose">{{ content | safe }}</div>{% else %}{{ content | safe }}{% endif %}
@@ -28,4 +24,5 @@ nav: artykul
     {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{{ z }}</li>{% endfor %}</ul></div>{% endif %}
     {% if proza %}<div class="btns"><a class="btn line" href="/">← Nasze publikacje</a><a class="btn red" href="/zglos/">Masz podobną sprawę? Zgłoś</a></div>{% endif %}
   </article>
+  {% include "szukaj-panel.njk" %}
 </div>

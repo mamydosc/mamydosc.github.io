@@ -482,26 +482,35 @@ b.tyt{display:block;margin-bottom:2px}
   .nav-syg{position:relative;left:auto;top:auto;transform:none;align-self:center;margin:12px 0 10px}
 }
 
-/* Strona artykułu (23.10.2026, wersja 2): w banerze po prawej wyszukiwarka i lista artykułów zamiast listy ciekawostek;
-   pod banerem treść artykułu na całą szerokość */
-.szukaj{color:#fff;min-width:0}
-.sz-h{margin:0 0 12px;display:grid;line-height:1.05;font:800 1.3rem var(--f-display);color:#fff}
-.sz-h span{font:500 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--pink)}
-.baner .szukaj .sz-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:0 0 8px}
-.baner .szukaj .search{grid-column:1 / -1;width:100%;border-color:transparent}
-.baner .szukaj select{width:100%;font:400 .86rem var(--f-text);padding:8px 8px;border:1px solid transparent;background:var(--paper);color:var(--ink)}
-.baner .szukaj .sz-ile,.baner .szukaj #sz-pusto{font:400 .76rem var(--f-mono);letter-spacing:.03em;color:var(--on-navy-dim);margin:2px 0 8px}
-.baner .szukaj .artlist{display:grid;gap:10px;overflow-y:auto;overscroll-behavior:contain;padding:0 8px 4px 0;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.5) transparent;max-height:22rem}
-.baner .szukaj .aitem{border-color:transparent}
-@media (min-width:960px){
-  .baner .szukaj{display:flex;flex-direction:column;height:0;min-height:100%;align-self:stretch}
-  .baner .szukaj .sz-h,.baner .szukaj .sz-form,.baner .szukaj .sz-ile{flex:none}
-  .baner .szukaj .artlist{flex:1 1 auto;min-height:0;max-height:none}
+/* Strona artykułu (23.10.2026, wersja 3): jedna strona – bez osobnego banera. Po lewej artykuł (tytuł, krótki opis,
+   wykres albo grafika, treść), po prawej przez całą długość artykułu wyszukiwarka i lista artykułów: stoją w miejscu
+   przy przewijaniu artykułu, lista przewija się osobno. Na telefonie panel nad artykułem. */
+.artstrona{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;align-items:start;padding-block:40px 64px}
+.artnag{margin:0 0 32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.artnag .kick{color:var(--red)}
+.artnag h1{font-size:clamp(2rem,4.5vw,3.1rem);font-weight:800;line-height:1.1;margin:12px 0 0}
+.artnag .artlead{font-size:1.1rem;line-height:1.6;color:var(--slate);margin:14px 0 0;max-width:44em}
+.artnag .byline{color:var(--slate)}
+.wyk.jasny .wyk-t{color:var(--slate)}
+.wyk.jasny .osl li{color:var(--slate)}
+.wyk.jasny .osl li b{color:var(--ink)}
+.wyk.jasny .osl li::before{background:var(--line)}
+.wyk.jasny .osl li::after{background:var(--paper);border-color:var(--slate)}
+.wyk.jasny .osl li.r::after{background:var(--st-sil);border-color:var(--st-sil)}
+.wyk.jasny .osl li.ok::after{background:var(--st-ok);border-color:var(--st-ok)}
+.szukaj{min-width:0;color:var(--ink)}
+.artstrona .szukaj{position:sticky;top:136px;height:calc(100vh - 152px);display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--file-spine);padding:14px 14px 10px}
+.sz-glowa{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:10px;flex:none}
+.sz-h{margin:0;display:grid;line-height:1.05;font:800 1.25rem var(--f-display);color:var(--ink)}
+.sz-h span{font:500 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.sz-tresc{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+.szukaj .sz-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:0 0 6px;flex:none}
+.szukaj .search{grid-column:1 / -1;width:100%}
+.szukaj select{width:100%;font:400 .86rem var(--f-text);padding:8px;border:1px solid var(--control);background:var(--paper);color:var(--ink)}
+.szukaj .sz-ile,.szukaj #sz-pusto{font:400 .74rem var(--f-mono);letter-spacing:.03em;color:var(--slate);margin:4px 0 8px;flex:none}
+.artstrona .szukaj .artlist{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto;overscroll-behavior:contain;display:grid;align-content:start;gap:8px;padding:0 6px 4px 0}
+@media (max-width:959px){
+  .artstrona{grid-template-columns:minmax(0,1fr);gap:20px;padding-top:24px}
+  .artstrona .szukaj{position:static;height:auto;order:-1}
+  .artstrona .szukaj .artlist{max-height:60vh}
 }
-@media (max-width:959px){.baner .szukaj{border-top:1px solid rgba(255,255,255,.2);padding-top:18px}}
-.artpelna{padding-block:44px 64px}
-.artcala{min-width:0}
-.artcala .lead{font:600 1.22rem/1.55 var(--f-serif);margin:0 0 1.4em;max-width:38em}
-.artcala .prose h3{font:700 1.3rem var(--f-display);margin:1.6em 0 .5em}
-.artcala .sheet{margin:0 0 24px}
-.artcala .prose table{display:block;max-width:100%;overflow-x:auto}

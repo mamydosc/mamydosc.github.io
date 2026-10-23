@@ -1,20 +1,24 @@
-{#- Prawa strona banera na stronie artykułu (23.10.2026): wyszukiwarka – słowa, temat, zagadnienie – i lista pozostałych
-    artykułów (przewijana jak lista ciekawostek). Słowa szukają w całej treści artykułów (indeks /szukaj.json);
-    bez skryptu widać pełną listę. -#}
+{#- Panel strony artykułu (23.10.2026, wersja 3): wyszukiwarka – słowa, temat, zagadnienie – i lista pozostałych artykułów,
+    po prawej przez całą długość artykułu; stoi w miejscu przy przewijaniu, lista przewija się osobno.
+    Słowa szukają w całej treści artykułów (indeks /szukaj.json); bez skryptu widać pełną listę. -#}
 {%- set WSZ = collections.nasze | artykuly(akta) -%}
 {%- set ja = WSZ | znajdz("url", page.url) -%}
 {%- set lista = WSZ | bezArtykulu(ja) -%}
-<aside class="szukaj" aria-labelledby="sz-h">
-  <h2 class="sz-h" id="sz-h"><span>Szukaj</span>w artykułach</h2>
-  <div class="sz-form" role="search">
-    <label class="sr" for="sz-q">Słowa</label>
-    <input class="search" id="sz-q" type="search" placeholder="Słowo, nazwisko, urząd, sygnatura" autocomplete="off">
-    <label class="sr" for="sz-t">Temat</label>
-    <select id="sz-t"><option value="">Temat</option>{% for t in WSZ | unikalne("tematy") %}<option>{{ t }}</option>{% endfor %}</select>
-    <label class="sr" for="sz-z">Zagadnienie</label>
-    <select id="sz-z"><option value="">Zagadnienie</option>{% for z in WSZ | unikalne("zagadnienia") %}<option>{{ z }}</option>{% endfor %}</select>
+<aside class="szukaj" id="sz-panel" aria-labelledby="sz-h">
+  <div class="sz-glowa">
+    <h2 class="sz-h" id="sz-h"><span>Szukaj</span>w artykułach</h2>
   </div>
-  <p class="note sz-ile" id="sz-ile" aria-live="polite">ARTYKUŁÓW: {{ lista.length }}</p>
-  <div class="artlist" id="sz-lista">{% for a in lista %}{% include "artykul-karta.njk" %}{% endfor %}</div>
-  <p class="note" id="sz-pusto" hidden>Nic nie znaleziono. Zmień słowa, temat albo zagadnienie.</p>
+  <div class="sz-tresc">
+    <div class="sz-form" role="search">
+      <label class="sr" for="sz-q">Słowa</label>
+      <input class="search" id="sz-q" type="search" placeholder="Słowo, nazwisko, urząd, sygnatura" autocomplete="off">
+      <label class="sr" for="sz-t">Temat</label>
+      <select id="sz-t"><option value="">Temat</option>{% for t in WSZ | unikalne("tematy") %}<option>{{ t }}</option>{% endfor %}</select>
+      <label class="sr" for="sz-z">Zagadnienie</label>
+      <select id="sz-z"><option value="">Zagadnienie</option>{% for z in WSZ | unikalne("zagadnienia") %}<option>{{ z }}</option>{% endfor %}</select>
+    </div>
+    <p class="sz-ile" id="sz-ile" aria-live="polite">ARTYKUŁÓW: {{ lista.length }}</p>
+    <div class="artlist" id="sz-lista">{% for a in lista %}{% include "artykul-karta.njk" %}{% endfor %}</div>
+    <p id="sz-pusto" hidden>Nic nie znaleziono. Zmień słowa, temat albo zagadnienie.</p>
+  </div>
 </aside>
