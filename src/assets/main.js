@@ -64,9 +64,11 @@
   });
 })();
 
-// v2: przełącznik motywu (bez zapisu w przeglądarce – strona nie śledzi), kalendarz cykli, rozwijanie części
+// v2: przełącznik trybu (bez śledzenia – zob. niżej), kalendarz cykli, rozwijanie części
 (function () {
-  // 23.10.2026: tylko Jasny / Ciemny (bez „Auto”); na starcie zaznaczony tryb, który widać (ustawienie systemu)
+  // 23.10.2026: tylko Jasny / Ciemny (bez „Auto”); na starcie zaznaczony tryb, który widać (ustawienie systemu).
+  // Wybrany tryb przechodzi na kolejne strony: zapis w pamięci karty przeglądarki (sessionStorage) do jej zamknięcia;
+  // odczyt na początku każdej strony (skrypt w <head> w base.njk), żeby strona nie mignęła w drugim trybie.
   var root = document.documentElement;
   var tryby = document.querySelectorAll(".theme button");
   var ciemnySystem = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
@@ -75,7 +77,11 @@
     tryby.forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.t === t ? "true" : "false"); });
   };
   tryby.forEach(function (b) {
-    b.addEventListener("click", function () { root.setAttribute("data-theme", b.dataset.t); pokazTryb(); });
+    b.addEventListener("click", function () {
+      root.setAttribute("data-theme", b.dataset.t);
+      try { sessionStorage.setItem("tryb", b.dataset.t); } catch (e) {}
+      pokazTryb();
+    });
   });
   if (ciemnySystem && ciemnySystem.addEventListener) ciemnySystem.addEventListener("change", pokazTryb);
   pokazTryb();
