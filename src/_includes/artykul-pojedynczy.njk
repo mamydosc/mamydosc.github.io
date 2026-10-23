@@ -2,9 +2,12 @@
 layout: base.njk
 nav: start
 ---
-<div class="phead"><div class="wrap">
+<div class="phead"><div class="wrap baner">
+  <div class="baner-tresc">
   <h1>{{ title }}</h1>
   <div class="byline"><span>{{ numer }}</span><span>{{ page.date | dataDzien }}</span><span>{{ content | czasCzytania }} min czytania</span><span>Fundacja MAMY DOŚĆ</span></div>
+  </div>
+  {% include "ciekawostki-baner.njk" %}
 </div></div>
 <div class="wrap article">
   <article class="prose">

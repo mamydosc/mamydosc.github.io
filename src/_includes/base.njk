@@ -20,8 +20,7 @@
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="stylesheet" href="/assets/nowy.css">
 </head>
-{%- set LW = ciekawostki.wpisy | najnowszeNaGorze("data") -%}
-<body{% if LW.length %} class="z-lobuz"{% endif %}>
+<body>
 <a class="skip" href="#tresc">Przejdź do treści</a>
 
 <header class="top on-navy">
@@ -38,22 +37,9 @@
     </nav>
   </div>
 </header>
-<div class="uklad{% if LW.length %} z-lobuz{% endif %}">
-{% if LW.length %}
-<aside class="lobuz" aria-label="Lista ciekawostek">
-  <div class="lobuz-in">
-    <a class="lobuz-h" href="/lista-ciekawostek/">Lista<b>ciekawostek</b></a>
-    <div class="lobuz-row">
-      {% for w in LW %}<a class="lobuz-chip" href="/lista-ciekawostek/#{{ w.id }}"><b>{{ w.imie }}</b><span>{{ w.krotko }}</span></a>{% endfor %}
-    </div>
-    <a class="lobuz-all" href="/lista-ciekawostek/">Wszystkie →</a>
-  </div>
-</aside>
-{% endif %}
 <main id="tresc">
 {{ content | safe }}
 </main>
-</div>
 <footer class="foot">
   <div class="wrap">
     <div><img class="foot-logo2" src="/assets/img/logo/logo-6-granat-biale.svg" alt="Fundacja MAMY DOŚĆ – miernoty i bezkarności urzędników" width="220" height="142" loading="lazy"><p style="margin: 12px 0 0;">{{ site.adres }}<br>KRS {{ site.krs }} · NIP {{ site.nip }}{% if site.regon %} · REGON {{ site.regon }}{% endif %}</p></div>

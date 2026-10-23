@@ -6,17 +6,18 @@ opisStrony: "Nasze publikacje: co sprawdzamy, artykuły i akta spraw. Pytamy, do
 ---
 {%- set P = collections.nasze | naszePublikacje(akta) -%}
 <section class="apel2" aria-labelledby="h-apel">
-  <div class="wrap">
-    <div>
+  <div class="wrap baner">
+    <div class="baner-tresc">
       <span class="kick">Fundacja MAMY DOŚĆ · miernoty i bezkarności urzędników</span>
       <h1 id="h-apel">Bezprawie w urzędach i sądach nie będzie bezkarne</h1>
       <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
       <p>Wiesz, co naprawdę dzieje się w Twoim urzędzie albo sądzie? Powiedz nam – anonimowo albo z podpisem. Zawsze bezpłatnie.</p>
+      <div class="apel2-b">
+        <a class="btn white" href="/zglos/">Pracuję w urzędzie albo w sądzie →</a>
+        <a class="btn wline" href="/zglos/">Urząd łamie prawo w mojej sprawie →</a>
+      </div>
     </div>
-    <div class="apel2-b">
-      <a class="btn white" href="/zglos/">Pracuję w urzędzie albo w sądzie →</a>
-      <a class="btn wline" href="/zglos/">Urząd łamie prawo w mojej sprawie →</a>
-    </div>
+    {% include "ciekawostki-baner.njk" %}
   </div>
 </section>
 

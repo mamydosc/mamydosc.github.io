@@ -6,18 +6,21 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
 ---
 {%- set T = finanse.operacje | tabelaFinansow -%}
 <section class="phead">
-  <div class="wrap">
-    <span class="kick" style="display: block;">O fundacji</span>
-    <h1>Mamy dość bezkarności urzędników. Dlatego powstała ta fundacja</h1>
-    <p>Fundację MAMY DOŚĆ założyliśmy po latach sporu z administracją skarbową, który zaczął się od absurdalnej i destrukcyjnej kontroli podatkowej w 2018 r. Z jednej sprawy zostały setki pism, dziesiątki wyroków i wiedza, którą chcemy się dzielić. Wiemy, ile kosztuje walka z urzędem w pojedynkę – dlatego nie zostawiamy nikogo samego i nie odpuszczamy tym, którzy łamią prawo.</p>
-    <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
-    <nav class="filters" style="margin: 24px 0 0;" aria-label="Na tej stronie">
-      <a class="chip" href="#misja" style="text-decoration: none;">Misja</a>
-      <a class="chip" href="#zasady" style="text-decoration: none;">Zasady</a>
-      <a class="chip" href="#finanse" style="text-decoration: none;">Finanse</a>
-      <a class="chip" href="#dokumenty" style="text-decoration: none;">Dokumenty fundacji</a>
-      <a class="chip" href="#kontakt" style="text-decoration: none;">Kontakt</a>
-    </nav>
+  <div class="wrap baner">
+    <div class="baner-tresc">
+      <span class="kick" style="display: block;">O fundacji</span>
+      <h1>Mamy dość bezkarności urzędników. Dlatego powstała ta fundacja</h1>
+      <p>Fundację MAMY DOŚĆ założyliśmy po latach sporu z administracją skarbową, który zaczął się od absurdalnej i destrukcyjnej kontroli podatkowej w 2018 r. Z jednej sprawy zostały setki pism, dziesiątki wyroków i wiedza, którą chcemy się dzielić. Wiemy, ile kosztuje walka z urzędem w pojedynkę – dlatego nie zostawiamy nikogo samego i nie odpuszczamy tym, którzy łamią prawo.</p>
+      <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
+      <nav class="filters" style="margin: 24px 0 0;" aria-label="Na tej stronie">
+        <a class="chip" href="#misja" style="text-decoration: none;">Misja</a>
+        <a class="chip" href="#zasady" style="text-decoration: none;">Zasady</a>
+        <a class="chip" href="#finanse" style="text-decoration: none;">Finanse</a>
+        <a class="chip" href="#dokumenty" style="text-decoration: none;">Dokumenty fundacji</a>
+        <a class="chip" href="#kontakt" style="text-decoration: none;">Kontakt</a>
+      </nav>
+    </div>
+    {% include "ciekawostki-baner.njk" %}
   </div>
 </section>
 
@@ -38,9 +41,10 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
 <section class="sec" id="zasady" aria-labelledby="h-zasady" style="padding-top: 0;">
   <div class="wrap">
     <div class="sec-h"><h2 id="h-zasady">Zasady</h2></div>
-    <div class="rules r2">
+    <div class="rules">
       <div class="rule"><b>Non-profit</b><p>Nie zarabiamy na sprawach, które opisujemy. Nie wymagamy i nie pobieramy opłat od osób, którym pomagamy.</p></div>
       <div class="rule"><b>Zero polityki</b><p>Nie wspieramy partii ani kandydatów. Oceniamy działanie urzędów i sądów, nie poglądy ludzi. O większości polityków mamy gorsze zdanie niż nawet o urzędnikach.</p></div>
+      <div class="rule"><b>Jawność</b><p>Publikujemy pisma i odpowiedzi, które wybieramy do publikacji – także te, w których nie mamy racji. Każdy wydatek pokazujemy z dokumentem, każdą wpłatę z datą i kwotą.</p></div>
     </div>
     <p style="margin: 22px 0 0; max-width: 46em; color: var(--slate);">Nazwiska i fakty podajemy tylko potwierdzone dokumentami i tylko w zakresie pełnienia funkcji publicznych. Danych osób prywatnych nie publikujemy.</p>
   </div>

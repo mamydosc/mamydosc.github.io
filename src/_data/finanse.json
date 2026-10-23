@@ -1,5 +1,5 @@
 {
-  "_opis": "Rozliczenie wpływów i kosztów fundacji. Plik aktualizuje zadanie „Funtnia – rejestr” na podstawie dokumentów z Funtni (wyciągi, faktury, umowy, potwierdzenia wpłat). Każda operacja ma dokument źródłowy. Darczyńców indywidualnych nie podajemy z nazwiska bez ich zgody.",
+  "_opis": "Rozliczenie wpływów i kosztów fundacji. Plik aktualizuje zadanie „Funtnia – rejestr” na podstawie dokumentów z Funtni (wyciągi, faktury, umowy, potwierdzenia wpłat). Każda operacja ma dokument źródłowy; na stronie – tylko przy kosztach. Wpłaty: tylko data i kwota, bez danych wpłacającego (decyzja 22.10.2026).",
   "przyklad": false,
   "stan": "2026-10-17",
   "okres": "październik 2026 – marzec 2027",
@@ -32,22 +32,6 @@
     }
   ],
   "kategorie": {
-    "darowizna-osoba": {
-      "nazwa": "Darowizny osób",
-      "typ": "wplyw"
-    },
-    "darowizna-firma": {
-      "nazwa": "Darowizny firm i organizacji",
-      "typ": "wplyw"
-    },
-    "platforma": {
-      "nazwa": "Wpłaty przez platformę",
-      "typ": "wplyw"
-    },
-    "grant": {
-      "nazwa": "Granty i dotacje",
-      "typ": "wplyw"
-    },
     "ksiegowosc": {
       "nazwa": "Księgowość",
       "typ": "koszt"

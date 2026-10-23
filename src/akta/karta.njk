@@ -13,9 +13,12 @@ eleventyComputed:
 ---
 {%- set klasy = { "ok": "ok", "czeka": "wait", "po_terminie": "late", "plan": "plan" } -%}
 {%- set slug = a.sygnatura | slugSyg -%}
-<div class="phead"><div class="wrap">
+<div class="phead"><div class="wrap baner">
+  <div class="baner-tresc">
   <h1>{{ a.tytul }}</h1>
   {% if a.wstep %}<p>{{ a.wstep }}</p>{% endif %}
+  </div>
+  {% include "ciekawostki-baner.njk" %}
 </div></div>
 <div class="wrap doc">
   <article class="sheet">

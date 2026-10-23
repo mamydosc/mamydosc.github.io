@@ -39,7 +39,7 @@ module.exports = () => {
 
   // wpłaty: tylko data i kwota – bez danych wpłacającego (decyzja 22.10.2026)
   const csv = ["nr;data;rodzaj;kategoria;opis;fundusz;kwota"].concat(
-    ops.map((o) => [o.nr, o.data, o.kwota > 0 ? "wpływ" : "koszt", F.kategorie[o.kategoria].nazwa, o.kwota > 0 ? "Wpłata" : o.opis,
+    ops.map((o) => [o.nr, o.data, o.kwota > 0 ? "wpływ" : "koszt", o.kwota > 0 ? "" : (F.kategorie[o.kategoria] || {}).nazwa, o.kwota > 0 ? "Wpłata" : o.opis,
       (F.fundusze.find((f) => f.id === o.fundusz) || {}).nazwa, String(o.kwota).replace(".", ",")]
       .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`).join(";"))
   ).join("\r\n");
