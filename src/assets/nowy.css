@@ -483,8 +483,9 @@ b.tyt{display:block;margin-bottom:2px}
 }
 
 /* Strona artykułu (23.10.2026, wersja 3): jedna strona – bez osobnego banera. Po lewej artykuł (tytuł, krótki opis,
-   wykres albo grafika, treść), po prawej przez całą długość artykułu wyszukiwarka i lista artykułów: stoją w miejscu
-   przy przewijaniu artykułu, lista przewija się osobno. Przycisk Zwiń/Rozwiń: po zwinięciu artykuł na całą szerokość
+   wykres albo grafika, treść), po prawej wyszukiwarka i lista artykułów. Od 23.10.2026 (zmiana, wersja b): panel
+   przesuwa się razem z artykułem i kończy się pod ostatnim artykułem listy – najdalej na końcu artykułu; lista dłuższa
+   niż artykuł przewija się osobno (po dojściu do jej końca dalej przewija się strona). Przycisk Zwiń/Rozwiń: po zwinięciu artykuł na całą szerokość
    (stan pamiętany w karcie przeglądarki, jak tryb jasny/ciemny). Na telefonie panel nad artykułem, domyślnie zwinięty. */
 .artstrona{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;align-items:start;padding-block:40px 64px}
 .artnag{margin:0 0 32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
@@ -500,7 +501,7 @@ b.tyt{display:block;margin-bottom:2px}
 .wyk.jasny .osl li.r::after{background:var(--st-sil);border-color:var(--st-sil)}
 .wyk.jasny .osl li.ok::after{background:var(--st-ok);border-color:var(--st-ok)}
 .szukaj{min-width:0;color:var(--ink)}
-.artstrona .szukaj{position:sticky;top:136px;height:calc(100vh - 152px);display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--file-spine);padding:14px 14px 10px}
+.artstrona .szukaj{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--file-spine);padding:14px 14px 10px}
 .sz-glowa{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:10px;flex:none}
 .sz-h{margin:0;display:grid;line-height:1.05;font:800 1.25rem var(--f-display);color:var(--ink)}
 .sz-h span{font:500 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
@@ -511,9 +512,13 @@ b.tyt{display:block;margin-bottom:2px}
 .szukaj .search{grid-column:1 / -1;width:100%}
 .szukaj select{width:100%;font:400 .86rem var(--f-text);padding:8px;border:1px solid var(--control);background:var(--paper);color:var(--ink)}
 .szukaj .sz-ile,.szukaj #sz-pusto{font:400 .74rem var(--f-mono);letter-spacing:.03em;color:var(--slate);margin:4px 0 8px;flex:none}
-.artstrona .szukaj .artlist{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto;overscroll-behavior:contain;display:grid;align-content:start;gap:8px;padding:0 6px 4px 0}
+.artstrona .szukaj .artlist{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto;overscroll-behavior:auto;display:grid;align-content:start;gap:8px;padding:0 6px 4px 0}
 .sz-rozwin{display:none}
 @media (min-width:960px){
+  /* panel w prawej kolumnie, od góry artykułu: wysokość = lista, ale najwyżej do końca artykułu (max-height:100%
+     obszaru siatki); położony absolutnie w obszarze siatki, więc nie wydłuża strony */
+  .artstrona{position:relative}
+  .artstrona .szukaj{position:absolute;grid-column:2 / 3;grid-row:1 / 2;top:0;left:0;right:0;max-height:100%}
   html[data-panel="zw"] .artstrona{grid-template-columns:minmax(0,1fr)}
   html[data-panel="zw"] .artstrona .szukaj{display:none}
   html[data-panel="zw"] .sz-rozwin{display:block;position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:15;writing-mode:vertical-rl;font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--file-spine);color:#fff;border:0;padding:14px 9px;cursor:pointer}
@@ -521,8 +526,8 @@ b.tyt{display:block;margin-bottom:2px}
 }
 @media (max-width:959px){
   .artstrona{grid-template-columns:minmax(0,1fr);gap:20px;padding-top:24px}
-  .artstrona .szukaj{position:static;height:auto;order:-1}
+  .artstrona .szukaj{order:-1}
   .artstrona .szukaj:not(.otwarty) .sz-tresc{display:none}
   .artstrona .szukaj:not(.otwarty) .sz-glowa{margin-bottom:0}
-  .artstrona .szukaj .artlist{max-height:60vh}
+  .artstrona .szukaj .artlist{max-height:60vh;overscroll-behavior:contain}
 }
