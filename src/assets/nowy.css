@@ -585,3 +585,13 @@ html[data-widok="duze"] .publista .al{-webkit-line-clamp:3;font-size:.92rem;marg
   .widoki button{padding:8px 10px}
   .widoki .wl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 }
+
+/* Baza danych i Poradnik (23.10.2026): tekst banera u góry – na wysokości „Lista ciekawostek” – a pod nim, nadal na banerze,
+   cały panel zapowiedzi. Konieczne przy tym: w białym panelu zwykły kolor tekstu i obwódki fokusu (nie te z granatowego tła). */
+.baner-gora .baner-tresc{align-self:start}
+.baner .panel{margin-top:24px;color:var(--ink)}
+.phead .baner .panel p{color:var(--ink);font-size:inherit;max-width:none}
+.phead .panel :focus-visible{outline-color:var(--red)}
+/* Baza danych: pod banerem dwie ramki obok siebie (wcześniej obok panelu zapowiedzi) */
+.dwie-ramki{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.dwie-ramki{grid-template-columns:minmax(0,1fr)}}
