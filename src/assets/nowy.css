@@ -19,8 +19,6 @@
 .brand{display:block;line-height:0;flex:none}
 .brand img{display:block;width:184px;height:auto}
 .top .nav{align-items:center}
-.nav a.ghostcta{color:#fff;border:1px solid rgba(255,255,255,.35)}
-.nav a.ghostcta:hover{background:rgba(255,255,255,.08)}
 
 /* pas czasowników – charakter strony */
 .verbs{background:var(--spine-red);color:#fff;font:500 .8rem/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase}
