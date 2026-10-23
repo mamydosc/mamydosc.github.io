@@ -28,7 +28,7 @@
       '<span class="tt">' + esc(d.tytul) + '</span><span class="hd">Sygnatura: ' + esc(d.syg) + '</span>' + LINIE;
   }
 
-  /* Nasze publikacje: filtr rodzaju (także z adresu: #sledztwa, #artykuly, #akta) */
+  /* Nasze publikacje: filtr rodzaju (także z adresu: #sprawdzamy, #artykuly, #akta; stary adres #sledztwa → #sprawdzamy) */
   var publist = document.getElementById('publist');
   if (publist) {
     var chipyP = $$('[data-pf]');
@@ -52,7 +52,7 @@
     chipyP.forEach(function (c) {
       c.addEventListener('click', function () { filtruj(c.getAttribute('data-pf')); });
     });
-    var zHasha = { '#sledztwa': 'sledztwo', '#artykuly': 'artykul', '#akta': 'akta' }[location.hash];
+    var zHasha = { '#sprawdzamy': 'sprawdzamy', '#sledztwa': 'sprawdzamy', '#artykuly': 'artykul', '#akta': 'akta' }[location.hash];
     if (zHasha) filtruj(zHasha);
   }
 
@@ -64,7 +64,7 @@
   };
   if ($('.lob-lista')) { otworzWpis(); window.addEventListener('hashchange', otworzWpis); }
 
-  /* Śledztwo: filtr statusu i wyszukiwarka */
+  /* Kampania (Sprawdzamy): filtr statusu i wyszukiwarka */
   var lista = document.getElementById('lista-urzedow');
   if (lista) {
     var stanS = { f: 'all', q: '' };

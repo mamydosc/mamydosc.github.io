@@ -7,8 +7,9 @@ opisStrony: "Zgłoś bezprawie w urzędzie albo w sądzie – anonimowo albo pis
 <section class="phead">
   <div class="wrap">
     <span class="kick" style="display: block; margin-top: 18px;">Zgłoś · anonimowo albo z podpisem · zawsze bezpłatnie</span>
-    <h1>Bezprawie trwa, dopóki wszyscy milczą. Powiedz nam.</h1>
+    <h1>Bezprawie trwa, dopóki wszyscy milczą. Powiedz nam</h1>
     <p>Pracujesz w urzędzie albo w sądzie i widzisz, co się dzieje? Jesteś stroną sprawy, w której urząd łamie prawo? Każdy trop prześwietlamy w dokumentach – a potem działamy: wnioski, skargi, zawiadomienia, publikacja.</p>
+    <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
   </div>
 </section>
 
@@ -38,8 +39,8 @@ opisStrony: "Zgłoś bezprawie w urzędzie albo w sądzie – anonimowo albo pis
         <div class="field"><label for="gdzie">Urząd albo sąd</label><input id="gdzie" placeholder="np. [Urząd skarbowy A], wydział, referat"></div>
         <div class="drop"><b>Dokumenty (PDF, JPG, PNG)</b><br>Przed wysłaniem usuń z plików swoje dane, podpis i metadane.<br><input type="file" id="pliki" multiple accept=".pdf,.jpg,.jpeg,.png" aria-label="Wybierz pliki"></div>
         <div class="btns"><button class="btn red" type="button" id="wyslij-anon">Wyślij anonimowo</button></div>
-        <p class="done" id="info-anon" hidden>Formularz zacznie działać po wyborze usługi do wysyłki. Do tego czasu zgłoszenia przyjmujemy e-mailem: 123bjp@duck.com.</p>
-        <p class="note" style="margin: 14px 0 0;">WOLISZ E-MAIL? NAPISZ NA <span style="color: var(--ink);">{{ site.emailAnonimowy }}</span> – NIE PODPISUJ SIĘ.</p>
+        <p class="done" id="info-anon" hidden>Formularz zacznie działać po wyborze usługi do wysyłki. Do tego czasu zgłoszenia przyjmujemy e-mailem – anonimowo: {{ site.emailAnonimowy }}.</p>
+        <p class="note" style="margin: 14px 0 0;">WOLISZ E-MAIL? ANONIMOWO: <span style="color: var(--ink);">{{ site.emailAnonimowy }}</span> – NIE PODPISUJ SIĘ.</p>
         {% include "anonimowo.njk" %}
       </section>
     </div>
@@ -58,14 +59,14 @@ opisStrony: "Zgłoś bezprawie w urzędzie albo w sądzie – anonimowo albo pis
         <div class="chan">
           <div><b>e-Doręczenia</b><code>AE:PL-45973-21583-JFTCA-29</code></div>
           <div><b>ePUAP</b><code>/mamydosc/domyslna</code></div>
-          <div><b>E-mail z podpisanym plikiem</b><code>mamydosc@mail.com</code></div>
+          <div><b>E-mail z podpisanym plikiem</b><code>Oficjalnie: {{ site.email }}</code></div>
         </div>
       </section>
     </div>
   </div>
 
   <aside class="side">
-    <div class="free"><b>Zawsze bezpłatnie.</b><p>Nie pobieramy żadnych opłat – ani za zgłoszenie, ani za zajęcie się sprawą. Ani teraz, ani później.</p></div>
+    <div class="free"><b>Zawsze bezpłatnie</b><p>Nie pobieramy żadnych opłat – ani za zgłoszenie, ani za zajęcie się sprawą. Ani teraz, ani później.</p></div>
     <div id="box-urz">
       <div class="alertbox">
         <h4>Pracujesz w urzędzie lub sądzie</h4>

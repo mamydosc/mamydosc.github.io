@@ -2,12 +2,12 @@
 layout: base.njk
 title: "Baza danych"
 nav: "baza"
-opisStrony: "Baza danych o urzędnikach i sędziach z naszych akt – tylko fakty i dokumenty związane z pełnieniem funkcji publicznych."
+opisStrony: "Baza danych o urzędnikach i sędziach z naszych akt – tylko fakty i dokumenty związane z pełnieniem funkcji publicznych. Pod nią archiwum dokumentów, którymi dysponujemy."
 ---
 <section class="phead">
   <div class="wrap">
     <span class="kick" style="display: block;">Baza danych · urzędnicy i sędziowie</span>
-    <h1>Interesują nas tylko fakty i dokumenty.</h1>
+    <h1>Interesują nas tylko fakty i dokumenty</h1>
     <p>Informacje o osobach pełniących funkcje publiczne, związane z pełnieniem tych funkcji, są jawne (art. 5 ust. 2 u.d.i.p.). Publikujemy tylko je – i każdą opieramy na posiadanych dokumentach.</p>
   </div>
 </section>
@@ -26,7 +26,7 @@ opisStrony: "Baza danych o urzędnikach i sędziach z naszych akt – tylko fakt
   <div class="wrap duo">
     <div class="panel zapowiedz">
       <span class="tab">Zapowiedź</span>
-      <h2 id="h-zapowiedz">Bazę uruchomimy, gdy przyjdą pierwsze odpowiedzi na nasze wnioski</h2>
+      <h2 id="h-zapowiedz">Bazę uruchomimy niebawem – jak tylko przerobimy dane statystyczne</h2>
       <p>Znajdziesz w niej urzędników i sędziów, których czynności pojawiają się w naszych aktach: stanowisko, komórkę, wcześniejsze stanowiska i czynności w sprawach – każdą informację z dokumentem, z którego pochodzi.</p>
       <p>Docelowo sprawdzisz w niej, czy sędzia, który orzeka w Twojej sprawie, pracował wcześniej z urzędnikiem, który podpisał zaskarżoną decyzję.</p>
     </div>
@@ -42,5 +42,50 @@ opisStrony: "Baza danych o urzędnikach i sędziach z naszych akt – tylko fakt
         <a href="/lista-ciekawostek/" style="color: var(--red); font: 500 0.82rem var(--f-mono);">Lista ciekawostek →</a>
       </div>
     </div>
+  </div>
+</section>
+
+{%- set A = archiwum -%}
+<section class="sec arch" id="archiwum" aria-labelledby="h-archiwum">
+  <div class="wrap">
+    <p class="kick-d">Licznik fundacji · dokumenty, którymi dysponujemy</p>
+    <h2 id="h-archiwum">Archiwum dokumentów</h2>
+    <p class="lead-d">Pisma, odpowiedzi urzędów i orzeczenia sądów ze spraw, które prowadzimy lub obserwujemy. Treści dokumentów nie publikujemy, pokazujemy tylko liczby.</p>
+    <div class="arch-sum">
+      <div><b>{{ A.dokumenty | liczba }}</b><span>dokumentów</span></div>
+      <div><b>{{ A.strony | liczba }}</b><span>stron</span></div>
+    </div>
+    <p class="note">STAN {{ A.stan | data }} · BEZ PACZEK PLIKÓW, POTWIERDZEŃ DORĘCZENIA I PISM PRZEWODNICH</p>
+
+    <div class="arch-tabs" role="tablist" aria-label="Obszar">
+      {% for o in A.obszary %}<button class="arch-tab" role="tab" id="t-{{ o.id }}" aria-controls="p-{{ o.id }}" aria-selected="{{ 'true' if loop.first else 'false' }}"><b>{{ o.c | liczba }}</b><span>{{ o.n }}</span></button>{% endfor %}
+    </div>
+    {% for o in A.obszary %}
+    <section class="arch-pane" role="tabpanel" id="p-{{ o.id }}" aria-labelledby="t-{{ o.id }}"{% if not loop.first %} hidden{% endif %}>
+      <p class="arch-opis">{{ o.opis }} · {{ o.strony | liczba }} stron</p>
+      <p class="arch-ctrl"><button type="button" class="linkbtn" data-all="1">Rozwiń wszystko</button> · <button type="button" class="linkbtn" data-all="0">Zwiń</button></p>
+      {% for k in o.k %}
+      <details class="a1"><summary><span class="nm">{{ k.n }}</span><span class="ct">{{ k.c | liczba }}</span></summary>
+        <div class="a1b">
+        {% for g in k.g %}
+          <div class="ag"><div class="agh">{{ g.n }} <b>{{ g.c | liczba }}</b></div>
+          {% for p in g.p %}
+            <details class="a2{% if p.red %} red{% endif %}"><summary><span class="nm">{{ p.n }}</span><span class="ct">{{ p.c | liczba }}</span></summary>
+              <div class="a2b">
+              {% for u in p.u %}
+                {% if u.j.length %}<details class="a3"><summary><span class="nm">{{ u.n }}</span><span class="ct">{{ u.c }}</span></summary><div class="units">{% for j in u.j %}<span>{{ j.n }} <b>{{ j.c }}</b></span>{% endfor %}</div></details>
+                {% else %}<div class="a3x"><span class="nm">{{ u.n }}</span><span class="ct">{{ u.c }}</span></div>{% endif %}
+              {% else %}<p class="muted">bez podziału na urzędy</p>{% endfor %}
+              </div>
+            </details>
+          {% endfor %}
+          </div>
+        {% endfor %}
+        </div>
+      </details>
+      {% endfor %}
+    </section>
+    {% endfor %}
+    <p class="arch-foot">{% if A.pozaZakladkami %}W zakładkach pokazujemy główne rodzaje pism. Pozostałe {{ A.pozaZakladkami | liczba }} dokumentów (np. odpowiedzi urzędów na skargi, repliki, zaświadczenia, wnioski) liczymy tylko w sumie. {% endif %}Kliknij kategorię, potem podkategorię i urząd. Skróty: NUS – Naczelnik Urzędu Skarbowego, DIAS – Dyrektor Izby Administracji Skarbowej, SKAS – Szef Krajowej Administracji Skarbowej, WSA – Wojewódzki Sąd Administracyjny, NSA – Naczelny Sąd Administracyjny.</p>
   </div>
 </section>

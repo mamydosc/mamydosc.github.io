@@ -97,12 +97,12 @@ module.exports = function (cfg) {
     api.getFilteredByGlob("src/publikacje/**/*.md").sort((a, b) => a.date - b.date)
   );
 
-  // „Nasze publikacje” na stronie głównej: śledztwa, artykuły i akta spraw w jednej liście (najnowsze na górze).
-  // Strony dołączają się front matterem: tags: nasze, typ (sledztwo | artykul | akta), lead, numer, duzy, przypiety.
+  // „Nasze publikacje” na stronie głównej: to, co sprawdzamy, artykuły i akta spraw w jednej liście (najnowsze na górze).
+  // Strony dołączają się front matterem: tags: nasze, typ (sprawdzamy | artykul | akta), lead, numer, duzy, przypiety.
   cfg.addCollection("nasze", (api) =>
     api.getAll().filter((p) => (p.data.tags || []).includes("nasze") || p.inputPath.includes("/publikacje/teksty/"))
   );
-  const TYPY_PUB = { sledztwo: "Śledztwo", artykul: "Artykuł", akta: "Akta sprawy" };
+  const TYPY_PUB = { sprawdzamy: "Sprawdzamy", artykul: "Artykuł", akta: "Akta sprawy" };
   cfg.addFilter("naszePublikacje", (strony, akta) => {
     const lista = (strony || []).map((p) => ({
       typ: p.data.typ || "artykul",

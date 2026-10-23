@@ -2,13 +2,14 @@
 layout: base.njk
 title: "Wesprzyj"
 nav: "wesprzyj"
-opisStrony: "Wesprzyj wybrany cel fundacji. Każdą wpłatę i każdy wydatek publikujemy z dokumentem źródłowym."
+opisStrony: "Wesprzyj wybrany cel fundacji. Każdy wydatek publikujemy z dokumentem źródłowym, a każdą wpłatę z datą i kwotą."
 ---
 <section class="phead">
   <div class="wrap">
     <span class="kick" style="display: block; margin-top: 18px;">Wesprzyj · każda złotówka rozliczona</span>
-    <h1>Urzędy działają za nasze podatki. My działamy dzięki Tobie.</h1>
-    <p>Nie bierzemy pieniędzy od ludzi, którym pomagamy. Utrzymują nas darczyńcy. Wybierz cel – każdą wpłatę i każdy wydatek publikujemy w dziale Finanse, z dokumentem źródłowym.</p>
+    <h1>Urzędy działają za nasze podatki. My działamy dzięki Tobie</h1>
+    <p>Nie bierzemy pieniędzy od ludzi, którym pomagamy. Utrzymują nas darczyńcy. Wybierz cel – w dziale Finanse publikujemy każdy wydatek z dokumentem źródłowym i każdą wpłatę z datą i kwotą.</p>
+    <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
   </div>
 </section>
 
@@ -74,9 +75,8 @@ opisStrony: "Wesprzyj wybrany cel fundacji. Każdą wpłatę i każdy wydatek pu
     </div>
     <div class="paylist">
       <div><b>Odbiorca</b><span>Fundacja MAMY DOŚĆ, {{ site.adres }}</span></div>
-      <div><b>Rachunek PLN</b><span class="acct">52 1870 1045 2078 1093 0280 0001</span></div>
-      <div><b>Rachunek EUR (IBAN)</b><span class="acct">PL25 1870 1045 2078 1093 0280 0002</span></div>
-      <div><b>Tytuł przelewu</b><span class="acct" id="cel-tytul">Darowizna na cele statutowe – Akta jawne</span></div>
+      {% for r in site.rachunki %}<div><b>Rachunek {{ r.waluta }}</b><span class="rach"><span class="nr">{{ r.nr }}</span></span></div>
+      {% endfor %}      <div><b>Tytuł przelewu</b><span class="acct" id="cel-tytul">Darowizna na cele statutowe – Akta jawne</span></div>
     </div>
   </div>
 </section>
@@ -85,8 +85,8 @@ opisStrony: "Wesprzyj wybrany cel fundacji. Każdą wpłatę i każdy wydatek pu
   <div class="wrap">
     <div class="sec-h"><h2 id="h-zasady">Jak rozliczamy pieniądze</h2></div>
     <div class="rules">
-      <div class="rule"><b>Każda złotówka z dokumentem</b><p>Każdą wpłatę i każdy wydatek publikujemy z dokumentem źródłowym: wyciągiem, fakturą, umową.</p></div>
-      <div class="rule"><b>Bez nazwisk darczyńców</b><p>Darczyńców indywidualnych nie podajemy z nazwiska bez ich zgody.</p></div>
+      <div class="rule"><b>Każda złotówka rozliczona</b><p>Każdy wydatek publikujemy z dokumentem źródłowym: fakturą, rachunkiem, umową. Każdą wpłatę – z datą i kwotą.</p></div>
+      <div class="rule"><b>Bez danych darczyńców</b><p>Przy wpłacie zapisujemy tylko datę i kwotę. Twoje dane zostają wyłącznie na wyciągu bankowym – nigdzie ich nie przepisujemy i nie publikujemy.</p></div>
       <div class="rule"><b>Pieniądze idą na cel</b><p>Wpłata z tytułem celu trafia do rozliczenia tego celu. Stan każdego celu widać na tej stronie.</p></div>
     </div>
   </div>

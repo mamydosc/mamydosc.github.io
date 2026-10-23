@@ -2,14 +2,15 @@
 layout: base.njk
 title: "Fundacja MAMY DOŚĆ"
 nav: "start"
-opisStrony: "Nasze publikacje: śledztwa, artykuły i akta spraw. Tropimy bezprawie w urzędach i sądach – z sygnaturą, datą i źródłem."
+opisStrony: "Nasze publikacje: co sprawdzamy, artykuły i akta spraw. Pytamy, doczytujemy i dociekamy – z sygnaturą, datą i źródłem."
 ---
 {%- set P = collections.nasze | naszePublikacje(akta) -%}
 <section class="apel2" aria-labelledby="h-apel">
   <div class="wrap">
     <div>
       <span class="kick">Fundacja MAMY DOŚĆ · miernoty i bezkarności urzędników</span>
-      <h1 id="h-apel">Bezprawie w urzędach i sądach nie będzie bezkarne.</h1>
+      <h1 id="h-apel">Bezprawie w urzędach i sądach nie będzie bezkarne</h1>
+      <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
       <p>Wiesz, co naprawdę dzieje się w Twoim urzędzie albo sądzie? Powiedz nam – anonimowo albo z podpisem. Zawsze bezpłatnie.</p>
     </div>
     <div class="apel2-b">
@@ -26,7 +27,7 @@ opisStrony: "Nasze publikacje: śledztwa, artykuły i akta spraw. Tropimy bezpra
         <h2 id="h-pub">Nasze publikacje</h2>
         <div class="filters" role="group" aria-label="Rodzaj publikacji">
           <button class="chip" type="button" data-pf="all" aria-pressed="true">Wszystkie</button>
-          <button class="chip" type="button" data-pf="sledztwo" aria-pressed="false">Śledztwa</button>
+          <button class="chip" type="button" data-pf="sprawdzamy" aria-pressed="false">Sprawdzamy</button>
           <button class="chip" type="button" data-pf="artykul" aria-pressed="false">Artykuły</button>
           <button class="chip" type="button" data-pf="akta" aria-pressed="false">Akta spraw</button>
         </div>
@@ -55,20 +56,20 @@ opisStrony: "Nasze publikacje: śledztwa, artykuły i akta spraw. Tropimy bezpra
         <h4>Licznik fundacji</h4>
         <b class="big">{{ archiwum.dokumenty | liczba }}</b>
         <p style="margin: 4px 0 12px; font-size: 0.9rem; color: var(--slate);">dokumentów, którymi dysponujemy · {{ archiwum.strony | liczba }} stron</p>
-        <a href="/archiwum/" style="color: var(--red); font: 500 0.82rem var(--f-mono);">Archiwum dokumentów →</a>
+        <a href="/baza-danych/#archiwum" style="color: var(--red); font: 500 0.82rem var(--f-mono);">Archiwum dokumentów →</a>
       </div>
       <div class="box">
         <h4>Wesprzyj</h4>
-        <p style="margin: 0 0 10px; font-size: 0.93rem;">Każde śledztwo kosztuje. Nie bierzemy pieniędzy od ludzi, którym pomagamy.</p>
+        <p style="margin: 0 0 10px; font-size: 0.93rem;">Każde pytanie do urzędu i każde dociekanie kosztuje. Nie bierzemy pieniędzy od ludzi, którym pomagamy.</p>
         <p class="note" style="margin: 0 0 4px;">RACHUNEK PLN</p>
-        <p class="acct" style="margin: 0 0 14px; font-size: 0.95rem;">{{ site.rachunki[0].nr }}</p>
+        <p class="rach" style="margin: 0 0 14px;"><span class="nr">{{ site.rachunki[0].nr }}</span></p>
         <a class="btn red" href="/wesprzyj/">Wybierz cel</a>
       </div>
       <div class="box">
         <h4>Nasze zasady</h4>
-        <p style="margin: 0 0 8px; font-size: 0.92rem;"><b>Zawsze bezpłatnie.</b> Nie pobieramy opłat od nikogo, kto zgłasza sprawę.</p>
-        <p style="margin: 0 0 8px; font-size: 0.92rem;"><b>Dowody, nie pogłoski.</b> Każdy zarzut opieramy na dokumentach. Nasze oceny oznaczamy jako nasze.</p>
-        <p style="margin: 0 0 12px; font-size: 0.92rem;"><b>Zero polityki.</b> Rozliczamy urzędy i sądy, nie poglądy ludzi.</p>
+        <p style="margin: 0 0 8px; font-size: 0.92rem;"><b class="tyt">Zawsze bezpłatnie</b>Nie pobieramy opłat od nikogo, kto zgłasza sprawę.</p>
+        <p style="margin: 0 0 8px; font-size: 0.92rem;"><b class="tyt">Dowody, nie pogłoski</b>Każdy zarzut opieramy na dokumentach. Nasze oceny oznaczamy jako nasze.</p>
+        <p style="margin: 0 0 12px; font-size: 0.92rem;"><b class="tyt">Zero polityki</b>Rozliczamy urzędy i sądy, nie poglądy ludzi.</p>
         <a href="/o-fundacji/" style="color: var(--red); font: 500 0.82rem var(--f-mono);">O fundacji →</a>
       </div>
     </aside>

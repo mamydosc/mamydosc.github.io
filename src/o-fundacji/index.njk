@@ -8,8 +8,9 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
 <section class="phead">
   <div class="wrap">
     <span class="kick" style="display: block;">O fundacji</span>
-    <h1>Mamy dość bezkarności urzędników. Dlatego powstała ta fundacja.</h1>
+    <h1>Mamy dość bezkarności urzędników. Dlatego powstała ta fundacja</h1>
     <p>Fundację MAMY DOŚĆ założyliśmy po latach sporu z administracją skarbową, który zaczął się od absurdalnej i destrukcyjnej kontroli podatkowej w 2018 r. Z jednej sprawy zostały setki pism, dziesiątki wyroków i wiedza, którą chcemy się dzielić. Wiemy, ile kosztuje walka z urzędem w pojedynkę – dlatego nie zostawiamy nikogo samego i nie odpuszczamy tym, którzy łamią prawo.</p>
+    <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
     <nav class="filters" style="margin: 24px 0 0;" aria-label="Na tej stronie">
       <a class="chip" href="#misja" style="text-decoration: none;">Misja</a>
       <a class="chip" href="#zasady" style="text-decoration: none;">Zasady</a>
@@ -30,7 +31,7 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
       <p>Każde nasze pismo ma sygnaturę i trafia do akt razem z odpowiedzią urzędu i licznikiem terminu. Każdy tekst opieramy na dokumentach, które można sprawdzić pod sygnaturą lub znakiem pisma.</p>
       <p>Dopiero się rozkręcamy i uczymy tej całej medialno-internetowej sztuki komunikacji. Bądźcie wyrozumiali. Będziemy wdzięczni za każdą podpowiedź i pomoc.</p>
     </div>
-    <div class="free"><b>Zawsze bezpłatnie.</b><p>Nie wymagamy i nie pobieramy opłat od osób, którym pomagamy, i nie zarabiamy na sprawach, które opisujemy.</p></div>
+    <div class="free"><b>Zawsze bezpłatnie</b><p>Nie wymagamy i nie pobieramy opłat od osób, którym pomagamy, i nie zarabiamy na sprawach, które opisujemy.</p></div>
   </div>
 </section>
 
@@ -69,7 +70,7 @@ opisStrony: "Fundacja MAMY DOŚĆ: misja, zasady, finanse, dokumenty i kontakt."
     </div>
     <div class="fin-rach">
       <p style="margin: 0 0 8px;">Odbiorca: Fundacja MAMY DOŚĆ, {{ site.adres }}. Tytuł: darowizna na cele statutowe.</p>
-      {% for r in site.rachunki %}<p style="margin: 0 0 6px;"><span class="note">{{ r.waluta }}</span> <code id="rach{{ loop.index }}">{{ r.nr }}</code> <button class="copy" type="button" data-c="rach{{ loop.index }}">Kopiuj</button></p>{% endfor %}
+      {% for r in site.rachunki %}<div class="rach-w"><span class="note">{{ r.waluta }}</span><span class="rach"><code class="nr" id="rach{{ loop.index }}">{{ r.nr }}</code></span><button class="copy" type="button" data-c="rach{{ loop.index }}">Kopiuj</button></div>{% endfor %}
     </div>
     <div class="btns"><a class="btn red" href="/wesprzyj/">Wesprzyj wybrany cel</a></div>
   </div>
