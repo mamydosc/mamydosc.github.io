@@ -531,3 +531,11 @@ b.tyt{display:block;margin-bottom:2px}
   .artstrona .szukaj:not(.otwarty) .sz-glowa{margin-bottom:0}
   .artstrona .szukaj .artlist{max-height:60vh;overscroll-behavior:contain}
 }
+
+/* Pasek menu (23.10.2026, wybór A + B): na komputerze pasek wyższy o 20 px – logo tej samej wielkości – i większe odstępy
+   między pozycjami menu. Konieczne przy tym: kotwice (#…) zatrzymują się o 20 px niżej, żeby nagłówek nie zasłaniał tytułu. */
+@media (min-width:1081px){
+  .top .wrap{min-height:140px}
+  .top .nav{gap:18px}
+  section[id],details[id]{scroll-margin-top:160px}
+}
