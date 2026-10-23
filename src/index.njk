@@ -20,7 +20,7 @@ eleventyImport:
       <h1 id="h-glowny"><a href="{{ G.url }}">{{ G.tytul }}</a></h1>
       {% if G.lead %}<p>{{ G.lead }}</p>{% endif %}
       {% if G.wykres %}{% set w = G.wykres %}{% include "wykres.njk" %}{% elif G.grafika %}<figure class="grafika-b"><img src="{{ G.grafika.src }}" alt="{{ G.grafika.opis }}"></figure>{% endif %}
-      <div class="btns"><a class="btn red" href="{{ G.url }}">Zobacz więcej →</a></div>
+      <div class="btns"><a class="btn red" href="{{ G.url }}">Zobacz więcej →</a><a class="btn wline" href="#lista-publikacji">Lista publikacji ↓</a></div>
     </div>
     {% include "ciekawostki-baner.njk" %}
   </div>
