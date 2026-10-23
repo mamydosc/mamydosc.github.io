@@ -508,6 +508,10 @@ b.tyt{display:block;margin-bottom:2px}
 .sz-h span{font:500 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
 .sz-zwin{flex:none;font:500 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--paper);border:1px solid var(--control);color:var(--ink);padding:6px 9px;cursor:pointer}
 .sz-zwin:hover{border-color:var(--ink)}
+/* 3 mrugnięcia na czerwono (3 s) po wejściu na stronę artykułu (23.10.2026); bez mrugania przy wyłączonych animacjach */
+@keyframes sz-mrug{50%{background:var(--brand-red);color:#fff;border-color:var(--brand-red)}}
+.sz-zwin.mruga{animation:sz-mrug 1s ease-in-out 3}
+@media (prefers-reduced-motion:reduce){.sz-zwin.mruga{animation:none}}
 .sz-tresc{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
 .szukaj .sz-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:0 0 6px;flex:none}
 .szukaj .search{grid-column:1 / -1;width:100%}

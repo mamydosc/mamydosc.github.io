@@ -89,6 +89,17 @@
     });
     if (szeroki.addEventListener) szeroki.addEventListener('change', etykiety);
     etykiety();
+
+    /* Przycisk Zwiń (na telefonie Rozwiń) mruga na czerwono przez 3 s po wejściu na stronę artykułu (23.10.2026), żeby
+       zwrócić uwagę na tę możliwość – tylko gdy przycisk widać; u osób z wyłączonymi animacjami bez mrugania (CSS) */
+    var mrugajacy = panel.querySelector('.sz-zwin');
+    if (mrugajacy && mrugajacy.offsetParent !== null) {
+      var koniecMrugania = function () { mrugajacy.classList.remove('mruga'); };
+      mrugajacy.classList.add('mruga');
+      mrugajacy.addEventListener('animationend', koniecMrugania);
+      mrugajacy.addEventListener('click', koniecMrugania);
+      setTimeout(koniecMrugania, 3300);
+    }
   }
 
   /* Lista ciekawostek: wpis z adresu (#l1) otwiera się sam */
