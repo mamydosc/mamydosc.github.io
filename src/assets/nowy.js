@@ -221,6 +221,13 @@
     $$('input[name="kto"], input[name="jak"]').forEach(function (r) { r.addEventListener('change', odswiez); });
     var wyslij = document.getElementById('wyslij-anon');
     if (wyslij) wyslij.addEventListener('click', function () { document.getElementById('info-anon').hidden = false; });
+    /* przyciski z banera (#kto-urz, #kto-str) zaznaczają odpowiedź „Kim jesteś?” */
+    var zAdresu = function () {
+      var r = /^#kto-(urz|str)$/.test(location.hash) ? document.getElementById(location.hash.slice(1)) : null;
+      if (r) { r.checked = true; odswiez(); }
+    };
+    window.addEventListener('hashchange', zAdresu);
+    zAdresu();
     odswiez();
   }
 

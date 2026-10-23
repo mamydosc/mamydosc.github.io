@@ -388,3 +388,7 @@ b.tyt{display:block;margin-bottom:2px}
 /* ===== 23.10.2026 (2): przełącznik Jasny/Ciemny w nagłówku, po prawej (bez „Auto”) ===== */
 .top .theme{margin:0 0 0 14px;align-self:center;flex:none}
 @media (max-width:1080px){.top .theme{margin:0 0 0 10px}}
+/* Zgłoś: hasło „Bezprawie w urzędach i sądach nie będzie bezkarne” połączone z banerem Zgłoś (23.10.2026) */
+.phead h1 em{font-style:normal;color:var(--pink)}
+.phead .btns{margin-top:22px}
+#kto-urz,#kto-str{scroll-margin-top:220px}
