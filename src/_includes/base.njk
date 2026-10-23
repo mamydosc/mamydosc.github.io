@@ -29,7 +29,7 @@
     <a class="brand" href="/" aria-label="Fundacja MAMY DOŚĆ – strona główna"><img src="/assets/img/logo/logo-2-granat-czerwone-bez-tla.svg" alt="Fundacja MAMY DOŚĆ – miernoty i bezkarności urzędników" width="170" height="110"></a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">MENU</button>
     <nav class="nav" id="nav" aria-label="Menu główne">
-      <a href="/"{% if nav == 'start' %} aria-current="page"{% endif %}>Nasze publikacje</a>
+      {% if nav == 'artykul' and numer %}<span class="nav-w"><a href="/" aria-current="true">Nasze publikacje</a><span class="nav-syg" title="Artykuł {{ numer }}">{{ numer }}</span></span>{% else %}<a href="/"{% if nav == 'start' %} aria-current="page"{% endif %}>Nasze publikacje</a>{% endif %}
       <a href="/baza-danych/"{% if nav == 'baza' %} aria-current="page"{% endif %}>Baza danych</a>
       <a href="/poradnik/"{% if nav == 'poradnik' %} aria-current="page"{% endif %}>Poradnik</a>
       <a href="/o-fundacji/"{% if nav == 'fundacja' %} aria-current="page"{% endif %}>O fundacji</a>

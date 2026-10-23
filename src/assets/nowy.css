@@ -471,3 +471,13 @@ b.tyt{display:block;margin-bottom:2px}
   .top .theme button{padding:6px 6px;font-size:.64rem;letter-spacing:.03em}
 }
 .artmain .prose table{display:block;max-width:100%;overflow-x:auto}
+
+/* Strona artykułu (23.10.2026): w menu bez czerwonej kreski pod „Nasze publikacje”; pod nim kreseczka i sygnatura artykułu */
+.nav-w{position:relative;display:inline-flex}
+.nav-w a[aria-current="true"]{color:#fff}
+.nav-syg{position:absolute;left:50%;top:calc(100% + 10px);transform:translateX(-50%);font:500 .72rem/1 var(--f-mono);letter-spacing:.06em;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.35);padding:4px 7px;white-space:nowrap}
+.nav-syg::before{content:"";position:absolute;left:50%;bottom:100%;width:2px;height:10px;background:var(--spine-red);transform:translateX(-50%)}
+@media (max-width:1080px){
+  .nav-w{display:flex;flex-direction:column;align-items:stretch}
+  .nav-syg{position:relative;left:auto;top:auto;transform:none;align-self:center;margin:12px 0 10px}
+}
