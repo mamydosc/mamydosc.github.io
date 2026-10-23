@@ -6,12 +6,12 @@ opisStrony: "Nasze publikacje: artykuły fundacji z dokumentami, sygnaturami i �
 eleventyImport:
   collections: ["nasze"]
 ---
-{#- Strona główna = Nasze publikacje (23.10.2026): u góry artykuł główny (ręcznie albo cyklicznie – src/_data/artykulGlowny.json),
-    pod banerem ciąg dalszy artykułu głównego na 2/3 szerokości, po prawej przewijana lista kolejnych artykułów
-    (przypięte na górze, potem najnowsze) -#}
+{#- Strona główna = Nasze publikacje (23.10.2026): u góry artykuł główny (ręcznie albo cyklicznie – src/_data/artykulGlowny.json)
+    i lista ciekawostek; pod banerem (zmiana z 23.10.2026) wyszukiwarka na środku i lista wszystkich publikacji na całą
+    szerokość – także artykułu głównego (przypięte na górze, potem najnowsze); bez ciągu dalszego artykułu głównego -#}
 {%- set A = collections.nasze | artykuly(akta) -%}
 {%- set G = A | artykulGlowny(artykulGlowny) -%}
-{%- set lista = A | bezArtykulu(G) -%}
+{%- set lista = A | bezArtykulu(false) -%}
 {% if G %}
 <section class="phead glowny" aria-labelledby="h-glowny">
   <div class="wrap baner">
@@ -25,18 +25,27 @@ eleventyImport:
     {% include "ciekawostki-baner.njk" %}
   </div>
 </section>
-
-<div class="wrap artgrid">
-  <div class="artmain">
-    <div class="ciag{% if G.strona.data.proza %} prose{% endif %}">{{ (G.strona.content if G.strona else "") | przedWiecej | safe }}</div>
-    <p class="dalej"><a class="btn line" href="{{ G.url }}">Zobacz więcej →</a></p>
-  </div>
-  <aside class="artside" aria-labelledby="h-kolejne">
-    <h2 class="side-h" id="h-kolejne">Kolejne artykuły</h2>
-    <div class="artlist">{% for a in lista %}{% include "artykul-karta.njk" %}{% endfor %}</div>
-  </aside>
-</div>
 {% endif %}
+
+<section class="publikacje" id="lista-publikacji" aria-labelledby="h-lista">
+  <div class="wrap">
+    <h2 class="sr" id="h-lista">Lista publikacji</h2>
+    <div class="pub-szukaj" role="search">
+      <label class="sr" for="sz-q">Słowa</label>
+      <input class="search" id="sz-q" type="search" placeholder="Słowo, nazwisko, urząd, sygnatura" autocomplete="off">
+      <label class="sr" for="sz-t">Temat</label>
+      <select id="sz-t"><option value="">Temat</option>{% for t in A | unikalne("tematy") %}<option>{{ t }}</option>{% endfor %}</select>
+      <label class="sr" for="sz-z">Zagadnienie</label>
+      <select id="sz-z"><option value="">Zagadnienie</option>{% for z in A | unikalne("zagadnienia") %}<option>{{ z }}</option>{% endfor %}</select>
+    </div>
+    <div class="pub-pasek">
+      <p class="sz-ile" id="sz-ile" aria-live="polite">ARTYKUŁÓW: {{ lista.length }}</p>
+    </div>
+    {%- set zOpisem = true %}
+    <div class="publista" id="sz-lista">{% for a in lista %}{% include "artykul-karta.njk" %}{% endfor %}</div>
+    <p class="sz-pusto" id="sz-pusto" hidden>Nic nie znaleziono. Zmień słowa, temat albo zagadnienie.</p>
+  </div>
+</section>
 
 <section class="sec pasek3-sec" aria-label="Fundacja w skrócie">
   <div class="wrap pasek3">

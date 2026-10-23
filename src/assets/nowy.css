@@ -545,3 +545,20 @@ b.tyt{display:block;margin-bottom:2px}
   .top .nav{gap:18px}
   section[id],details[id]{scroll-margin-top:160px}
 }
+
+/* Strona główna (23.10.2026): pod banerem wyszukiwarka na środku i lista wszystkich publikacji na całą szerokość
+   (w miejsce ciągu dalszego artykułu głównego i bocznej listy „Kolejne artykuły”) */
+.publikacje{padding-block:44px 64px}
+.pub-szukaj{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:10px;max-width:840px;margin:0 auto}
+.pub-szukaj .search{width:100%;font-size:1rem;padding:12px 14px}
+.pub-szukaj select{width:100%;font:400 .92rem var(--f-text);padding:11px 10px;border:1px solid var(--control);background:var(--paper);color:var(--ink)}
+.pub-pasek{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0 12px}
+.pub-pasek .sz-ile,.publikacje .sz-pusto{font:400 .76rem var(--f-mono);letter-spacing:.03em;color:var(--slate);margin:0}
+.publikacje .sz-pusto{margin-top:12px}
+.publista{display:grid;gap:10px}
+.publista .aitem{padding:14px 18px 15px}
+.publista .at{font-size:1.05rem}
+@media (max-width:640px){
+  .pub-szukaj{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .pub-szukaj .search{grid-column:1 / -1}
+}
