@@ -102,6 +102,25 @@
     }
   }
 
+  /* Strona główna: wybór widoku listy publikacji – wiersze / małe kafelki / duże kafelki (23.10.2026);
+     wybór pamiętany w karcie przeglądarki (sessionStorage; odczyt na początku strony w <head>) */
+  var widoki = $$('.widoki [data-widok]');
+  if (widoki.length) {
+    var ustawWidok = function (v) {
+      if (v === 'male' || v === 'duze') document.documentElement.setAttribute('data-widok', v);
+      else document.documentElement.removeAttribute('data-widok');
+      widoki.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-widok') === (v || 'wiersze') ? 'true' : 'false'); });
+    };
+    widoki.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.getAttribute('data-widok');
+        ustawWidok(v);
+        try { sessionStorage.setItem('widok', v); } catch (e) {}
+      });
+    });
+    ustawWidok(document.documentElement.getAttribute('data-widok') || 'wiersze');
+  }
+
   /* Lista ciekawostek: wpis z adresu (#l1) otwiera się sam */
   var otworzWpis = function () {
     if (!location.hash) return;

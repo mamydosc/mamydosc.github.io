@@ -562,3 +562,27 @@ b.tyt{display:block;margin-bottom:2px}
   .pub-szukaj{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .pub-szukaj .search{grid-column:1 / -1}
 }
+
+/* Wybór widoku listy publikacji jak w sklepach internetowych: wiersze / małe kafelki / duże kafelki (23.10.2026);
+   wybór pamiętany w karcie przeglądarki (sessionStorage, odczyt w <head>), na starcie wiersze */
+.widoki{display:flex;border:1px solid var(--control)}
+.widoki button{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:0;color:var(--slate);font:500 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:8px 11px;cursor:pointer}
+.widoki button + button{border-left:1px solid var(--control)}
+.widoki button:hover{color:var(--ink)}
+.widoki button[aria-pressed="true"]{background:var(--file-spine);color:#fff}
+html[data-widok="male"] .publista{grid-template-columns:repeat(4,minmax(0,1fr))}
+html[data-widok="male"] .publista .al{display:none}
+html[data-widok="male"] .publista .am{flex-wrap:wrap;row-gap:2px}
+.am .nw{white-space:nowrap} /* sygnatura (np. WINU-17) nie łamie się w połowie */
+html[data-widok="male"] .publista .at{font-size:.97rem}
+html[data-widok="duze"] .publista{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+html[data-widok="duze"] .publista .aitem{padding:18px 20px 20px}
+html[data-widok="duze"] .publista .at{font-size:1.2rem;margin-top:8px}
+html[data-widok="duze"] .publista .al{-webkit-line-clamp:3;font-size:.92rem;margin-top:6px}
+@media (max-width:959px){html[data-widok="male"] .publista{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){
+  html[data-widok="male"] .publista{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html[data-widok="duze"] .publista{grid-template-columns:minmax(0,1fr)}
+  .widoki button{padding:8px 10px}
+  .widoki .wl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}

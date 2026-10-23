@@ -40,6 +40,11 @@ eleventyImport:
     </div>
     <div class="pub-pasek">
       <p class="sz-ile" id="sz-ile" aria-live="polite">ARTYKUŁÓW: {{ lista.length }}</p>
+      <div class="widoki" role="group" aria-label="Widok listy">
+        <button type="button" data-widok="wiersze" aria-pressed="true"><svg viewBox="0 0 14 14" width="14" height="14" fill="currentColor" aria-hidden="true"><rect y="1" width="14" height="2.4"/><rect y="5.8" width="14" height="2.4"/><rect y="10.6" width="14" height="2.4"/></svg><span class="wl">Wiersze</span></button>
+        <button type="button" data-widok="male" aria-pressed="false"><svg viewBox="0 0 14 14" width="14" height="14" fill="currentColor" aria-hidden="true"><rect width="3.6" height="3.6"/><rect x="5.2" width="3.6" height="3.6"/><rect x="10.4" width="3.6" height="3.6"/><rect y="5.2" width="3.6" height="3.6"/><rect x="5.2" y="5.2" width="3.6" height="3.6"/><rect x="10.4" y="5.2" width="3.6" height="3.6"/><rect y="10.4" width="3.6" height="3.6"/><rect x="5.2" y="10.4" width="3.6" height="3.6"/><rect x="10.4" y="10.4" width="3.6" height="3.6"/></svg><span class="wl">Małe kafelki</span></button>
+        <button type="button" data-widok="duze" aria-pressed="false"><svg viewBox="0 0 14 14" width="14" height="14" fill="currentColor" aria-hidden="true"><rect width="6.4" height="6.4"/><rect x="7.6" width="6.4" height="6.4"/><rect y="7.6" width="6.4" height="6.4"/><rect x="7.6" y="7.6" width="6.4" height="6.4"/></svg><span class="wl">Duże kafelki</span></button>
+      </div>
     </div>
     {%- set zOpisem = true %}
     <div class="publista" id="sz-lista">{% for a in lista %}{% include "artykul-karta.njk" %}{% endfor %}</div>
