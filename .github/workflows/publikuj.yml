@@ -36,3 +36,28 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+  kopia:
+    # Kopia strony na komputer (23.10.2026): po udanej publikacji gotowa strona (strona.zip – dokładnie ta, która poszła
+    # do sieci) i źródła (zrodla.zip) trafiają do wydania „kopia” w repozytorium, nadpisywane za każdym razem.
+    # Skrypt na komputerze (Dokumenty\Kopia strony mamydosc) pobiera je raz dziennie, gdy zmieni się wersja.
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: pages
+      - name: Paczki kopii i wydanie „kopia”
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir strona
+          tar -xf pages/artifact.tar -C strona
+          (cd strona && zip -qr ../strona.zip .)
+          git archive --format=zip -o zrodla.zip HEAD
+          printf '%s\n%s\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > wersja.txt
+          gh release view kopia --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create kopia --repo "$GITHUB_REPOSITORY" --title "Kopia strony" --notes "Aktualna kopia strony mamydosc.org: gotowa strona (strona.zip) i źródła (zrodla.zip). Nadpisywana po każdej publikacji."
+          gh release upload kopia strona.zip zrodla.zip wersja.txt --repo "$GITHUB_REPOSITORY" --clobber
