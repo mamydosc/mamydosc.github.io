@@ -41,6 +41,32 @@
       "dokumenty": ["[sygnatura dokumentu]"],
       "link": "",
       "przyklad": true
+    },
+    {
+      "id": "l4",
+      "imie": "[Imię Nazwisko]",
+      "funkcja": "[stanowisko] · [urząd]",
+      "krotko": "[Krótki opis rażącego naruszenia]",
+      "data": "2026-09-24",
+      "tresc": [
+        "[Fakty z datami: co zrobił albo czego nie zrobił urzędnik, z sygnaturą każdego dokumentu i przepisem, który naruszył.]"
+      ],
+      "dokumenty": ["[sygnatura dokumentu]"],
+      "link": "",
+      "przyklad": true
+    },
+    {
+      "id": "l5",
+      "imie": "[Imię Nazwisko]",
+      "funkcja": "[stanowisko] · [urząd]",
+      "krotko": "[Krótki opis rażącego naruszenia]",
+      "data": "2026-09-17",
+      "tresc": [
+        "[Fakty z datami: co zrobił albo czego nie zrobił urzędnik, z sygnaturą każdego dokumentu i przepisem, który naruszył.]"
+      ],
+      "dokumenty": ["[sygnatura dokumentu]"],
+      "link": "",
+      "przyklad": true
     }
   ]
 }
