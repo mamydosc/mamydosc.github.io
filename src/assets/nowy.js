@@ -24,17 +24,18 @@
       '<span class="tt">' + esc(d.tytul) + '</span><span class="hd">Sygnatura: ' + esc(d.syg) + '</span>' + LINIE;
   }
 
-  /* Strona artykułu: wyszukiwarka – słowa (cała treść z /szukaj.json), temat, zagadnienie (23.10.2026) */
+  /* Strona artykułu: wyszukiwarka – słowa (cała treść z /szukaj.json), temat, zagadnienie (23.10.2026).
+     Nazwy zmiennych z przedrostkiem sz – bez nich filtr urzędów na stronie K001 nadpisywał pole i wyszukiwarka nie działała. */
   var szLista = document.getElementById('sz-lista');
   if (szLista) {
     var norm = function (t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l'); };
     var pozycje = $$('.aitem', szLista);
     var teksty = {};
     pozycje.forEach(function (el) { teksty[el.getAttribute('data-u')] = norm(el.getAttribute('data-q')); });
-    var q = document.getElementById('sz-q'), selT = document.getElementById('sz-t'), selZ = document.getElementById('sz-z');
-    var ile = document.getElementById('sz-ile'), pusto = document.getElementById('sz-pusto');
+    var szQ = document.getElementById('sz-q'), szT = document.getElementById('sz-t'), szZ = document.getElementById('sz-z');
+    var szIle = document.getElementById('sz-ile'), szPusto = document.getElementById('sz-pusto');
     var szukaj = function () {
-      var slowa = norm(q.value).split(/\s+/).filter(Boolean), t = selT.value, z = selZ.value, n = 0;
+      var slowa = norm(szQ.value).split(/\s+/).filter(Boolean), t = szT.value, z = szZ.value, n = 0;
       pozycje.forEach(function (el) {
         var hay = teksty[el.getAttribute('data-u')] || '';
         var ok = slowa.every(function (s) { return hay.indexOf(s) !== -1; }) &&
@@ -43,10 +44,10 @@
         el.hidden = !ok;
         if (ok) n++;
       });
-      ile.textContent = 'ARTYKUŁÓW: ' + n;
-      pusto.hidden = n !== 0;
+      szIle.textContent = 'ARTYKUŁÓW: ' + n;
+      szPusto.hidden = n !== 0;
     };
-    [q, selT, selZ].forEach(function (el) { el.addEventListener(el === q ? 'input' : 'change', szukaj); });
+    [szQ, szT, szZ].forEach(function (el) { el.addEventListener(el === szQ ? 'input' : 'change', szukaj); });
     if (window.fetch) {
       fetch('/szukaj.json').then(function (r) { return r.json(); }).then(function (indeks) {
         indeks.forEach(function (a) {
