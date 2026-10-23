@@ -1,17 +1,18 @@
-{#- Prawa kolumna strony artykułu (23.10.2026): wyszukiwarka – słowa, temat, zagadnienie – i lista pozostałych artykułów.
-    Słowa szukają w całej treści artykułów (indeks /szukaj.json); bez skryptu widać pełną listę. -#}
+{#- Prawa strona banera na stronie artykułu (23.10.2026): wyszukiwarka – słowa, temat, zagadnienie – i lista pozostałych
+    artykułów (przewijana jak lista ciekawostek). Słowa szukają w całej treści artykułów (indeks /szukaj.json);
+    bez skryptu widać pełną listę. -#}
 {%- set WSZ = collections.nasze | artykuly(akta) -%}
 {%- set ja = WSZ | znajdz("url", page.url) -%}
 {%- set lista = WSZ | bezArtykulu(ja) -%}
-<aside class="artside szukaj" aria-labelledby="sz-h">
-  <h2 class="side-h" id="sz-h">Szukaj w artykułach</h2>
+<aside class="szukaj" aria-labelledby="sz-h">
+  <h2 class="sz-h" id="sz-h"><span>Szukaj</span>w artykułach</h2>
   <div class="sz-form" role="search">
     <label class="sr" for="sz-q">Słowa</label>
     <input class="search" id="sz-q" type="search" placeholder="Słowo, nazwisko, urząd, sygnatura" autocomplete="off">
-    <label class="sz-l" for="sz-t">Temat</label>
-    <select id="sz-t"><option value="">Wszystkie tematy</option>{% for t in WSZ | unikalne("tematy") %}<option>{{ t }}</option>{% endfor %}</select>
-    <label class="sz-l" for="sz-z">Zagadnienie</label>
-    <select id="sz-z"><option value="">Wszystkie zagadnienia</option>{% for z in WSZ | unikalne("zagadnienia") %}<option>{{ z }}</option>{% endfor %}</select>
+    <label class="sr" for="sz-t">Temat</label>
+    <select id="sz-t"><option value="">Temat</option>{% for t in WSZ | unikalne("tematy") %}<option>{{ t }}</option>{% endfor %}</select>
+    <label class="sr" for="sz-z">Zagadnienie</label>
+    <select id="sz-z"><option value="">Zagadnienie</option>{% for z in WSZ | unikalne("zagadnienia") %}<option>{{ z }}</option>{% endfor %}</select>
   </div>
   <p class="note sz-ile" id="sz-ile" aria-live="polite">ARTYKUŁÓW: {{ lista.length }}</p>
   <div class="artlist" id="sz-lista">{% for a in lista %}{% include "artykul-karta.njk" %}{% endfor %}</div>
