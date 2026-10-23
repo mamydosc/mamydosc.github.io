@@ -16,6 +16,9 @@ function parse(d) {
 
 module.exports = function (cfg) {
   cfg.addPassthroughCopy({ "src/assets": "assets" });
+  // Wersja plików CSS/JS – inna przy każdym zbudowaniu strony, żeby przeglądarka po publikacji od razu brała nowe pliki
+  // (bez tego GitHub Pages pozwala przeglądarce trzymać stare pliki do 10 minut).
+  cfg.addGlobalData("wersja", Date.now().toString(36));
   cfg.addPassthroughCopy({ "src/favicon.png": "favicon.png" });
   // Po przepięciu domeny: utwórz plik src/CNAME z treścią "mamydosc.org" i odkomentuj:
   // cfg.addPassthroughCopy({ "src/CNAME": "CNAME" });
