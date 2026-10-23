@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<script>try{var t=sessionStorage.getItem("tryb");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>try{var t=sessionStorage.getItem("tryb");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);if(sessionStorage.getItem("panel")==="zw")document.documentElement.setAttribute("data-panel","zw")}catch(e){}</script>
 <title>{% if title and title != site.nazwa %}{{ title }} · {% endif %}MAMY DOŚĆ</title>
 <meta name="description" content="{{ opisStrony or site.opis }}">
 {% if site.robocza %}<meta name="robots" content="noindex,nofollow">{% endif %}

@@ -58,6 +58,39 @@
     }
   }
 
+  /* Strona artykułu: panel wyszukiwarki i listy – Zwiń/Rozwiń (23.10.2026). Na komputerze po zwinięciu artykuł na całą
+     szerokość, stan pamiętany w karcie przeglądarki (sessionStorage, odczyt w <head>); na telefonie panel nad artykułem,
+     domyślnie zwinięty. */
+  var panel = document.getElementById('sz-panel');
+  if (panel) {
+    var korzen = document.documentElement;
+    var przelaczniki = $$('[data-panel-przelacz]');
+    var szeroki = window.matchMedia ? window.matchMedia('(min-width: 960px)') : { matches: true };
+    var zwiniety = function () { return szeroki.matches ? korzen.getAttribute('data-panel') === 'zw' : !panel.classList.contains('otwarty'); };
+    var etykiety = function () {
+      var zw = zwiniety();
+      przelaczniki.forEach(function (b) {
+        var t = zw ? b.getAttribute('data-rozwin') : b.getAttribute('data-zwin');
+        b.setAttribute('aria-expanded', zw ? 'false' : 'true');
+        b.textContent = szeroki.matches ? t : t.replace(/\s*[»«]\s*/g, '');
+      });
+    };
+    przelaczniki.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (szeroki.matches) {
+          var zw = korzen.getAttribute('data-panel') === 'zw';
+          if (zw) korzen.removeAttribute('data-panel'); else korzen.setAttribute('data-panel', 'zw');
+          try { sessionStorage.setItem('panel', zw ? '' : 'zw'); } catch (e) {}
+        } else {
+          panel.classList.toggle('otwarty');
+        }
+        etykiety();
+      });
+    });
+    if (szeroki.addEventListener) szeroki.addEventListener('change', etykiety);
+    etykiety();
+  }
+
   /* Lista ciekawostek: wpis z adresu (#l1) otwiera się sam */
   var otworzWpis = function () {
     if (!location.hash) return;

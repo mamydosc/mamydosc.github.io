@@ -4,7 +4,7 @@ nav: artykul
 ---
 {#- Strona artykułu (23.10.2026, wersja 3): jedna strona bez osobnego banera. Po lewej artykuł – rodzaj, sygnatura i data,
     tytuł, krótki opis, wykres albo grafika, treść; po prawej przez całą długość artykułu wyszukiwarka i lista artykułów
-    (stoją w miejscu przy przewijaniu, lista przewija się osobno) -#}
+    (stoją w miejscu przy przewijaniu, lista przewija się osobno, przycisk Zwiń/Rozwiń) -#}
 {%- set WSZA = collections.nasze | artykuly(akta) -%}
 {%- set jaA = WSZA | znajdz("url", page.url) -%}
 <div class="wrap artstrona">
