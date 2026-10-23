@@ -1,0 +1,10 @@
+---
+permalink: "/szukaj.json"
+eleventyExcludeFromCollections: true
+eleventyImport:
+  collections: ["nasze"]
+---
+{#- Indeks wyszukiwarki artykułów (23.10.2026): adres, tytuł, krótki opis, numer, data, tematy, zagadnienia i czysty tekst treści -#}
+{%- set A = collections.nasze | artykuly(akta) -%}
+[{% for a in A %}{"u":{{ a.url | dump | safe }},"t":{{ a.tytul | dump | safe }},"l":{{ a.lead | dump | safe }},"n":{{ a.numer | dump | safe }},"d":"{{ a.data | iso }}","tm":{{ a.tematy | dump | safe }},"z":{{ a.zagadnienia | dump | safe }},"x":{{ (a.strona.content if a.strona else "") | tekst | dump | safe }}}{% if not loop.last %},{% endif %}
+{% endfor %}]

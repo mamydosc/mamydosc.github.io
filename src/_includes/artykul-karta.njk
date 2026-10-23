@@ -1,0 +1,6 @@
+{#- Pozycja na liście artykułów (strona główna i wyszukiwarka). a = artykuł z filtra „artykuly” -#}
+<a class="aitem r-{{ a.rodzajKlasa }}{% if a.przypiety %} przyp{% endif %}" href="{{ a.url }}" data-u="{{ a.url }}" data-tm="{{ a.tematy | join('|') }}" data-z="{{ a.zagadnienia | join('|') }}" data-q="{{ a.numer }} {{ a.tytul }} {{ a.lead }} {{ a.tematy | join(' ') }} {{ a.zagadnienia | join(' ') }}">
+  <span class="am"><span>{% if a.przypiety %}<b class="pinz">Przypięte</b> · {% endif %}{{ a.numer }} · {{ a.data | data }}</span><span class="ar">{{ a.rodzajNazwa }}</span></span>
+  <span class="at">{{ a.tytul }}</span>
+  {% if a.rodzaj == "duży" and a.lead %}<span class="al">{{ a.lead }}</span>{% endif %}
+</a>

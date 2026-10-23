@@ -44,6 +44,12 @@
 <main id="tresc">
 {{ content | safe }}
 </main>
+<div class="viewer" id="podglad" role="dialog" aria-modal="true" aria-labelledby="podglad-t" hidden>
+  <div class="vin" id="podglad-in">
+    <div class="vhead"><span id="podglad-t">Podgląd dokumentu</span><span class="vbtns"><button type="button" class="vclose" id="podglad-obok" hidden>Połóż obok</button><button type="button" class="vclose" id="podglad-jeden" hidden>Tylko jeden</button><button type="button" class="vclose" id="podglad-zamknij">Zamknij</button></span></div>
+    <div class="docpair one" id="podglad-dok"></div>
+  </div>
+</div>
 <footer class="foot">
   <div class="wrap">
     <div><img class="foot-logo2" src="/assets/img/logo/logo-6-granat-biale-bez-tla.svg" alt="Fundacja MAMY DOŚĆ – miernoty i bezkarności urzędników" width="220" height="142" loading="lazy"><p style="margin: 12px 0 0;">{{ site.adres }}<br>KRS {{ site.krs }} · NIP {{ site.nip }}{% if site.regon %} · REGON {{ site.regon }}{% endif %}</p></div>
@@ -55,6 +61,7 @@
     </div>
   </div>
 </footer>
+<script id="dane-dokumenty" type="application/json">{{ dokumenty | dump | safe }}</script>
 <script src="/assets/main.js" defer></script>
 <script src="/assets/nowy.js" defer></script>
 </body>

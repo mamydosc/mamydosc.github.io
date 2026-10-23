@@ -1,0 +1,15 @@
+{#- Wykres w banerze artykułu (23.10.2026). w = wykres z front mattera:
+    typ „pasek” – dane: [{etykieta, liczba, klasa: s-ok|s-late|s-ref|s-sil|s-wait}]; typ „os” – punkty: [{data, opis, klasa: r|ok}] -#}
+{%- if w and w.typ == "pasek" -%}
+{%- set suma = w.dane | sum("liczba") -%}
+<figure class="wyk ondark">
+  {% if w.tytul %}<figcaption class="wyk-t">{{ w.tytul }}</figcaption>{% endif %}
+  <div class="sbar big" role="img" aria-label="{{ w.tytul }}: {% for d in w.dane %}{{ d.etykieta }} {{ d.liczba }}{% if not loop.last %}, {% endif %}{% endfor %}">{% for d in w.dane %}<span class="{{ d.klasa }}" style="width: {{ (d.liczba / suma * 100) | round(1) }}%;"></span>{% endfor %}</div>
+  <div class="slegend">{% for d in w.dane %}<span><i class="{{ d.klasa }}"></i>{{ d.etykieta }} <b>{{ d.liczba }} · {{ (d.liczba / suma * 100) | round }}%</b></span>{% endfor %}</div>
+</figure>
+{%- elif w and w.typ == "os" -%}
+<figure class="wyk ondark">
+  {% if w.tytul %}<figcaption class="wyk-t">{{ w.tytul }}</figcaption>{% endif %}
+  <ol class="osl">{% for pk in w.punkty %}<li class="{{ pk.klasa }}"><b>{{ pk.data }}</b><span>{{ pk.opis }}</span></li>{% endfor %}</ol>
+</figure>
+{%- endif -%}

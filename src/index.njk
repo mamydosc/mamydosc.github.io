@@ -2,77 +2,63 @@
 layout: base.njk
 title: "Fundacja MAMY DOŚĆ"
 nav: "start"
-opisStrony: "Nasze publikacje: co sprawdzamy, artykuły i akta spraw. Pytamy, doczytujemy i dociekamy – z sygnaturą, datą i źródłem."
+opisStrony: "Nasze publikacje: artykuły fundacji z dokumentami, sygnaturami i źródłami. Pytamy, doczytujemy i dociekamy."
+eleventyImport:
+  collections: ["nasze"]
 ---
-{%- set P = collections.nasze | naszePublikacje(akta) -%}
-<section class="apel2" aria-labelledby="h-apel">
+{#- Strona główna = Nasze publikacje (23.10.2026): u góry artykuł główny (ręcznie albo cyklicznie – src/_data/artykulGlowny.json),
+    pod banerem ciąg dalszy artykułu głównego na 2/3 szerokości, po prawej przewijana lista kolejnych artykułów
+    (przypięte na górze, potem najnowsze) -#}
+{%- set A = collections.nasze | artykuly(akta) -%}
+{%- set G = A | artykulGlowny(artykulGlowny) -%}
+{%- set lista = A | bezArtykulu(G) -%}
+{% if G %}
+<section class="phead glowny" aria-labelledby="h-glowny">
   <div class="wrap baner">
     <div class="baner-tresc">
-      <span class="kick">Fundacja MAMY DOŚĆ · miernoty i bezkarności urzędników</span>
-      <h1 id="h-apel">Bezprawie w urzędach i sądach nie będzie bezkarne</h1>
-      <p class="apel-mocno">Sytuacja jest naprawdę beznadziejna. Jeśli nie zaczniemy wspólnie tego naprawiać, wszystko się zawali.</p>
-      <p>Wiesz, co naprawdę dzieje się w Twoim urzędzie albo sądzie? Powiedz nam – anonimowo albo z podpisem. Zawsze bezpłatnie.</p>
-      <div class="apel2-b">
-        <a class="btn white" href="/zglos/">Pracuję w urzędzie albo w sądzie →</a>
-        <a class="btn wline" href="/zglos/">Urząd łamie prawo w mojej sprawie →</a>
-      </div>
+      <span class="kick" style="display: block; margin-top: 18px;">Artykuł główny{% if G.numer %} · {{ G.numer }}{% endif %} · {{ G.data | dataDzien }}</span>
+      <h1 id="h-glowny"><a href="{{ G.url }}">{{ G.tytul }}</a></h1>
+      {% if G.strona.data.opisBanera or G.lead %}<p>{{ G.strona.data.opisBanera or G.lead }}</p>{% endif %}
+      {% if G.wykres %}{% set w = G.wykres %}{% include "wykres.njk" %}{% elif G.grafika %}<figure class="grafika-b"><img src="{{ G.grafika.src }}" alt="{{ G.grafika.opis }}"></figure>{% endif %}
+      <div class="btns"><a class="btn red" href="{{ G.url }}">Zobacz więcej →</a></div>
     </div>
     {% include "ciekawostki-baner.njk" %}
   </div>
 </section>
 
-<section class="sec" aria-labelledby="h-pub" style="padding-top: 44px;">
-  <div class="wrap pubgrid">
-    <div class="pubmain">
-      <div class="pubhead">
-        <h2 id="h-pub">Nasze publikacje</h2>
-        <div class="filters" role="group" aria-label="Rodzaj publikacji">
-          <button class="chip" type="button" data-pf="all" aria-pressed="true">Wszystkie</button>
-          <button class="chip" type="button" data-pf="sprawdzamy" aria-pressed="false">Sprawdzamy</button>
-          <button class="chip" type="button" data-pf="artykul" aria-pressed="false">Artykuły</button>
-          <button class="chip" type="button" data-pf="akta" aria-pressed="false">Akta spraw</button>
-        </div>
-      </div>
-      {% if P.lead %}
-      <a class="leadcard" href="{{ P.lead.url }}" data-typ="{{ P.lead.typ }}">
-        <span class="pin">{% if P.lead.przypiety %}Przypięte{% else %}Najnowszy duży tekst{% endif %} · {{ P.lead.typNazwa }}</span>
-        <h3>{{ P.lead.tytul }}</h3>
-        {% if P.lead.lead %}<p>{{ P.lead.lead }}</p>{% endif %}
-        <span class="metaline">{{ P.lead.data | dataDzien }}{% if P.lead.syg %} · {{ P.lead.syg }}{% endif %}{% if P.lead.przyklad %} · <span class="sample">Dane przykładowe</span>{% endif %}</span>
-      </a>
-      {% endif %}
-      <div class="files publist" id="publist">
-        {% for p in P.reszta %}
-        <a class="file" href="{{ p.url }}" data-typ="{{ p.typ }}">
-          <span class="sig">{{ p.syg }}<small>{{ p.data | data }}</small></span>
-          <div><h3>{{ p.tytul }}</h3>{% if p.lead %}<p>{{ p.lead }}</p>{% endif %}{% if p.przyklad %}<p><span class="sample">Dane przykładowe</span></p>{% endif %}</div>
-          <span class="tab">{{ p.typNazwa }}</span>
-        </a>
-        {% endfor %}
-      </div>
-      <p class="note" id="pub-pusto" hidden>Nie ma jeszcze publikacji tego rodzaju.</p>
+<div class="wrap artgrid">
+  <div class="artmain">
+    <div class="ciag{% if G.strona.data.proza %} prose{% endif %}">{{ (G.strona.content if G.strona else "") | przedWiecej | safe }}</div>
+    <p class="dalej"><a class="btn line" href="{{ G.url }}">Zobacz więcej →</a></p>
+  </div>
+  <aside class="artside" aria-labelledby="h-kolejne">
+    <h2 class="side-h" id="h-kolejne">Kolejne artykuły</h2>
+    <div class="artlist">{% for a in lista %}{% include "artykul-karta.njk" %}{% endfor %}</div>
+  </aside>
+</div>
+{% endif %}
+
+<section class="sec pasek3-sec" aria-label="Fundacja w skrócie">
+  <div class="wrap pasek3">
+    <div class="box">
+      <h4>Licznik fundacji</h4>
+      <b class="big">{{ archiwum.dokumenty | liczba }}</b>
+      <p style="margin: 4px 0 12px; font-size: 0.9rem; color: var(--slate);">dokumentów, którymi dysponujemy · {{ archiwum.strony | liczba }} stron</p>
+      <a href="/baza-danych/#archiwum" style="color: var(--red); font: 500 0.82rem var(--f-mono);">Archiwum dokumentów →</a>
     </div>
-    <aside class="side">
-      <div class="box">
-        <h4>Licznik fundacji</h4>
-        <b class="big">{{ archiwum.dokumenty | liczba }}</b>
-        <p style="margin: 4px 0 12px; font-size: 0.9rem; color: var(--slate);">dokumentów, którymi dysponujemy · {{ archiwum.strony | liczba }} stron</p>
-        <a href="/baza-danych/#archiwum" style="color: var(--red); font: 500 0.82rem var(--f-mono);">Archiwum dokumentów →</a>
-      </div>
-      <div class="box">
-        <h4>Wesprzyj</h4>
-        <p style="margin: 0 0 10px; font-size: 0.93rem;">Każde pytanie do urzędu i każde dociekanie kosztuje. Nie bierzemy pieniędzy od ludzi, którym pomagamy.</p>
-        <p class="note" style="margin: 0 0 4px;">RACHUNEK PLN</p>
-        <p class="rach" style="margin: 0 0 14px;"><span class="nr">{{ site.rachunki[0].nr }}</span></p>
-        <a class="btn red" href="/wesprzyj/">Wybierz cel</a>
-      </div>
-      <div class="box">
-        <h4>Nasze zasady</h4>
-        <p style="margin: 0 0 8px; font-size: 0.92rem;"><b class="tyt">Zawsze bezpłatnie</b>Nie pobieramy opłat od nikogo, kto zgłasza sprawę.</p>
-        <p style="margin: 0 0 8px; font-size: 0.92rem;"><b class="tyt">Dowody, nie pogłoski</b>Każdy zarzut opieramy na dokumentach. Nasze oceny oznaczamy jako nasze.</p>
-        <p style="margin: 0 0 12px; font-size: 0.92rem;"><b class="tyt">Zero polityki</b>Rozliczamy urzędy i sądy, nie poglądy ludzi.</p>
-        <a href="/o-fundacji/" style="color: var(--red); font: 500 0.82rem var(--f-mono);">O fundacji →</a>
-      </div>
-    </aside>
+    <div class="box">
+      <h4>Wesprzyj</h4>
+      <p style="margin: 0 0 10px; font-size: 0.93rem;">Każde pytanie do urzędu i każde dociekanie kosztuje. Nie bierzemy pieniędzy od ludzi, którym pomagamy.</p>
+      <p class="note" style="margin: 0 0 4px;">RACHUNEK PLN</p>
+      <p class="rach" style="margin: 0 0 14px;"><span class="nr">{{ site.rachunki[0].nr }}</span></p>
+      <a class="btn red" href="/wesprzyj/">Wybierz cel</a>
+    </div>
+    <div class="box">
+      <h4>Nasze zasady</h4>
+      <p style="margin: 0 0 8px; font-size: 0.92rem;"><b class="tyt">Zawsze bezpłatnie</b>Nie pobieramy opłat od nikogo, kto zgłasza sprawę.</p>
+      <p style="margin: 0 0 8px; font-size: 0.92rem;"><b class="tyt">Dowody, nie pogłoski</b>Każdy zarzut opieramy na dokumentach. Nasze oceny oznaczamy jako nasze.</p>
+      <p style="margin: 0 0 12px; font-size: 0.92rem;"><b class="tyt">Zero polityki</b>Rozliczamy urzędy i sądy, nie poglądy ludzi.</p>
+      <a href="/o-fundacji/" style="color: var(--red); font: 500 0.82rem var(--f-mono);">O fundacji →</a>
+    </div>
   </div>
 </section>

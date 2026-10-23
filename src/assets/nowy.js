@@ -2,13 +2,9 @@
 (function () {
   'use strict';
 
-  var DOKI = {
-    'WINU-42.MD.1': { syg: 'WINU-42.MD.1', data: '30.09.2026', typ: 'Nasz wniosek', tytul: 'WNIOSEK O UDOSTĘPNIENIE INFORMACJI PUBLICZNEJ', od: 'Fundacja MAMY DOŚĆ', do: '[Urząd B]' },
-    'WINU-42.DM.1.1': { syg: 'WINU-42.DM.1.1', data: '09.10.2026', typ: 'Odpowiedź urzędu', tytul: 'ODPOWIEDŹ NA WNIOSEK – ODMOWA PISMEM', od: '[Urząd B]', do: 'Fundacja MAMY DOŚĆ' },
-    'WINU-42.MD.2': { syg: 'WINU-42.MD.2', data: 'projekt', typ: 'Zawiadomienie', tytul: 'ZAWIADOMIENIE O MOŻLIWOŚCI POPEŁNIENIA PRZESTĘPSTWA', od: 'Fundacja MAMY DOŚĆ', do: '[Prokuratura rejonowa]' },
-    'WINU-17.MD.1': { syg: 'WINU-17.MD.1', data: '30.09.2026', typ: 'Nasz wniosek', tytul: 'WNIOSEK O UDOSTĘPNIENIE INFORMACJI PUBLICZNEJ', od: 'Fundacja MAMY DOŚĆ', do: '[Urząd skarbowy A]' },
-    'WINU-17.MD.2': { syg: 'WINU-17.MD.2', data: '19.10.2026', typ: 'Skarga na bezczynność', tytul: 'SKARGA NA BEZCZYNNOŚĆ', od: 'Fundacja MAMY DOŚĆ', do: '[Wojewódzki sąd administracyjny]' }
-  };
+  /* dokumenty: te same dane co w src/_data/dokumenty.json (strona wstawia je w <script id="dane-dokumenty">) */
+  var DOKI = {};
+  try { DOKI = JSON.parse(document.getElementById('dane-dokumenty').textContent) || {}; } catch (e) { DOKI = {}; }
   var LEADS = {
     anon_urz: 'Napisz, co widzisz od środka: kto, gdzie, od kiedy, jakie dokumenty to pokazują. Nie podawaj niczego, po czym można Cię rozpoznać.',
     anon_str: 'Anonimowo możesz przekazać trop. Żeby zająć się Twoją sprawą oficjalnie, potrzebujemy pisma z podpisem – wybierz to wyżej.',
@@ -28,32 +24,37 @@
       '<span class="tt">' + esc(d.tytul) + '</span><span class="hd">Sygnatura: ' + esc(d.syg) + '</span>' + LINIE;
   }
 
-  /* Nasze publikacje: filtr rodzaju (także z adresu: #sprawdzamy, #artykuly, #akta; stary adres #sledztwa → #sprawdzamy) */
-  var publist = document.getElementById('publist');
-  if (publist) {
-    var chipyP = $$('[data-pf]');
-    var lead = $('.leadcard');
-    var pustoP = document.getElementById('pub-pusto');
-    var filtruj = function (f) {
-      var n = 0;
-      chipyP.forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-pf') === f ? 'true' : 'false'); });
-      $$('.file', publist).forEach(function (el) {
-        var ok = f === 'all' || el.getAttribute('data-typ') === f;
+  /* Strona artykułu: wyszukiwarka – słowa (cała treść z /szukaj.json), temat, zagadnienie (23.10.2026) */
+  var szLista = document.getElementById('sz-lista');
+  if (szLista) {
+    var norm = function (t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l'); };
+    var pozycje = $$('.aitem', szLista);
+    var teksty = {};
+    pozycje.forEach(function (el) { teksty[el.getAttribute('data-u')] = norm(el.getAttribute('data-q')); });
+    var q = document.getElementById('sz-q'), selT = document.getElementById('sz-t'), selZ = document.getElementById('sz-z');
+    var ile = document.getElementById('sz-ile'), pusto = document.getElementById('sz-pusto');
+    var szukaj = function () {
+      var slowa = norm(q.value).split(/\s+/).filter(Boolean), t = selT.value, z = selZ.value, n = 0;
+      pozycje.forEach(function (el) {
+        var hay = teksty[el.getAttribute('data-u')] || '';
+        var ok = slowa.every(function (s) { return hay.indexOf(s) !== -1; }) &&
+          (!t || ('|' + el.getAttribute('data-tm') + '|').indexOf('|' + t + '|') !== -1) &&
+          (!z || ('|' + el.getAttribute('data-z') + '|').indexOf('|' + z + '|') !== -1);
         el.hidden = !ok;
         if (ok) n++;
       });
-      if (lead) {
-        var okL = f === 'all' || lead.getAttribute('data-typ') === f;
-        lead.hidden = !okL;
-        if (okL) n++;
-      }
-      if (pustoP) pustoP.hidden = n !== 0;
+      ile.textContent = 'ARTYKUŁÓW: ' + n;
+      pusto.hidden = n !== 0;
     };
-    chipyP.forEach(function (c) {
-      c.addEventListener('click', function () { filtruj(c.getAttribute('data-pf')); });
-    });
-    var zHasha = { '#sprawdzamy': 'sprawdzamy', '#sledztwa': 'sprawdzamy', '#artykuly': 'artykul', '#akta': 'akta' }[location.hash];
-    if (zHasha) filtruj(zHasha);
+    [q, selT, selZ].forEach(function (el) { el.addEventListener(el === q ? 'input' : 'change', szukaj); });
+    if (window.fetch) {
+      fetch('/szukaj.json').then(function (r) { return r.json(); }).then(function (indeks) {
+        indeks.forEach(function (a) {
+          if (a.u in teksty) teksty[a.u] = norm([a.n, a.t, a.l, (a.tm || []).join(' '), (a.z || []).join(' '), a.x].join(' '));
+        });
+        szukaj();
+      }).catch(function () {});
+    }
   }
 
   /* Lista ciekawostek: wpis z adresu (#l1) otwiera się sam */

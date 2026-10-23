@@ -1,1 +1,1 @@
-{ "layout": "artykul-pojedynczy.njk" }
+{ "layout": "publikacja.njk", "proza": true }
