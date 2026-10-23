@@ -35,6 +35,10 @@
       <a href="/wesprzyj/"{% if nav == 'wesprzyj' %} aria-current="page"{% endif %}>Wesprzyj</a>
       <a href="/zglos/" class="cta"{% if nav == 'zglos' %} aria-current="page"{% endif %}>Zgłoś</a>
     </nav>
+    <div class="theme" role="group" aria-label="Tryb strony">
+      <button type="button" data-t="light" aria-pressed="false">Jasny</button>
+      <button type="button" data-t="dark" aria-pressed="false">Ciemny</button>
+    </div>
   </div>
 </header>
 <main id="tresc">
@@ -48,11 +52,6 @@
     <div class="legal">
       <p class="nieprawnicy">Nie jesteśmy prawnikami – nikt z nas nie jest adwokatem ani radcą prawnym. Nie świadczymy pomocy prawnej, w tym porad prawnych, w rozumieniu art. 4 ust. 1 ustawy – Prawo o adwokaturze i art. 6 ust. 1 ustawy o radcach prawnych. Treści na stronie mają charakter informacyjny i publicystyczny. W swojej sprawie skontaktuj się z adwokatem lub radcą prawnym.</p>
       <p>Strona bez plików cookies, analityki i reklam. Nasze oceny oznaczamy jako nasze.</p>
-      <div class="theme" role="group" aria-label="Motyw strony">
-        <button type="button" data-t="" aria-pressed="true">Auto</button>
-        <button type="button" data-t="light" aria-pressed="false">Jasny</button>
-        <button type="button" data-t="dark" aria-pressed="false">Ciemny</button>
-      </div>
     </div>
   </div>
 </footer>

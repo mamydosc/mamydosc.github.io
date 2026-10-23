@@ -11,7 +11,7 @@
 :root[data-theme="dark"]{--st-ok:#3f8f6a;--st-late:#e0b05c;--st-ref:#e9edf2;--st-sil:#d46e6f;--st-wait:#3a4c66;--shadow-selected:inset 0 0 0 1px #aeb8c5}
 [hidden]{display:none!important}
 .tile:has(> b){flex-direction:column}
-.foot .theme{display:inline-flex;margin:12px 0 0}
+
 /* nowe elementy strony */
 
 /* nagłówek z zatwierdzonym logo */
@@ -371,3 +371,7 @@ b.tyt{display:block;margin-bottom:2px}
 .foot .legal p{margin:0 0 8px}
 .foot .legal .nieprawnicy{font:400 .8rem/1.6 var(--f-text);letter-spacing:0;color:#fff;max-width:62em}
 
+
+/* ===== 23.10.2026 (2): przełącznik Jasny/Ciemny w nagłówku, po prawej (bez „Auto”) ===== */
+.top .theme{margin:0 0 0 14px;align-self:center;flex:none}
+@media (max-width:1080px){.top .theme{margin:0 0 0 10px}}

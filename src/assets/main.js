@@ -66,13 +66,19 @@
 
 // v2: przełącznik motywu (bez zapisu w przeglądarce – strona nie śledzi), kalendarz cykli, rozwijanie części
 (function () {
+  // 23.10.2026: tylko Jasny / Ciemny (bez „Auto”); na starcie zaznaczony tryb, który widać (ustawienie systemu)
   var root = document.documentElement;
-  document.querySelectorAll(".theme button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      if (b.dataset.t) root.setAttribute("data-theme", b.dataset.t); else root.removeAttribute("data-theme");
-      document.querySelectorAll(".theme button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
-    });
+  var tryby = document.querySelectorAll(".theme button");
+  var ciemnySystem = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  var pokazTryb = function () {
+    var t = root.getAttribute("data-theme") || (ciemnySystem && ciemnySystem.matches ? "dark" : "light");
+    tryby.forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.t === t ? "true" : "false"); });
+  };
+  tryby.forEach(function (b) {
+    b.addEventListener("click", function () { root.setAttribute("data-theme", b.dataset.t); pokazTryb(); });
   });
+  if (ciemnySystem && ciemnySystem.addEventListener) ciemnySystem.addEventListener("change", pokazTryb);
+  pokazTryb();
   var nav = document.getElementById("nav"), btn = document.getElementById("menu-btn");
   if (nav && btn) nav.querySelectorAll("a").forEach(function (a) {
     a.addEventListener("click", function () { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); });
