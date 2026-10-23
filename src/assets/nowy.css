@@ -263,10 +263,12 @@ p.note{line-height:1.9}
 .baner-tresc{min-width:0}
 .baner .lobuz{border-top:1px solid rgba(255,255,255,.2);padding-top:16px}
 @media (min-width:960px){
-  .baner{grid-template-columns:minmax(0,1fr) 270px;gap:24px 44px;align-items:start}
-  .baner .lobuz{border-top:0;padding-top:4px;border-left:1px solid rgba(255,255,255,.2);padding-left:24px}
-  .baner .lobuz-row{display:grid;overflow:visible}
-  .baner .lobuz-chip{width:auto}
+  /* lista nie wydłuża banera: ma wysokość banera (co najmniej 19.5rem) i przewija się w pionie niezależnie od strony */
+  .baner{grid-template-columns:minmax(0,1fr) 270px;grid-template-rows:minmax(19.5rem,auto);gap:24px 44px;align-items:start}
+  .baner .lobuz{border-top:0;padding-top:4px;border-left:1px solid rgba(255,255,255,.2);padding-left:24px;display:flex;flex-direction:column;height:0;min-height:100%;box-sizing:border-box}
+  .baner .lobuz-h,.baner .lobuz-all{flex:none;align-self:flex-start}
+  .baner .lobuz-row{flex:1 1 auto;min-height:0;flex-direction:column;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scroll-snap-type:y proximity;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.55) transparent;padding-right:8px}
+  .baner .lobuz-chip{width:auto;flex:none}
 }
 /* czerwony baner strony głównej: przyciski pod tekstem, kafelki granatowe */
 .apel2 .lobuz-h{color:#fff}

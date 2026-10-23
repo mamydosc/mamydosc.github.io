@@ -1,12 +1,13 @@
-{#- Lista ciekawostek w górnym banerze strony (23.10.2026): na komputerze po prawej, pionowo; na telefonie pod tekstem banera -#}
+{#- Lista ciekawostek w górnym banerze strony (23.10.2026): na komputerze po prawej, pionowo; na telefonie pod tekstem banera.
+    Wszystkie wpisy; lista przewija się niezależnie od strony (na komputerze w pionie, na telefonie w bok) -#}
 {%- set LW = ciekawostki.wpisy | najnowszeNaGorze("data") -%}
 {%- if LW.length %}
 <aside class="lobuz" aria-label="Lista ciekawostek">
   <a class="lobuz-h" href="/lista-ciekawostek/">Lista<b>ciekawostek</b></a>
   <div class="lobuz-row">
-    {%- for w in LW %}{% if loop.index <= 4 %}
+    {%- for w in LW %}
     <a class="lobuz-chip" href="/lista-ciekawostek/#{{ w.id }}"><b>{{ w.imie }}</b><span>{{ w.krotko }}</span></a>
-    {%- endif %}{% endfor %}
+    {%- endfor %}
   </div>
   <a class="lobuz-all" href="/lista-ciekawostek/">Wszystkie →</a>
 </aside>
