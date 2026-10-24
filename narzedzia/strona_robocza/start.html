@@ -1,0 +1,62 @@
+<title>Strona robocza fundacji</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Układ: wąski pasek narzędzi u góry, pod nim cała strona w ramce – na szerokość komputera albo telefonu */
+:root{--tlo:#EEF0F3;--tekst:#0A1A2F;--slaby:#46546A;--linia:#C9D0D9;--akcent:#92393A;--na-akcencie:#FFFFFF;--pole:#FFFFFF;--scena:#DDE1E7;
+  --f-tekst:"Wix Madefor Text",system-ui,"Segoe UI",sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--tlo:#0E141C;--tekst:#E9EDF2;--slaby:#A9B4C2;--linia:#2C3A4C;--akcent:#D46E6F;--na-akcencie:#160E10;--pole:#16202D;--scena:#070B10;color-scheme:dark}}
+:root[data-theme="dark"]{--tlo:#0E141C;--tekst:#E9EDF2;--slaby:#A9B4C2;--linia:#2C3A4C;--akcent:#D46E6F;--na-akcencie:#160E10;--pole:#16202D;--scena:#070B10;color-scheme:dark}
+@font-face{font-family:"Wix Madefor Text";src:url("strona/assets/fonts/WixMadeforText-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Wix Madefor Text";src:url("strona/assets/fonts/WixMadeforText-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("strona/assets/fonts/IBMPlexMono-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+html,body{height:100%}
+body{background:var(--tlo);color:var(--tekst);font:400 14px/1.4 var(--f-tekst);display:flex;flex-direction:column}
+.pasek{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--linia);background:var(--tlo)}
+.znak{flex:none;font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--na-akcencie);background:var(--akcent);padding:6px 8px}
+.stan{flex:1 1 280px;min-width:0;margin:0;color:var(--slaby)}
+.stan b{color:var(--tekst);font-weight:500}
+.wybor{display:flex;align-items:center;gap:8px;min-width:0}
+.wybor label{color:var(--slaby)}
+select{font:inherit;color:var(--tekst);background:var(--pole);border:1px solid var(--linia);padding:6px 8px;min-width:0;max-width:62vw}
+.tryb{display:flex;border:1px solid var(--linia);flex:none}
+.tryb button{font:500 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--pole);color:var(--slaby);border:0;padding:8px 10px;cursor:pointer}
+.tryb button+button{border-left:1px solid var(--linia)}
+.tryb button[aria-pressed="true"]{background:var(--tekst);color:var(--tlo)}
+:focus-visible{outline:2px solid var(--akcent);outline-offset:2px}
+.scena{flex:1 1 auto;min-height:0;display:flex;justify-content:center;background:var(--scena)}
+.scena iframe{display:block;border:0;width:100%;height:100%;background:var(--pole)}
+.scena.telefon{padding-block:12px}
+.scena.telefon iframe{width:390px;max-width:100%;border:1px solid var(--linia)}
+@media (max-width:600px){.tryb{display:none}}
+</style>
+<div class="pasek">
+  <span class="znak">Strona robocza</span>
+  <p class="stan">Widzisz ją tylko Ty. <b>{{STAN}}</b> · {{OPIS}}</p>
+  <div class="wybor"><label for="strona">Strona</label><select id="strona">{{OPCJE}}</select></div>
+  <div class="tryb" role="group" aria-label="Szerokość podglądu">
+    <button type="button" data-tryb="komputer" aria-pressed="true">Komputer</button>
+    <button type="button" data-tryb="telefon" aria-pressed="false">Telefon</button>
+  </div>
+</div>
+<div class="scena" id="scena"><iframe id="ramka" title="Podgląd strony" src="strona/{{START}}"></iframe></div>
+<script>
+(function () {
+  var ramka = document.getElementById('ramka'), wybor = document.getElementById('strona'), scena = document.getElementById('scena');
+  wybor.addEventListener('change', function () { ramka.src = 'strona/' + wybor.value; });
+  ramka.addEventListener('load', function () {
+    try {
+      var p = ramka.contentWindow.location.pathname, i = p.lastIndexOf('/strona/');
+      if (i < 0) return;
+      var r = p.slice(i + 8) || 'index.html';
+      for (var k = 0; k < wybor.options.length; k++) if (wybor.options[k].value === r) { wybor.selectedIndex = k; break; }
+    } catch (e) {}
+  });
+  var tryby = document.querySelectorAll('[data-tryb]');
+  tryby.forEach(function (b) {
+    b.addEventListener('click', function () {
+      scena.classList.toggle('telefon', b.getAttribute('data-tryb') === 'telefon');
+      tryby.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    });
+  });
+})();
+</script>
