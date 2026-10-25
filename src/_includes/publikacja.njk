@@ -22,7 +22,7 @@ nav: artykul
     {%- set dzieci = WSZA | gdzie("nadrzedny", numer) if numer else [] -%}
     {% if dzieci.length %}<div class="watki"><b>Kolejne części tego tematu</b><ol>{% for t in dzieci %}<li><a href="{{ t.url }}">{{ t.numer }} · {{ t.tytul }}</a></li>{% endfor %}</ol></div>{% endif %}
     {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{{ z }}</li>{% endfor %}</ul></div>{% endif %}
-    {% include "ankieta.njk" %}
+    {% set ankId = numer or page.url %}{% set ankH = "h2" %}{% set ankWykres = wykresAnkiety %}{% include "ankieta.njk" %}
     {% if proza %}<div class="btns"><a class="btn line" href="/">← Nasze publikacje</a><a class="btn red" href="/zglos/">Masz podobną sprawę? Zgłoś</a></div>{% endif %}
   </article>
   {% include "szukaj-panel.njk" %}

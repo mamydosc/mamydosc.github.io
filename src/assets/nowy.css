@@ -596,16 +596,21 @@ html[data-widok="duze"] .publista .al{-webkit-line-clamp:3;font-size:.92rem;marg
 .dwie-ramki{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media (max-width:640px){.dwie-ramki{grid-template-columns:minmax(0,1fr)}}
 
-/* Ankieta pod artykułem „Co czujesz po przeczytaniu?” (25.10.2026, PROJEKT). Kolory uczuć sprawdzone walidatorem palety
-   (jasny motyw na #FFFFFF, ciemny na #16202D; sąsiednie pary rozróżnialne także przy daltonizmie). Każde uczucie ma też
-   podpis, procent i liczbę głosów – kolor nigdy nie jest jedyną informacją (żółty w jasnym motywie ma kontrast 2,2:1). */
-.ankieta{--uc-zlosc:#e34948;--uc-smutek:#2a78d6;--uc-radosc:#eda100;--uc-strach:#6250d6;--uc-obrzydzenie:#008300;
+/* Ankieta „Co czujesz po przeczytaniu?” pod artykułem i pod ciekawostką (25.10.2026, PRÓBA). Kolory uczuć sprawdzone
+   walidatorem palety (jasny motyw na #FFFFFF, ciemny na #16202D; sąsiednie pary rozróżnialne także przy daltonizmie). Każde
+   uczucie ma też podpis, procent i liczbę głosów – kolor nigdy nie jest jedyną informacją (żółty w jasnym motywie ma 2,2:1).
+   Wersje wykresu (klasa ank-w-… nadawana przez ankieta.js): paski, lizaki, kolumny, pasek, kropki, paczek, liczby. */
+.ankieta{--uc-zlosc:#e34948;--uc-smutek:#2a78d6;--uc-radosc:#eda100;--uc-strach:#6250d6;--uc-obrzydzenie:#008300;--uc-puste:var(--line);
   border:1px solid var(--line);background:var(--paper);padding:20px 20px 14px;margin:32px 0 0}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ankieta{--uc-zlosc:#e66767;--uc-smutek:#3987e5;--uc-radosc:#c98500;--uc-strach:#9085e9;--uc-obrzydzenie:#008300}}
 :root[data-theme="dark"] .ankieta{--uc-zlosc:#e66767;--uc-smutek:#3987e5;--uc-radosc:#c98500;--uc-strach:#9085e9;--uc-obrzydzenie:#008300}
 .ankieta[hidden]{display:none}
+.lob-t .ankieta{margin:18px 0 4px;max-width:720px}
+.ank-zlosc{--u:var(--uc-zlosc)}.ank-smutek{--u:var(--uc-smutek)}.ank-radosc{--u:var(--uc-radosc)}.ank-strach{--u:var(--uc-strach)}.ank-obrzydzenie{--u:var(--uc-obrzydzenie)}.ank-puste{--u:var(--uc-puste)}
 .ank-t{font:800 1.3rem/1.25 var(--f-display);margin:0;color:var(--ink)}
+.lob-t .ank-t{font-size:1.12rem}
 .ank-pod{margin:4px 0 12px;color:var(--slate);font:400 .92rem var(--f-text)}
+.lob-t p.ank-pod{margin:4px 0 12px;font:400 .92rem var(--f-text);color:var(--slate)}
 .ank-lista{list-style:none;margin:0;padding:0}
 .ank-lista li{margin:0}
 .ank-u{display:grid;grid-template-columns:9.5em minmax(48px,1fr) 6.2em;align-items:center;gap:12px;width:100%;min-height:42px;
@@ -618,14 +623,62 @@ html[data-widok="duze"] .publista .al{-webkit-line-clamp:3;font-size:.92rem;marg
 .ank-kr{flex:none;width:12px;height:12px;border-radius:50%;background:var(--u)}
 .ank-u[aria-pressed="true"] .ank-n::after{content:"\2713";font-weight:700}
 .ank-tor{display:block;height:14px;border-left:1px solid var(--line)}
-.ank-pas{display:block;height:100%;width:0;background:var(--u);border-radius:0 4px 4px 0;transition:width .35s ease}
+.ank-pas{display:block;height:100%;width:0;background:var(--u);border-radius:0 4px 4px 0;transition:width .35s ease,height .35s ease}
 .ank-w{display:flex;justify-content:flex-end;gap:8px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ank-proc{font-weight:700}
 .ank-ile{color:var(--slate)}
 .ank-suma{margin:10px 8px 0}
-.ank-zlosc{--u:var(--uc-zlosc)}.ank-smutek{--u:var(--uc-smutek)}.ank-radosc{--u:var(--uc-radosc)}.ank-strach{--u:var(--uc-strach)}.ank-obrzydzenie{--u:var(--uc-obrzydzenie)}
-/* telefon: nazwa i wynik w jednej linii, pasek pod nimi na całą szerokość */
-@media (max-width:560px){.ankieta{padding:16px 12px 12px}
-  .ank-u{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n w" "tor tor";row-gap:6px;column-gap:8px;font-size:.95rem;padding:8px}
-  .ank-n{grid-area:n}.ank-w{grid-area:w}.ank-tor{grid-area:tor}}
+.ank-wykres:empty{display:none}
+
+/* lizaki: cienka kreska zakończona kropką */
+.ank-w-lizaki .ank-tor{display:flex;align-items:center}
+.ank-w-lizaki .ank-pas{height:2px;border-radius:0;position:relative}
+.ank-w-lizaki .ank-pas::after{content:"";position:absolute;right:-6px;top:-5px;width:12px;height:12px;border-radius:50%;background:var(--u);box-shadow:0 0 0 2px var(--paper)}
+
+/* kolumny: pięć słupków obok siebie, wynik nad słupkiem, nazwa pod nim */
+.ank-w-kolumny .ank-lista{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.ank-w-kolumny .ank-u{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:10px 4px;min-height:0;height:100%}
+.ank-w-kolumny .ank-w{order:1;flex-direction:column;align-items:center;gap:0}
+.ank-w-kolumny .ank-tor{order:2;display:flex;align-items:flex-end;justify-content:center;width:100%;height:120px;border-left:0;border-bottom:1px solid var(--line)}
+.ank-w-kolumny .ank-pas{width:24px;height:0;border-radius:4px 4px 0 0}
+.ank-w-kolumny .ank-n{order:3;flex-direction:column;gap:4px;font-size:.86rem;line-height:1.2;overflow-wrap:anywhere}
+
+/* pasek, kropki, pączek: wykres osobno, uczucia pod nim albo obok jako lista */
+.ank-w-pasek .ank-tor,.ank-w-kropki .ank-tor,.ank-w-paczek .ank-tor,.ank-w-liczby .ank-tor{display:none}
+.ank-w-pasek .ank-u,.ank-w-kropki .ank-u,.ank-w-paczek .ank-u{grid-template-columns:minmax(0,1fr) auto;min-height:38px}
+.ank-stos{display:flex;gap:2px;height:24px;border-radius:4px;overflow:hidden;margin:0 8px 10px}
+.ank-stos.ank-pusty{background:var(--line)}
+.ank-seg{display:block;flex:1 1 0;min-width:2px;background:var(--u)}
+.ank-w-kropki .ank-cialo,.ank-w-paczek .ank-cialo{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
+.ank-w-kropki .ank-cialo .ank-lista,.ank-w-paczek .ank-cialo .ank-lista{flex:1 1 260px;min-width:0}
+.ank-kropki{display:grid;grid-template-columns:repeat(10,12px);gap:4px;margin:0 8px}
+.ank-kr2{display:block;width:12px;height:12px;border-radius:50%;background:var(--u)}
+.ank-paczek{display:block;width:170px;height:170px;margin:0 8px}
+.ank-luk{fill:none;stroke:var(--u);stroke-width:18}
+.ank-tlo{fill:none;stroke:var(--line);stroke-width:18}
+.ank-srodek{fill:var(--ink);font:800 22px var(--f-display);text-anchor:middle}
+.ank-srodek-p{fill:var(--slate);font:400 10px var(--f-text);text-anchor:middle}
+
+/* liczby: pięć kafelków z dużym procentem */
+.ank-w-liczby .ank-lista{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.ank-w-liczby .ank-u{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 10px 12px;border-top:4px solid var(--u);border-radius:0 0 6px 6px;background:var(--ground);min-height:0;height:100%}
+.ank-w-liczby .ank-u[aria-disabled="true"]:hover{background:var(--ground)}
+.ank-w-liczby .ank-u[aria-pressed="true"],.ank-w-liczby .ank-u[aria-pressed="true"]:hover{background:var(--mist)}
+.ank-w-liczby .ank-kr{display:none}
+.ank-w-liczby .ank-w{order:-1;flex-direction:column;align-items:flex-start;gap:0}
+.ank-w-liczby .ank-proc{font:800 1.7rem/1.1 var(--f-display);font-variant-numeric:normal}
+.ank-w-liczby .ank-n{font-size:.9rem;flex-wrap:wrap;gap:2px 6px}
+
+/* telefon */
+@media (max-width:560px){
+  .ankieta{padding:16px 12px 12px}
+  .ank-w-paski .ank-u,.ank-w-lizaki .ank-u{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n w" "tor tor";row-gap:6px;column-gap:8px;font-size:.95rem;padding:8px}
+  .ank-w-paski .ank-n,.ank-w-lizaki .ank-n{grid-area:n}
+  .ank-w-paski .ank-w,.ank-w-lizaki .ank-w{grid-area:w}
+  .ank-w-paski .ank-tor,.ank-w-lizaki .ank-tor{grid-area:tor}
+  .ank-w-kolumny .ank-lista{gap:2px}
+  .ank-w-kolumny .ank-n{font-size:.72rem}
+  .ank-w-kolumny .ank-tor{height:100px}
+  .ank-w-liczby .ank-lista{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media (prefers-reduced-motion:reduce){.ank-pas{transition:none}}

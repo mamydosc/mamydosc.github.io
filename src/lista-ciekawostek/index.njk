@@ -27,6 +27,7 @@ opisStrony: "Rażące naruszenia prawa przez urzędników – fakty, daty i sygn
           {% for p in w.tresc %}<p>{{ p }}</p>{% endfor %}
           <p class="note">DOKUMENTY: {{ w.dokumenty | join(" · ") }}</p>
           {% if w.link %}<p><a href="{{ w.link }}">Cała sprawa →</a></p>{% endif %}
+          {% set ankId = w.id %}{% set ankH = "h3" %}{% set ankWykres = w.wykresAnkiety %}{% include "ankieta.njk" %}
           {% if w.przyklad %}<p><span class="sample">Dane przykładowe</span></p>{% endif %}
         </div>
       </details>

@@ -1,5 +1,5 @@
 {
-  "_opis": "Ankieta pod każdym artykułem (25.10.2026, PROJEKT – wygląd do oceny na Stronie roboczej). Pytanie i 5 uczuć ustalone z Michałem 25.10.2026. Jeden głos na jedno wejście na stronę, wynik widać od razu. api – adres licznika głosów (pusty = głosów nikt nie liczy, tylko podgląd). proba – WYMYŚLONE wyniki tylko do podglądu; przed wysłaniem na stronę usunąć.",
+  "_opis": "Ankieta pod każdym artykułem i pod każdą ciekawostką (25.10.2026, PRÓBA). Pytanie i 5 uczuć ustalone z Michałem 25.10.2026. Jeden głos na jedno wejście na stronę, wynik widać od razu. Wersja wykresu losowana przy wejściu (paski, lizaki, kolumny, pasek, kropki, pączek, liczby); ?wykres=<nazwa> w adresie pokazuje wybraną; pole wykresAnkiety w artykule lub ciekawostce ustawia stałą. api – adres licznika głosów (pusty = głosów nikt nie liczy). proba – WYMYŚLONE wyniki do próby; usunąć, gdy ruszy licznik.",
   "pytanie": "Co czujesz po przeczytaniu?",
   "api": "",
   "uczucia": [
@@ -7,9 +7,10 @@
     { "id": "smutek", "nazwa": "Smutek" },
     { "id": "radosc", "nazwa": "Radość" },
     { "id": "strach", "nazwa": "Strach" },
-    { "id": "obrzydzenie", "nazwa": "Obrzydzenie" }
+    { "id": "obrzydzenie", "nazwa": "Obrzydzenie", "nazwaDzielona": "Obrzy\u00addzenie" }
   ],
   "proba": {
-    "K901": { "zlosc": 57, "smutek": 21, "radosc": 4, "strach": 12, "obrzydzenie": 34 }
+    "K901": { "zlosc": 57, "smutek": 21, "radosc": 4, "strach": 12, "obrzydzenie": 34 },
+    "l1": { "zlosc": 88, "smutek": 9, "radosc": 15, "strach": 6, "obrzydzenie": 61 }
   }
 }
