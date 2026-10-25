@@ -26,13 +26,18 @@
   /* Adres pliku z danych dokumentów (25.10.2026): na stronie roboczej (atrybut data-korzen) adresy są względne */
   var KORZEN = document.documentElement.getAttribute('data-korzen');
   function adres(p) { p = String(p || ''); return (KORZEN !== null && p.charAt(0) === '/') ? KORZEN + p.slice(1) : p; }
-  /* Dokument z obrazami stron (25.10.2026): w okienku wszystkie strony jedna pod drugą */
-  function stronyDok(d) {
+  /* Dokument z obrazami stron (25.10.2026): w okienku wszystkie strony jedna pod drugą; przepis z odnośnika (miejsce)
+     zaznaczony na swojej stronie */
+  function stronyDok(d, miejsce) {
     var r = d.rozmiar || [];
+    var m = miejsce && d.miejsca ? d.miejsca[miejsce] : null;
     return '<div class="docstrony">' + d.strony.map(function (s, i) {
+      var ramki = m && m.strona === i + 1 ? m.ramki.map(function (k) {
+        return '<span class="dzazn" style="left:' + k[0] + '%;top:' + k[1] + '%;width:' + k[2] + '%;height:' + k[3] + '%"></span>';
+      }).join('') : '';
       return '<div class="dstrona" data-strona="' + (i + 1) + '"><img src="' + esc(adres(s)) + '" alt="' +
         esc(d.tytul + ' – strona ' + (i + 1) + ' z ' + d.strony.length) + '"' +
-        (r.length === 2 ? ' width="' + r[0] + '" height="' + r[1] + '"' : '') + (i ? ' loading="lazy"' : '') + '></div>';
+        (r.length === 2 ? ' width="' + r[0] + '" height="' + r[1] + '"' : '') + (i ? ' loading="lazy"' : '') + '>' + ramki + '</div>';
     }).join('') + '</div>';
   }
 
@@ -170,7 +175,7 @@
 
   /* Podgląd dokumentów (karta sprawy i artykuł) */
   var viewer = document.getElementById('podglad');
-  var vStan = { pierwszy: null, drugi: null, oba: false, powrot: null };
+  var vStan = { pierwszy: null, drugi: null, oba: false, powrot: null, miejsce: null };
   function rysujPodglad() {
     var d1 = DOKI[vStan.pierwszy];
     var d2 = vStan.drugi ? DOKI[vStan.drugi] : null;
@@ -179,15 +184,28 @@
     $('#podglad-in').className = oba ? 'vin wide' : 'vin';
     var para = $('#podglad-dok');
     para.className = oba ? 'docpair' : 'docpair one';
-    para.innerHTML = pokaz.map(function (d) {
+    para.innerHTML = pokaz.map(function (d, i) {
       return '<div class="doccard"><header><span>' + esc(d.syg) + '</span><span>' + esc(d.typ) + ' · ' + esc(d.data) + '</span></header>' +
-        (d.strony && d.strony.length ? stronyDok(d) : '<div class="docpage">' + stronaDok(d) + '</div>') + '</div>';
+        (d.strony && d.strony.length ? stronyDok(d, i === 0 ? vStan.miejsce : null) : '<div class="docpage">' + stronaDok(d) + '</div>') + '</div>';
     }).join('');
-    $('#podglad-t').textContent = oba ? 'Dwa dokumenty obok siebie' : d1.syg + ' · ' + d1.typ;
+    var miejsce = vStan.miejsce && d1.miejsca && d1.miejsca[vStan.miejsce] ? vStan.miejsce : '';
+    $('#podglad-t').textContent = oba ? 'Dwa dokumenty obok siebie' : d1.syg + ' · ' + (miejsce || d1.typ);
     var obok = $('#podglad-obok');
     obok.hidden = !d2 || vStan.oba;
     if (d2) obok.textContent = 'Połóż obok: ' + d2.syg;
     $('#podglad-jeden').hidden = !vStan.oba;
+    /* Pobierz (25.10.2026): plik PDF ustawy z pola „pobierz”, gdy w okienku jest jeden dokument */
+    var pob = $('#podglad-pobierz');
+    if (pob) {
+      pob.hidden = !!oba || !d1.pobierz;
+      if (d1.pobierz) { pob.href = adres(d1.pobierz.plik); pob.setAttribute('download', d1.pobierz.nazwa || ''); }
+    }
+  }
+  /* przewinięcie okienka do zaznaczonego przepisu (25.10.2026) */
+  function doZaznaczenia() {
+    var vin = $('#podglad-in'), z = $('#podglad-dok .dzazn');
+    if (!z) return;
+    vin.scrollTop += z.getBoundingClientRect().top - vin.getBoundingClientRect().top - vin.clientHeight / 3;
   }
   function otworz(pierwszy, drugi, skad) {
     if (!viewer) return;
@@ -195,10 +213,12 @@
     vStan.drugi = drugi && drugi !== pierwszy ? drugi : null;
     vStan.oba = false;
     vStan.powrot = skad || null;
+    vStan.miejsce = skad && skad.getAttribute ? skad.getAttribute('data-miejsce') : null;
     rysujPodglad();
     viewer.hidden = false;
     $('#podglad-in').scrollTop = 0;
     $('#podglad-zamknij').focus();
+    doZaznaczenia();
   }
   function zamknij() {
     if (!viewer || viewer.hidden) return;
@@ -249,9 +269,11 @@
     });
   }
 
-  /* Artykuł: dołączone dokumenty */
+  /* Artykuł: dołączone dokumenty; od 25.10.2026 także źródła (odnośnik <a> – bez okienka, np. z Ctrl, otwiera plik) */
   $$('[data-otworz]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (e) {
+      if (!DOKI[btn.getAttribute('data-otworz')] || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
       otworz(btn.getAttribute('data-otworz'), btn.getAttribute('data-obok'), btn);
     });
   });

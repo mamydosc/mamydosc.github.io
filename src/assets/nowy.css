@@ -699,3 +699,9 @@ html[data-widok="duze"] .publista .al{-webkit-line-clamp:3;font-size:.92rem;marg
   .docpage.zdj{width:calc(100% - 20px);margin:10px auto}
   .viewer .docstrony{padding:8px;gap:10px}
 }
+
+/* ===== 25.10.2026: źródła w artykule otwierane w okienku; przepis zaznaczony na stronie ustawy; Pobierz;
+   nagłówek okienka z przyciskami zawsze widoczny przy przewijaniu długiego dokumentu ===== */
+.viewer .vhead{position:sticky;top:0;z-index:2;background:var(--paper)}
+a.vclose{display:inline-flex;align-items:center;text-decoration:none}
+.viewer .dzazn{position:absolute;background:rgba(255,212,0,.36);mix-blend-mode:multiply;box-shadow:0 0 0 2px rgba(240,170,0,.7);border-radius:2px;pointer-events:none}

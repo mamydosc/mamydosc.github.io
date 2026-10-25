@@ -159,7 +159,10 @@ module.exports = function (cfg) {
   // odesłania i grafiki. Dane dokumentów: src/_data/dokumenty.json (te same dane czyta podgląd w przeglądarce).
   // dokumenty.json: klucz = sygnatura dokumentu; pola syg, typ, data, od, do, tytul; od 25.10.2026 także strony (obrazy
   // kolejnych stron, WebP), rozmiar (szerokość i wysokość obrazu strony w pikselach) i miniatura (mały obraz pierwszej strony
-  // do tekstu artykułu); bez pola strony okienko pokazuje schemat strony. Plik trafia w całości do każdej strony – bez opisów.
+  // do tekstu artykułu); bez pola strony okienko pokazuje schemat strony. Ustawy (25.10.2026): pobierz – plik PDF tekstu
+  // ujednoliconego z Klop\Baza przepisów (przycisk „Pobierz”; art. 4 pkt 1–2 u.p.a. – Baza P449), miejsca – przepis
+  // zaznaczony na stronie: numer strony i ramki [lewo, góra, szerokość, wysokość] w procentach strony (odnośnik w artykule
+  // podaje miejsce w atrybucie data-miejsce). Plik trafia w całości do każdej strony – bez opisów.
   const DOKUMENTY = require("./src/_data/dokumenty.json");
   const esc = (t) => String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const slugPl = (t) => String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ł/g, "l").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

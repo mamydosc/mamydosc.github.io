@@ -20,5 +20,26 @@
     "strony": ["/pliki/dokumenty/p901/zalacznik-1.webp"],
     "rozmiar": [1600, 2265],
     "miniatura": "/pliki/dokumenty/p901/zalacznik-1-mini.webp"
+  },
+  "u.d.i.p.": {
+    "syg": "Ustawa o dostępie do informacji publicznej",
+    "typ": "Tekst ujednolicony",
+    "data": "stan na 28.07.2026",
+    "od": "Kancelaria Sejmu",
+    "do": "",
+    "tytul": "Ustawa z dnia 6 września 2001 r. o dostępie do informacji publicznej – tekst ujednolicony, stan na 28.07.2026",
+    "strony": [
+      "/pliki/przepisy/udip-2026-07-28/strona-01.webp", "/pliki/przepisy/udip-2026-07-28/strona-02.webp",
+      "/pliki/przepisy/udip-2026-07-28/strona-03.webp", "/pliki/przepisy/udip-2026-07-28/strona-04.webp",
+      "/pliki/przepisy/udip-2026-07-28/strona-05.webp", "/pliki/przepisy/udip-2026-07-28/strona-06.webp",
+      "/pliki/przepisy/udip-2026-07-28/strona-07.webp", "/pliki/przepisy/udip-2026-07-28/strona-08.webp",
+      "/pliki/przepisy/udip-2026-07-28/strona-09.webp", "/pliki/przepisy/udip-2026-07-28/strona-10.webp",
+      "/pliki/przepisy/udip-2026-07-28/strona-11.webp"
+    ],
+    "rozmiar": [1600, 2263],
+    "pobierz": { "plik": "/pliki/przepisy/udip-2026-07-28/udip-tekst-ujednolicony-2026-07-28.pdf", "nazwa": "u.d.i.p. (tekst ujednolicony, stan 2026-07-28).pdf" },
+    "miejsca": {
+      "art. 21 pkt 2": { "strona": 10, "ramki": [[9.09, 82.54, 70.38, 2.17], [13.39, 85.0, 21.73, 2.17]] }
+    }
   }
 }
