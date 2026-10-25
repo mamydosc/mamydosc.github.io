@@ -1,7 +1,7 @@
 {
   "_opis": "Artykuł główny na stronie głównej (23.10.2026). tryb „ręcznie” – zawsze artykuł o numerze z pola „numer”; tryb „cyklicznie” – co tyle dni, ile w „coIleDni”, następny artykuł z „kolejka” (zmienia się przy codziennym odświeżeniu strony rano). Gdy numeru nie ma na stronie – artykuł przypięty, a gdy nie ma przypiętego – najnowszy.",
   "tryb": "ręcznie",
-  "numer": "K001",
-  "kolejka": ["K001", "WINU-17", "P002"],
+  "numer": "",
+  "kolejka": [],
   "coIleDni": 1
 }
