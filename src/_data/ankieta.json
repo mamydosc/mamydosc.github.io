@@ -1,0 +1,15 @@
+{
+  "_opis": "Ankieta pod każdym artykułem (25.10.2026, PROJEKT – wygląd do oceny na Stronie roboczej). Pytanie i 5 uczuć ustalone z Michałem 25.10.2026. Jeden głos na jedno wejście na stronę, wynik widać od razu. api – adres licznika głosów (pusty = głosów nikt nie liczy, tylko podgląd). proba – WYMYŚLONE wyniki tylko do podglądu; przed wysłaniem na stronę usunąć.",
+  "pytanie": "Co czujesz po przeczytaniu?",
+  "api": "",
+  "uczucia": [
+    { "id": "zlosc", "nazwa": "Złość" },
+    { "id": "smutek", "nazwa": "Smutek" },
+    { "id": "radosc", "nazwa": "Radość" },
+    { "id": "strach", "nazwa": "Strach" },
+    { "id": "obrzydzenie", "nazwa": "Obrzydzenie" }
+  ],
+  "proba": {
+    "K901": { "zlosc": 57, "smutek": 21, "radosc": 4, "strach": 12, "obrzydzenie": 34 }
+  }
+}

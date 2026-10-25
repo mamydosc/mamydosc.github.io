@@ -1,0 +1,21 @@
+{#- Ankieta pod artykułem (25.10.2026, PROJEKT – wygląd do oceny na Stronie roboczej): „Co czujesz po przeczytaniu?”, 5 uczuć.
+    Jeden głos na jedno wejście na stronę: po kliknięciu przyciski się blokują; w urządzeniu czytelnika nic nie zapisujemy.
+    Wynik widać od razu. Głosy ma liczyć licznik pod adresem ankieta.api – na razie go nie ma (pusty adres = tylko podgląd,
+    wyniki z ankieta.proba). Bez JavaScriptu ankieta się nie pokazuje (atrybut hidden zdejmuje skrypt ankieta.js). -#}
+{%- set ankId = numer or page.url -%}
+{%- set ankWyn = ankieta.proba[numer] if (numer and ankieta.proba and ankieta.proba[numer]) else {} -%}
+<section class="ankieta" data-art="{{ ankId }}" data-api="{{ ankieta.api }}" data-wyniki='{{ ankWyn | dump | safe }}' aria-labelledby="ank-t" hidden>
+  <h2 class="ank-t" id="ank-t">{{ ankieta.pytanie }}</h2>
+  <p class="ank-pod">Kliknij jedno uczucie.</p>
+  <ul class="ank-lista">
+    {%- for u in ankieta.uczucia %}
+    <li><button type="button" class="ank-u ank-{{ u.id }}" data-u="{{ u.id }}" data-nazwa="{{ u.nazwa }}" aria-pressed="false">
+      <span class="ank-n"><span class="ank-kr" aria-hidden="true"></span>{{ u.nazwa }}</span>
+      <span class="ank-tor" aria-hidden="true"><span class="ank-pas"></span></span>
+      <span class="ank-w" aria-hidden="true"><b class="ank-proc">0%</b><span class="ank-ile">0</span></span>
+    </button></li>
+    {%- endfor %}
+  </ul>
+  <p class="note ank-suma" aria-live="polite">GŁOSÓW: 0</p>
+</section>
+<script src="/assets/ankieta.js" defer></script>

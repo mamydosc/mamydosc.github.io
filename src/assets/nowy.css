@@ -595,3 +595,37 @@ html[data-widok="duze"] .publista .al{-webkit-line-clamp:3;font-size:.92rem;marg
 /* Baza danych: pod banerem dwie ramki obok siebie (wcześniej obok panelu zapowiedzi) */
 .dwie-ramki{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media (max-width:640px){.dwie-ramki{grid-template-columns:minmax(0,1fr)}}
+
+/* Ankieta pod artykułem „Co czujesz po przeczytaniu?” (25.10.2026, PROJEKT). Kolory uczuć sprawdzone walidatorem palety
+   (jasny motyw na #FFFFFF, ciemny na #16202D; sąsiednie pary rozróżnialne także przy daltonizmie). Każde uczucie ma też
+   podpis, procent i liczbę głosów – kolor nigdy nie jest jedyną informacją (żółty w jasnym motywie ma kontrast 2,2:1). */
+.ankieta{--uc-zlosc:#e34948;--uc-smutek:#2a78d6;--uc-radosc:#eda100;--uc-strach:#6250d6;--uc-obrzydzenie:#008300;
+  border:1px solid var(--line);background:var(--paper);padding:20px 20px 14px;margin:32px 0 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ankieta{--uc-zlosc:#e66767;--uc-smutek:#3987e5;--uc-radosc:#c98500;--uc-strach:#9085e9;--uc-obrzydzenie:#008300}}
+:root[data-theme="dark"] .ankieta{--uc-zlosc:#e66767;--uc-smutek:#3987e5;--uc-radosc:#c98500;--uc-strach:#9085e9;--uc-obrzydzenie:#008300}
+.ankieta[hidden]{display:none}
+.ank-t{font:800 1.3rem/1.25 var(--f-display);margin:0;color:var(--ink)}
+.ank-pod{margin:4px 0 12px;color:var(--slate);font:400 .92rem var(--f-text)}
+.ank-lista{list-style:none;margin:0;padding:0}
+.ank-lista li{margin:0}
+.ank-u{display:grid;grid-template-columns:9.5em minmax(48px,1fr) 6.2em;align-items:center;gap:12px;width:100%;min-height:42px;
+  padding:6px 8px;border:0;border-radius:6px;background:transparent;color:var(--ink);font:500 .98rem var(--f-text);text-align:left;cursor:pointer}
+.ank-u:hover{background:var(--mist)}
+.ank-u[aria-disabled="true"]{cursor:default}
+.ank-u[aria-disabled="true"]:hover{background:transparent}
+.ank-u[aria-pressed="true"],.ank-u[aria-pressed="true"]:hover{background:var(--mist)}
+.ank-n{display:flex;align-items:center;gap:10px;min-width:0}
+.ank-kr{flex:none;width:12px;height:12px;border-radius:50%;background:var(--u)}
+.ank-u[aria-pressed="true"] .ank-n::after{content:"\2713";font-weight:700}
+.ank-tor{display:block;height:14px;border-left:1px solid var(--line)}
+.ank-pas{display:block;height:100%;width:0;background:var(--u);border-radius:0 4px 4px 0;transition:width .35s ease}
+.ank-w{display:flex;justify-content:flex-end;gap:8px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ank-proc{font-weight:700}
+.ank-ile{color:var(--slate)}
+.ank-suma{margin:10px 8px 0}
+.ank-zlosc{--u:var(--uc-zlosc)}.ank-smutek{--u:var(--uc-smutek)}.ank-radosc{--u:var(--uc-radosc)}.ank-strach{--u:var(--uc-strach)}.ank-obrzydzenie{--u:var(--uc-obrzydzenie)}
+/* telefon: nazwa i wynik w jednej linii, pasek pod nimi na całą szerokość */
+@media (max-width:560px){.ankieta{padding:16px 12px 12px}
+  .ank-u{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n w" "tor tor";row-gap:6px;column-gap:8px;font-size:.95rem;padding:8px}
+  .ank-n{grid-area:n}.ank-w{grid-area:w}.ank-tor{grid-area:tor}}
+@media (prefers-reduced-motion:reduce){.ank-pas{transition:none}}
