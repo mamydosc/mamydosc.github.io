@@ -682,3 +682,20 @@ html[data-widok="duze"] .publista .al{-webkit-line-clamp:3;font-size:.92rem;marg
   .ank-w-liczby .ank-lista{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (prefers-reduced-motion:reduce){.ank-pas{transition:none}}
+
+/* ===== 25.10.2026: dokumenty z obrazami stron – miniatury w tekście artykułu i strony w okienku podglądu ===== */
+.docrzad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.docrzad figcaption{grid-column:1/-1;margin-top:0}
+.docinline.docrzad .doccard{max-width:none}
+.docpage.zdj{display:block;padding:0;aspect-ratio:auto;width:min(88%,360px);background:#fff;overflow:hidden}
+.docpage.zdj img{display:block;width:100%;height:auto}
+.docpage.zdj:hover,.docpage.zdj:focus-visible{border-color:var(--slate)}
+.viewer .docstrony{display:grid;gap:14px;padding:12px}
+.viewer .dstrona{position:relative;width:100%;max-width:900px;margin:0 auto;background:#fff;border:1px solid var(--line);box-shadow:0 2px 0 var(--line)}
+.viewer .dstrona img{display:block;width:100%;height:auto}
+@media (max-width:560px){
+  .docrzad{gap:10px}
+  .docrzad .doccard header{padding:8px 10px;font-size:.66rem}
+  .docpage.zdj{width:calc(100% - 20px);margin:10px auto}
+  .viewer .docstrony{padding:8px;gap:10px}
+}

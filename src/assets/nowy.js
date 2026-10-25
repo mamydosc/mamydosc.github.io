@@ -23,6 +23,18 @@
     return '<span class="hd">' + esc(d.od) + '</span><span class="hd">Do: ' + esc(d.do) + '</span>' +
       '<span class="tt">' + esc(d.tytul) + '</span><span class="hd">Sygnatura: ' + esc(d.syg) + '</span>' + LINIE;
   }
+  /* Adres pliku z danych dokumentów (25.10.2026): na stronie roboczej (atrybut data-korzen) adresy są względne */
+  var KORZEN = document.documentElement.getAttribute('data-korzen');
+  function adres(p) { p = String(p || ''); return (KORZEN !== null && p.charAt(0) === '/') ? KORZEN + p.slice(1) : p; }
+  /* Dokument z obrazami stron (25.10.2026): w okienku wszystkie strony jedna pod drugą */
+  function stronyDok(d) {
+    var r = d.rozmiar || [];
+    return '<div class="docstrony">' + d.strony.map(function (s, i) {
+      return '<div class="dstrona" data-strona="' + (i + 1) + '"><img src="' + esc(adres(s)) + '" alt="' +
+        esc(d.tytul + ' – strona ' + (i + 1) + ' z ' + d.strony.length) + '"' +
+        (r.length === 2 ? ' width="' + r[0] + '" height="' + r[1] + '"' : '') + (i ? ' loading="lazy"' : '') + '></div>';
+    }).join('') + '</div>';
+  }
 
   /* Strona artykułu: wyszukiwarka – słowa (cała treść z /szukaj.json), temat, zagadnienie (23.10.2026).
      Nazwy zmiennych z przedrostkiem sz – bez nich filtr urzędów na stronie K001 nadpisywał pole i wyszukiwarka nie działała. */
@@ -169,7 +181,7 @@
     para.className = oba ? 'docpair' : 'docpair one';
     para.innerHTML = pokaz.map(function (d) {
       return '<div class="doccard"><header><span>' + esc(d.syg) + '</span><span>' + esc(d.typ) + ' · ' + esc(d.data) + '</span></header>' +
-        '<div class="docpage">' + stronaDok(d) + '</div></div>';
+        (d.strony && d.strony.length ? stronyDok(d) : '<div class="docpage">' + stronaDok(d) + '</div>') + '</div>';
     }).join('');
     $('#podglad-t').textContent = oba ? 'Dwa dokumenty obok siebie' : d1.syg + ' · ' + d1.typ;
     var obok = $('#podglad-obok');
@@ -185,6 +197,7 @@
     vStan.powrot = skad || null;
     rysujPodglad();
     viewer.hidden = false;
+    $('#podglad-in').scrollTop = 0;
     $('#podglad-zamknij').focus();
   }
   function zamknij() {

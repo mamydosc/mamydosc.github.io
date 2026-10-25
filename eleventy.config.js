@@ -157,11 +157,18 @@ module.exports = function (cfg) {
 
   // Elementy artykułu (23.10.2026): dokumenty w okienku albo otwarte w tekście, aktywne nazwiska i urzędy (do Bazy danych),
   // odesłania i grafiki. Dane dokumentów: src/_data/dokumenty.json (te same dane czyta podgląd w przeglądarce).
+  // dokumenty.json: klucz = sygnatura dokumentu; pola syg, typ, data, od, do, tytul; od 25.10.2026 także strony (obrazy
+  // kolejnych stron, WebP), rozmiar (szerokość i wysokość obrazu strony w pikselach) i miniatura (mały obraz pierwszej strony
+  // do tekstu artykułu); bez pola strony okienko pokazuje schemat strony. Plik trafia w całości do każdej strony – bez opisów.
   const DOKUMENTY = require("./src/_data/dokumenty.json");
   const esc = (t) => String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const slugPl = (t) => String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ł/g, "l").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const LINIE = '<span class="sp"></span><span class="ln"></span><span class="ln"></span><span class="ln m"></span><span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="sp"></span><span class="ln"></span><span class="ln m"></span><span class="ln"></span><span class="ln s"></span>';
-  const stronaDok = (d) => `<span class="hd">${esc(d.od)}</span><span class="hd">Do: ${esc(d.do)}</span><span class="tt">${esc(d.tytul)}</span><span class="hd">Sygnatura: ${esc(d.syg)}</span>${LINIE}`;
+  // Dokument z obrazami stron (25.10.2026): w tekście miniatura pierwszej strony zamiast schematu strony
+  const stronaDok = (d) => d.miniatura
+    ? `<img src="${esc(d.miniatura)}" alt="${esc(d.tytul)} – pierwsza strona"${d.rozmiar ? ` width="${d.rozmiar[0]}" height="${d.rozmiar[1]}"` : ""} loading="lazy">`
+    : `<span class="hd">${esc(d.od)}</span><span class="hd">Do: ${esc(d.do)}</span><span class="tt">${esc(d.tytul)}</span><span class="hd">Sygnatura: ${esc(d.syg)}</span>${LINIE}`;
+  const klasaStrony = (d) => (d.miniatura ? "docpage zdj" : "docpage");
   const dokument = (syg, obok) => {
     const d = DOKUMENTY[syg];
     if (!d) return `<span class="brakdok">[brak dokumentu ${esc(syg)}]</span>`;
@@ -172,8 +179,15 @@ module.exports = function (cfg) {
   cfg.addShortcode("dokumentOtwarty", (syg, obok) => {
     const d = DOKUMENTY[syg];
     if (!d) return `<span class="brakdok">[brak dokumentu ${esc(syg)}]</span>`;
-    return `<figure class="docinline"><div class="doccard"><header><span>${esc(syg)}</span><span>${esc(d.typ)} · ${esc(d.data)}</span></header><button type="button" class="docpage" data-otworz="${esc(syg)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Powiększ dokument ${esc(syg)}">${stronaDok(d)}</button></div><figcaption>DOKUMENT OTWARTY W TEKŚCIE · KLIKNIJ, ABY POWIĘKSZYĆ</figcaption></figure>`;
+    return `<figure class="docinline"><div class="doccard"><header><span>${esc(syg)}</span><span>${esc(d.typ)} · ${esc(d.data)}</span></header><button type="button" class="${klasaStrony(d)}" data-otworz="${esc(syg)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Powiększ dokument ${esc(syg)}">${stronaDok(d)}</button></div><figcaption>DOKUMENT OTWARTY W TEKŚCIE · KLIKNIJ, ABY POWIĘKSZYĆ</figcaption></figure>`;
   });
+  // Kilka dokumentów otwartych w tekście obok siebie (25.10.2026); w okienku można położyć obok następny dokument z rzędu
+  cfg.addShortcode("dokumentyOtwarte", (...sygi) => `<figure class="docinline docrzad">${sygi.map((s, i) => {
+    const d = DOKUMENTY[s];
+    if (!d) return `<span class="brakdok">[brak dokumentu ${esc(s)}]</span>`;
+    const obok = sygi.length > 1 ? sygi[(i + 1) % sygi.length] : "";
+    return `<div class="doccard"><header><span>${esc(s)}</span><span>${esc(d.typ)} · ${esc(d.data)}</span></header><button type="button" class="${klasaStrony(d)}" data-otworz="${esc(s)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Powiększ dokument ${esc(s)}">${stronaDok(d)}</button></div>`;
+  }).join("")}<figcaption>DOKUMENTY OTWARTE W TEKŚCIE · KLIKNIJ, ABY POWIĘKSZYĆ</figcaption></figure>`);
   cfg.addShortcode("osoba", (tekst, nazwa) => `<a class="aktywne osoba" href="/baza-danych/#osoba-${slugPl(nazwa || tekst)}" title="Baza danych: ${esc(nazwa || tekst)}">${esc(tekst)}</a>`);
   cfg.addShortcode("urzad", (tekst, nazwa) => `<a class="aktywne urzad" href="/baza-danych/#urzad-${slugPl(nazwa || tekst)}" title="Baza danych: ${esc(nazwa || tekst)}">${esc(tekst)}</a>`);
   cfg.addShortcode("zob", (url, tekst, opis) => `<a class="zob" href="${esc(url)}"><span class="zob-k">Zobacz</span><b>${esc(tekst)} →</b>${opis ? `<span class="zob-o">${esc(opis)}</span>` : ""}</a>`);

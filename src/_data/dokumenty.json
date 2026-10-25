@@ -1,1 +1,24 @@
-{}
+{
+  "NSAT-WIS.0151.12.2026": {
+    "syg": "NSAT-WIS.0151.12.2026",
+    "typ": "Odpowiedź na wniosek",
+    "data": "14.09.2026",
+    "od": "Naczelny Sąd Administracyjny Testowy",
+    "do": "Fundacja MAMY DOŚĆ",
+    "tytul": "Odpowiedź na wniosek o udostępnienie informacji publicznej",
+    "strony": ["/pliki/dokumenty/p901/odpowiedz-1.webp"],
+    "rozmiar": [1600, 2265],
+    "miniatura": "/pliki/dokumenty/p901/odpowiedz-1-mini.webp"
+  },
+  "NSAT-WIS.0151.12.2026 zał.": {
+    "syg": "NSAT-WIS.0151.12.2026 zał.",
+    "typ": "Zestawienie",
+    "data": "14.09.2026",
+    "od": "Naczelny Sąd Administracyjny Testowy",
+    "do": "Fundacja MAMY DOŚĆ",
+    "tytul": "Zestawienie – skargi na bezczynność w sprawach o udostępnienie informacji publicznej rozpoznane w 2025 r. przez WSA Testowy 1–16",
+    "strony": ["/pliki/dokumenty/p901/zalacznik-1.webp"],
+    "rozmiar": [1600, 2265],
+    "miniatura": "/pliki/dokumenty/p901/zalacznik-1-mini.webp"
+  }
+}
