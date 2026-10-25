@@ -719,3 +719,7 @@ a.docpage,a.attdoc{text-decoration:none}
 .dokokno .dstrona{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 2px 0 var(--line)}
 .dokokno .dstrona img{display:block;width:100%;height:auto}
 .dokokno .dzazn{position:absolute;background:rgba(255,212,0,.36);mix-blend-mode:multiply;box-shadow:0 0 0 2px rgba(240,170,0,.7);border-radius:2px;pointer-events:none}
+
+/* ===== 25.10.2026: tabela liczbowa w artykule (<table class="liczby">) – liczby wyrównane do prawej, cyfry równej
+   szerokości; pierwsza kolumna (nazwy) zostaje po lewej ===== */
+.prose table.liczby td:not(:first-child),.prose table.liczby th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
