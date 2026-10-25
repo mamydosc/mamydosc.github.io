@@ -1,4 +1,18 @@
 {
   "_opis": "Lista ciekawostek: rażące naruszenia prawa przez urzędników, potwierdzone dokumentami. Każdy wpis to wyłącznie fakty z datami i sygnaturami dokumentów, tylko czynności służbowe. Najnowszy wpis na górze. Wpisy z zaślepkami [ ] to przykłady układu. urzad – nazwa urzędu w kwadraciku na kafelku; stan – kolorowa plakietka: ok zielona, wait żółta, late czerwona, plan szara.",
-  "wpisy": []
+  "wpisy": [
+    {
+      "id": "l1",
+      "imie": "Konrad Wallenrod",
+      "funkcja": "Sędzia WSA w Pszczynie",
+      "krotko": "Uznał że przepisy ordynacji podatkowej nie są stosowane do decyzji 500/800 dotyczącej kontroli podatkowej",
+      "urzad": "WSA w Pszczynie",
+      "data": "2026-10-25",
+      "tresc": [
+        "Sędzia Konrad Wallenrod z WSA w Pszczynie w wyroku 1200/35 uznał że przepisy ordynacji podatkowej nie są stosowane do decyzji 500/800 dotyczącej kontroli podatkowej.",
+        "Jak Wam się podoba decyzja Sędziego?"
+      ],
+      "dokumenty": ["1200/35", "500/800"]
+    }
+  ]
 }
