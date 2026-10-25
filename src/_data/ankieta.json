@@ -1,5 +1,5 @@
 {
-  "_opis": "Ankieta pod każdym artykułem i pod każdą ciekawostką (25.10.2026, PRÓBA). Pytanie i 5 uczuć ustalone z Michałem 25.10.2026. Jeden głos na jedno wejście na stronę, wynik widać od razu. Wersja wykresu losowana przy wejściu (paski, lizaki, kolumny, pasek, kropki, pączek, liczby); ?wykres=<nazwa> w adresie pokazuje wybraną; pole wykresAnkiety w artykule lub ciekawostce ustawia stałą. api – adres licznika głosów (pusty = głosów nikt nie liczy). proba – WYMYŚLONE wyniki do próby; usunąć, gdy ruszy licznik.",
+  "_opis": "Ankieta pod każdym artykułem i pod każdą ciekawostką (25.10.2026, PRÓBA). Pytanie i 5 uczuć ustalone z Michałem 25.10.2026. Na jedno wejście na stronę czytelnik klika do 3 różnych uczuć („Wybierz trzy”); każde kliknięcie to głos na uczucie, procenty od wszystkich kliknięć (razem 100%); wynik widać od razu. Wersja wykresu losowana przy wejściu (paski, lizaki, kolumny, pasek, kropki, pączek, liczby); ?wykres=<nazwa> w adresie pokazuje wybraną; pole wykresAnkiety w artykule lub ciekawostce ustawia stałą. api – adres licznika głosów (pusty = głosów nikt nie liczy). proba – WYMYŚLONE wyniki do próby; usunąć, gdy ruszy licznik.",
   "pytanie": "Co czujesz po przeczytaniu?",
   "api": "",
   "uczucia": [

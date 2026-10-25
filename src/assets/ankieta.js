@@ -1,7 +1,9 @@
 /* Ankieta „Co czujesz po przeczytaniu?” pod artykułem i pod ciekawostką (25.10.2026, PRÓBA – licznika głosów jeszcze nie ma).
-   Jeden głos na jedno wejście na stronę: po kliknięciu przyciski się blokują. W urządzeniu czytelnika nic nie zapisujemy
-   (bez ciasteczek i bez pamięci przeglądarki). Bez licznika (data-api puste) głos dolicza się tylko na tej stronie, do jej
-   zamknięcia. Procenty liczone metodą największych reszt, więc zawsze sumują się do 100.
+   Na jedno wejście na stronę czytelnik klika do 3 różnych uczuć („Wybierz trzy”, polecenie Michała z 25.10.2026): każde
+   kliknięcie od razu dolicza jeden głos temu uczuciu; klikniętego uczucia nie da się kliknąć drugi raz, a po trzecim
+   kliknięciu ankieta się blokuje. Liczymy uczucia, nie osoby: procenty są od wszystkich kliknięć (metoda największych reszt,
+   więc razem zawsze 100). W urządzeniu czytelnika nic nie zapisujemy (bez ciasteczek i bez pamięci przeglądarki).
+   Bez licznika (data-api puste) głosy doliczają się tylko na tej stronie, do jej zamknięcia.
    Wersje wykresu (polecenie Michała z 25.10.2026: „wrzucaj wszystkie”): paski, lizaki, kolumny, pasek, kropki, paczek, liczby.
    Wybór: ?wykres=<nazwa> w adresie strony (do porównania), potem stała wersja z danych (data-wykres), inaczej losowo przy wejściu. */
 (function () {
@@ -55,7 +57,7 @@
     var przyciski = Array.prototype.slice.call(el.querySelectorAll(".ank-u"));
     var klucze = przyciski.map(function (b) { return b.getAttribute("data-u"); });
     var suma = el.querySelector(".ank-suma"), wykres = el.querySelector(".ank-wykres");
-    var oddany = null, wyn = {};
+    var NAJWIECEJ = 3, wybrane = [], wyn = {};
     try { wyn = JSON.parse(el.getAttribute("data-wyniki") || "{}") || {}; } catch (e) { wyn = {}; }
     klucze.forEach(function (k) { wyn[k] = Math.max(0, parseInt(wyn[k], 10) || 0); });
 
@@ -125,7 +127,7 @@
         if (w === "kolumny") { pas.style.height = dl; pas.style.width = ""; } else { pas.style.width = dl; pas.style.height = ""; }
         b.querySelector(".ank-proc").textContent = p[k] + "%";
         b.querySelector(".ank-ile").textContent = String(n);
-        b.setAttribute("aria-label", b.getAttribute("data-nazwa") + ": " + p[k] + "%, głosów: " + n + (oddany === k ? ", twój głos" : ""));
+        b.setAttribute("aria-label", b.getAttribute("data-nazwa") + ": " + p[k] + "%, głosów: " + n + (wybrane.indexOf(k) >= 0 ? ", twój głos" : ""));
       });
       wykres.textContent = "";
       if (w === "pasek") rysujPasek(razem);
@@ -136,12 +138,16 @@
 
     przyciski.forEach(function (b) {
       b.addEventListener("click", function () {
-        if (oddany) return;
-        oddany = b.getAttribute("data-u");
-        wyn[oddany] += 1;
-        el.classList.add("ank-po");
-        przyciski.forEach(function (x) { x.setAttribute("aria-disabled", "true"); });
+        var k = b.getAttribute("data-u");
+        if (wybrane.length >= NAJWIECEJ || wybrane.indexOf(k) >= 0) return;
+        wybrane.push(k);
+        wyn[k] += 1;
         b.setAttribute("aria-pressed", "true");
+        b.setAttribute("aria-disabled", "true");
+        if (wybrane.length >= NAJWIECEJ) {
+          el.classList.add("ank-po");
+          przyciski.forEach(function (x) { x.setAttribute("aria-disabled", "true"); });
+        }
         pokaz();
       });
     });

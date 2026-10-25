@@ -1,5 +1,7 @@
 {#- Ankieta „Co czujesz po przeczytaniu?” pod artykułem i pod ciekawostką (25.10.2026, PRÓBA – licznika głosów jeszcze nie ma), 5 uczuć.
-    Jeden głos na jedno wejście na stronę: po kliknięciu przyciski się blokują; w urządzeniu czytelnika nic nie zapisujemy.
+    Na jedno wejście na stronę czytelnik klika do 3 różnych uczuć (25.10.2026: „Wybierz trzy”); każde kliknięcie to jeden głos
+    na uczucie, a procenty liczone są od wszystkich kliknięć (razem 100%). Po trzecim kliknięciu ankieta się blokuje;
+    w urządzeniu czytelnika nic nie zapisujemy.
     Wynik widać od razu. Wersję wykresu wybiera skrypt ankieta.js (paski, lizaki, kolumny, pasek, kropki, pączek, liczby).
     Wywołanie: ankId (numer artykułu albo ciekawostki), ankH (h2 albo h3), ankWykres (stała wersja wykresu – na razie nieużywana).
     Głosy ma liczyć licznik pod adresem ankieta.api – na razie go nie ma (pusty adres = wyniki z ankieta.proba albo zero).
@@ -9,7 +11,7 @@
 {%- set ankWyn = ankieta.proba[ankId] if (ankieta.proba and ankieta.proba[ankId]) else {} -%}
 <section class="ankieta" data-art="{{ ankId }}" data-api="{{ ankieta.api }}" data-wykres="{{ ankWykres or '' }}" data-wyniki='{{ ankWyn | dump | safe }}' aria-labelledby="ank-t-{{ ankId }}" hidden>
   <{{ ankH }} class="ank-t" id="ank-t-{{ ankId }}">{{ ankieta.pytanie }}</{{ ankH }}>
-  <p class="ank-pod">Kliknij jedno uczucie.</p>
+  <p class="ank-pod">Wybierz trzy</p>
   <div class="ank-cialo">
     <div class="ank-wykres" aria-hidden="true"></div>
     <ul class="ank-lista">
