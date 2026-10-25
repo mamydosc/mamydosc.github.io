@@ -9,6 +9,7 @@ Strony-przekierowania (meta refresh) są pomijane na liście.
 --plik (25.10.2026): podgląd jako pliki na dysku (Klop\\Fundacja\\Strona – projekty i kopia\\Strona robocza, otwierany
 w przeglądarce) – strona startowa jako pełny dokument HTML (na claude.ai szkielet dokumentu dodaje sam artefakt).
 Wyszukiwarka słów w treści artykułów w podglądzie z dysku nie działa (przeglądarka nie wczyta indeksu z dysku) – zgoda Michała.
+W widoku „Telefon” dokument otwiera się w tej samej ramce (jak nowa karta w telefonie), w widoku „Komputer” – w nowym oknie.
 """
 import argparse, html, os, re, shutil, sys
 
@@ -18,6 +19,12 @@ CSSURL = re.compile(r'url\((["\']?)/(?!/)([^"\')]*)\1\)')
 FETCH = "fetch('/szukaj.json')"
 FETCH_REL = "fetch((function(){var k=document.documentElement.getAttribute('data-korzen');return k===null?'/':k})()+'szukaj.json')"
 WWW = "https://mamydosc.github.io"
+# --plik (25.10.2026, Michał: w widoku na telefon dokument otwierał nowe okno przeglądarki zamiast okna „w telefonie”):
+# w wąskiej ramce podglądu (widok „Telefon”) okno się nie otwiera, więc nowy.js przechodzi do dokumentu w tej samej ramce –
+# jak nowa karta w telefonie, która zasłania stronę (powrót: Wstecz). W widoku „Komputer” i na stronie – bez zmian.
+TELEFON = ('<script>/* Strona robocza: widok „Telefon” – dokument w tej samej ramce, jak nowa karta w telefonie */'
+           '(function(){if(window.top===window)return;var o=window.open;'
+           'window.open=function(){return window.innerWidth<600?null:o.apply(window,arguments)};})();</script>')
 STRONY = {"index.html": "Nasze publikacje (strona główna)", "zglos/index.html": "Zgłoś", "wesprzyj/index.html": "Wesprzyj",
           "o-fundacji/index.html": "O fundacji", "baza-danych/index.html": "Baza danych", "poradnik/index.html": "Poradnik",
           "lista-wstydu/index.html": "Lista… wstydu?", "polityka-prywatnosci/index.html": "Polityka prywatności",
@@ -67,6 +74,8 @@ def main():
                 t = ATR.sub(lambda m: m.group(1) + wzgl(m.group(2), prefix) + '"', t)
                 t = ODS.sub(lambda m: m.group(1) + wzgl(m.group(2), prefix) + '"', t)
                 t = t.replace('<html lang="pl">', '<html lang="pl" data-korzen="%s">' % prefix, 1)
+                if x.plik:
+                    t = t.replace("<head>", "<head>\n" + TELEFON, 1)
                 open(cel, "w", encoding="utf-8").write(t)
             elif n.endswith(".css"):
                 t = open(pelna, encoding="utf-8").read()
