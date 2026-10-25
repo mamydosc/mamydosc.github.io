@@ -1,0 +1,58 @@
+---
+pagination:
+  data: dokumentyStrony
+  size: 1
+  alias: d
+permalink: "{{ d.url }}"
+eleventyExcludeFromCollections: true
+---
+{#- Strona dokumentu (25.10.2026, polecenie Michała: „kliknięcie na dokument otwiera nowe okno z dokumentem”).
+    Otwiera się w nowym oknie po kliknięciu dokumentu w artykule (miniatura, źródło). Wszystkie strony dokumentu jedna pod
+    drugą; u góry nazwa dokumentu i – przy ustawie – „Pobierz”. Przepis z adresu (np. #art-21-pkt-2) zaznaczony na swojej
+    stronie i przewinięty do widoku. Dane: src/_data/dokumenty.json (tylko dokumenty z obrazami stron). -#}
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>try{var t=sessionStorage.getItem("tryb");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<title>{{ d.syg }} · {{ d.typ }} · MAMY DOŚĆ</title>
+<meta name="description" content="{{ d.tytul }}">
+{% if site.robocza %}<meta name="robots" content="noindex,nofollow">{% endif %}
+<link rel="canonical" href="{{ site.url }}{{ d.url }}">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css?v={{ wersja }}">
+<link rel="stylesheet" href="/assets/nowy.css?v={{ wersja }}">
+</head>
+<body class="dokokno">
+<header class="dok-pasek">
+  <a class="dok-logo" href="/" aria-label="Fundacja MAMY DOŚĆ – strona główna"><img src="/assets/img/logo/logo-2-granat-czerwone-bez-tla.svg" alt="" width="85" height="55"></a>
+  <div class="dok-t"><b>{{ d.syg }}</b><span>{{ d.typ }} · {{ d.data }}</span></div>
+  {% if d.pobierz %}<a class="vclose" href="{{ d.pobierz.plik }}" download="{{ d.pobierz.nazwa }}">Pobierz</a>{% endif %}
+</header>
+<main class="dok-strony" id="tresc">
+  <h1 class="sr">{{ d.tytul }}</h1>
+  {%- for s in d.strony %}{% set nr = loop.index %}
+  <div class="dstrona" id="strona-{{ nr }}"><img src="{{ s }}" alt="{{ d.tytul }} – strona {{ nr }} z {{ d.strony | length }}"{% if d.rozmiar %} width="{{ d.rozmiar[0] }}" height="{{ d.rozmiar[1] }}"{% endif %}{% if nr > 1 %} loading="lazy"{% endif %}>
+    {%- for m, dm in d.miejsca %}{% if dm.strona == nr %}{% for k in dm.ramki %}<span class="dzazn" data-miejsce="{{ m | slugPl }}" style="left:{{ k[0] }}%;top:{{ k[1] }}%;width:{{ k[2] }}%;height:{{ k[3] }}%" hidden></span>{% endfor %}{% endif %}{% endfor %}</div>
+  {%- endfor %}
+</main>
+<script>
+/* Przepis z adresu strony (np. #art-21-pkt-2): zaznaczenie na jego stronie i przewinięcie do niego (25.10.2026) */
+(function () {
+  function pokaz() {
+    var m = '', pierwszy = null;
+    try { m = decodeURIComponent(location.hash.slice(1)); } catch (e) { m = ''; }
+    Array.prototype.forEach.call(document.querySelectorAll('.dzazn'), function (z) {
+      var tak = !!m && z.getAttribute('data-miejsce') === m;
+      z.hidden = !tak;
+      if (tak && !pierwszy) pierwszy = z;
+    });
+    if (pierwszy) pierwszy.scrollIntoView({ block: 'center' });
+  }
+  pokaz();
+  window.addEventListener('hashchange', pokaz);
+})();
+</script>
+</body>
+</html>

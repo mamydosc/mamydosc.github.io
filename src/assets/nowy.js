@@ -278,6 +278,26 @@
     });
   });
 
+  /* Dokument w nowym oknie (25.10.2026, polecenie Michała: „kliknięcie na dokument otwiera nowe okno z dokumentem”):
+     miniatura albo źródło z atrybutem data-okno otwiera stronę dokumentu w osobnym oknie przeglądarki – po prawej, na pół
+     ekranu, każde następne trochę przesunięte; ten sam dokument wraca do swojego okna. Na telefonie przeglądarka otwiera
+     nową kartę. Gdy przeglądarka nie pozwoli otworzyć okna – dokument otwiera się w tej karcie. */
+  var oknaOtwarte = 0;
+  $$('a[data-okno]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      var ekranL = screen.availLeft || 0, ekranG = screen.availTop || 0;
+      var sz = Math.min(980, Math.max(480, Math.round(screen.availWidth / 2)));
+      var wy = Math.max(480, screen.availHeight - 40);
+      var prz = 30 * (oknaOtwarte % 5);
+      var cechy = 'popup=yes,width=' + sz + ',height=' + wy + ',left=' + Math.max(ekranL, ekranL + screen.availWidth - sz - prz) + ',top=' + (ekranG + prz);
+      var w = null;
+      try { w = window.open(a.href, a.getAttribute('data-okno'), cechy); } catch (x) { w = null; }
+      e.preventDefault();
+      if (w) { oknaOtwarte++; try { w.focus(); } catch (x) {} } else { location.href = a.href; }
+    });
+  });
+
   /* Finanse: dokument kosztu w okienku (wpłat nie otwieramy) */
   var dokmodal = document.getElementById('dokmodal');
   if (dokmodal) {

@@ -162,7 +162,8 @@ module.exports = function (cfg) {
   // do tekstu artykułu); bez pola strony okienko pokazuje schemat strony. Ustawy (25.10.2026): pobierz – plik PDF tekstu
   // ujednoliconego z Klop\Baza przepisów (przycisk „Pobierz”; art. 4 pkt 1–2 u.p.a. – Baza P449), miejsca – przepis
   // zaznaczony na stronie: numer strony i ramki [lewo, góra, szerokość, wysokość] w procentach strony (odnośnik w artykule
-  // podaje miejsce w atrybucie data-miejsce). Plik trafia w całości do każdej strony – bez opisów.
+  // dopisuje miejsce do adresu strony dokumentu, np. #art-21-pkt-2); adres – nazwa strony dokumentu w /dokumenty/
+  // (bez niego – z klucza). Plik trafia w całości do każdej strony – bez opisów.
   const DOKUMENTY = require("./src/_data/dokumenty.json");
   const esc = (t) => String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const slugPl = (t) => String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ł/g, "l").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -172,25 +173,43 @@ module.exports = function (cfg) {
     ? `<img src="${esc(d.miniatura)}" alt="${esc(d.tytul)} – pierwsza strona"${d.rozmiar ? ` width="${d.rozmiar[0]}" height="${d.rozmiar[1]}"` : ""} loading="lazy">`
     : `<span class="hd">${esc(d.od)}</span><span class="hd">Do: ${esc(d.do)}</span><span class="tt">${esc(d.tytul)}</span><span class="hd">Sygnatura: ${esc(d.syg)}</span>${LINIE}`;
   const klasaStrony = (d) => (d.miniatura ? "docpage zdj" : "docpage");
+  // Dokument w nowym oknie (25.10.2026, polecenie Michała: „kliknięcie na dokument otwiera nowe okno z dokumentem”):
+  // dokument z obrazami stron ma własną stronę /dokumenty/<adres>/ (src/dokumenty/dokument.njk); kliknięcie dokumentu
+  // w artykule – miniatury i źródła – otwiera ją w nowym oknie przeglądarki (nowy.js, atrybut data-okno; na telefonie
+  // nowa karta). Dokument bez obrazów stron (schemat) otwiera się jak dotąd w okienku na stronie.
+  const maStrony = (d) => !!(d && (d.strony || []).length);
+  const adresDok = (klucz) => (maStrony(DOKUMENTY[klucz]) ? "/dokumenty/" + (DOKUMENTY[klucz].adres || slugPl(klucz)) + "/" : "");
+  cfg.addGlobalData("dokumentyStrony", () => Object.keys(DOKUMENTY).filter((k) => maStrony(DOKUMENTY[k]))
+    .map((k) => Object.assign({ klucz: k, url: adresDok(k) }, DOKUMENTY[k])));
+  cfg.addFilter("adresDok", (klucz, miejsce) => { const u = adresDok(klucz); return u && miejsce ? u + "#" + slugPl(miejsce) : u; });
+  cfg.addFilter("slugPl", (t) => slugPl(t));
+  const okno = (s) => `href="${esc(adresDok(s))}" target="_blank" data-okno="dok-${esc(slugPl(s))}"`;
+  const podpisKlik = (sygi) => (sygi.every((s) => maStrony(DOKUMENTY[s])) ? "KLIKNIJ, ABY OTWORZYĆ W NOWYM OKNIE" : "KLIKNIJ, ABY POWIĘKSZYĆ");
+  const miniDok = (s, d, obok) => maStrony(d)
+    ? `<a class="${klasaStrony(d)}" ${okno(s)} aria-label="Otwórz dokument ${esc(s)} w nowym oknie">${stronaDok(d)}</a>`
+    : `<button type="button" class="${klasaStrony(d)}" data-otworz="${esc(s)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Powiększ dokument ${esc(s)}">${stronaDok(d)}</button>`;
   const dokument = (syg, obok) => {
     const d = DOKUMENTY[syg];
     if (!d) return `<span class="brakdok">[brak dokumentu ${esc(syg)}]</span>`;
-    return `<button type="button" class="attdoc" data-otworz="${esc(syg)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Otwórz dokument ${esc(syg)}"><span class="mini" aria-hidden="true"><i></i><i class="s"></i><i></i><i></i><i class="s"></i><i></i><i></i></span><span><b>${esc(syg)}</b><small>${esc(d.typ)} · ${esc(d.data)}</small></span></button>`;
+    const srodek = `<span class="mini" aria-hidden="true"><i></i><i class="s"></i><i></i><i></i><i class="s"></i><i></i><i></i></span><span><b>${esc(syg)}</b><small>${esc(d.typ)} · ${esc(d.data)}</small></span>`;
+    return maStrony(d)
+      ? `<a class="attdoc" ${okno(syg)} aria-label="Otwórz dokument ${esc(syg)} w nowym oknie">${srodek}</a>`
+      : `<button type="button" class="attdoc" data-otworz="${esc(syg)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Otwórz dokument ${esc(syg)}">${srodek}</button>`;
   };
   cfg.addShortcode("dokument", (syg, obok) => dokument(syg, obok));
-  cfg.addShortcode("dokumenty", (...sygi) => `<div class="attach"><b>Dokumenty w tym tekście</b><div class="att">${sygi.map((s, i) => dokument(s, sygi.length > 1 ? sygi[(i + 1) % sygi.length] : "")).join("")}</div><p class="note" style="margin: 10px 0 0;">KLIKNIJ DOKUMENT, ABY OTWORZYĆ GO W OKIENKU. W OKIENKU MOŻESZ POŁOŻYĆ OBOK DRUGI.</p></div>`);
+  cfg.addShortcode("dokumenty", (...sygi) => `<div class="attach"><b>Dokumenty w tym tekście</b><div class="att">${sygi.map((s, i) => dokument(s, sygi.length > 1 ? sygi[(i + 1) % sygi.length] : "")).join("")}</div><p class="note" style="margin: 10px 0 0;">${sygi.every((s) => maStrony(DOKUMENTY[s])) ? "KLIKNIJ DOKUMENT, ABY OTWORZYĆ GO W NOWYM OKNIE." : "KLIKNIJ DOKUMENT, ABY OTWORZYĆ GO W OKIENKU. W OKIENKU MOŻESZ POŁOŻYĆ OBOK DRUGI."}</p></div>`);
   cfg.addShortcode("dokumentOtwarty", (syg, obok) => {
     const d = DOKUMENTY[syg];
     if (!d) return `<span class="brakdok">[brak dokumentu ${esc(syg)}]</span>`;
-    return `<figure class="docinline"><div class="doccard"><header><span>${esc(syg)}</span><span>${esc(d.typ)} · ${esc(d.data)}</span></header><button type="button" class="${klasaStrony(d)}" data-otworz="${esc(syg)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Powiększ dokument ${esc(syg)}">${stronaDok(d)}</button></div><figcaption>DOKUMENT OTWARTY W TEKŚCIE · KLIKNIJ, ABY POWIĘKSZYĆ</figcaption></figure>`;
+    return `<figure class="docinline"><div class="doccard"><header><span>${esc(syg)}</span><span>${esc(d.typ)} · ${esc(d.data)}</span></header>${miniDok(syg, d, obok)}</div><figcaption>DOKUMENT OTWARTY W TEKŚCIE · ${podpisKlik([syg])}</figcaption></figure>`;
   });
-  // Kilka dokumentów otwartych w tekście obok siebie (25.10.2026); w okienku można położyć obok następny dokument z rzędu
+  // Kilka dokumentów otwartych w tekście obok siebie (25.10.2026)
   cfg.addShortcode("dokumentyOtwarte", (...sygi) => `<figure class="docinline docrzad">${sygi.map((s, i) => {
     const d = DOKUMENTY[s];
     if (!d) return `<span class="brakdok">[brak dokumentu ${esc(s)}]</span>`;
     const obok = sygi.length > 1 ? sygi[(i + 1) % sygi.length] : "";
-    return `<div class="doccard"><header><span>${esc(s)}</span><span>${esc(d.typ)} · ${esc(d.data)}</span></header><button type="button" class="${klasaStrony(d)}" data-otworz="${esc(s)}"${obok ? ` data-obok="${esc(obok)}"` : ""} aria-label="Powiększ dokument ${esc(s)}">${stronaDok(d)}</button></div>`;
-  }).join("")}<figcaption>DOKUMENTY OTWARTE W TEKŚCIE · KLIKNIJ, ABY POWIĘKSZYĆ</figcaption></figure>`);
+    return `<div class="doccard"><header><span>${esc(s)}</span><span>${esc(d.typ)} · ${esc(d.data)}</span></header>${miniDok(s, d, obok)}</div>`;
+  }).join("")}<figcaption>DOKUMENTY OTWARTE W TEKŚCIE · ${podpisKlik(sygi)}</figcaption></figure>`);
   cfg.addShortcode("osoba", (tekst, nazwa) => `<a class="aktywne osoba" href="/baza-danych/#osoba-${slugPl(nazwa || tekst)}" title="Baza danych: ${esc(nazwa || tekst)}">${esc(tekst)}</a>`);
   cfg.addShortcode("urzad", (tekst, nazwa) => `<a class="aktywne urzad" href="/baza-danych/#urzad-${slugPl(nazwa || tekst)}" title="Baza danych: ${esc(nazwa || tekst)}">${esc(tekst)}</a>`);
   cfg.addShortcode("zob", (url, tekst, opis) => `<a class="zob" href="${esc(url)}"><span class="zob-k">Zobacz</span><b>${esc(tekst)} →</b>${opis ? `<span class="zob-o">${esc(opis)}</span>` : ""}</a>`);

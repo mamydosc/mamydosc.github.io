@@ -21,9 +21,10 @@ nav: artykul
     {% if proza %}<div class="prose">{{ content | safe }}</div>{% else %}{{ content | safe }}{% endif %}
     {%- set dzieci = WSZA | gdzie("nadrzedny", numer) if numer else [] -%}
     {% if dzieci.length %}<div class="watki"><b>Kolejne części tego tematu</b><ol>{% for t in dzieci %}<li><a href="{{ t.url }}">{{ t.numer }} · {{ t.tytul }}</a></li>{% endfor %}</ol></div>{% endif %}
-    {#- Źródła (25.10.2026): pozycja z polem dok otwiera dokument albo ustawę w okienku (nazwa – odnośnik, dalej – reszta opisu,
-        obok – drugi dokument do położenia obok, miejsce – przepis zaznaczony na stronie ustawy); zwykły tekst bez zmian -#}
-    {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{% if z.dok %}{% set zd = dokumenty[z.dok] %}<a class="aktywne zrodlo" href="{{ ((zd.pobierz.plik if zd.pobierz else zd.strony[0]) if zd else '') or '#' }}" data-otworz="{{ z.dok }}"{% if z.obok %} data-obok="{{ z.obok }}"{% endif %}{% if z.miejsce %} data-miejsce="{{ z.miejsce }}"{% endif %}>{{ z.nazwa }}</a>{{ z.dalej }}{% else %}{{ z }}{% endif %}</li>{% endfor %}</ul></div>{% endif %}
+    {#- Źródła (25.10.2026): pozycja z polem dok to odnośnik do dokumentu albo ustawy (nazwa – odnośnik, dalej – reszta opisu,
+        miejsce – przepis zaznaczony na stronie ustawy). Dokument z obrazami stron otwiera się w nowym oknie (strona
+        /dokumenty/…), dokument bez nich – w okienku na stronie (obok – drugi dokument do położenia obok); zwykły tekst bez zmian -#}
+    {% if zrodla %}<div class="sources"><b>Źródła</b><ul>{% for z in zrodla %}<li>{% if z.dok %}{% set zAdres = z.dok | adresDok(z.miejsce) %}{% if zAdres %}<a class="aktywne zrodlo" href="{{ zAdres }}" target="_blank" data-okno="dok-{{ z.dok | slugPl }}">{{ z.nazwa }}</a>{% else %}<a class="aktywne zrodlo" href="#" data-otworz="{{ z.dok }}"{% if z.obok %} data-obok="{{ z.obok }}"{% endif %}{% if z.miejsce %} data-miejsce="{{ z.miejsce }}"{% endif %}>{{ z.nazwa }}</a>{% endif %}{{ z.dalej }}{% else %}{{ z }}{% endif %}</li>{% endfor %}</ul></div>{% endif %}
     {% set ankId = numer or page.url %}{% set ankH = "h2" %}{% set ankWykres = wykresAnkiety %}{% include "ankieta.njk" %}
     {% if proza %}<div class="btns"><a class="btn line" href="/">← Nasze publikacje</a><a class="btn red" href="/zglos/">Masz podobną sprawę? Zgłoś</a></div>{% endif %}
   </article>
