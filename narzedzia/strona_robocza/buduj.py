@@ -2,10 +2,13 @@
 """Strona robocza (prywatny podgląd na claude.ai) – z folderu _site buduje kopię strony z linkami względnymi i stronę startową.
 
 Użycie: python3 -I narzedzia/strona_robocza/buduj.py <_site> <folder_wyjścia> --stan "<stan>" --opis "<co w tej wersji>"
-        [--nowe https://mamydosc.github.io/publikacje/x/,…]
+        [--nowe https://mamydosc.github.io/publikacje/x/,…] [--plik]
 Wynik: <folder_wyjścia>/index.html (strona startowa z wyborem strony i trybem komputer/telefon) i <folder_wyjścia>/strona/…
 Lista stron powstaje sama z budowy (tytuły z <title>); strony z --nowe są na górze listy i otwierają się pierwsze.
 Strony-przekierowania (meta refresh) są pomijane na liście.
+--plik (25.10.2026): podgląd jako pliki na dysku (Klop\\Fundacja\\Strona – projekty i kopia\\Strona robocza, otwierany
+w przeglądarce) – strona startowa jako pełny dokument HTML (na claude.ai szkielet dokumentu dodaje sam artefakt).
+Wyszukiwarka słów w treści artykułów w podglądzie z dysku nie działa (przeglądarka nie wczyta indeksu z dysku) – zgoda Michała.
 """
 import argparse, html, os, re, shutil, sys
 
@@ -38,6 +41,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("site"); ap.add_argument("wyjscie")
     ap.add_argument("--stan", default=""); ap.add_argument("--opis", default=""); ap.add_argument("--nowe", default="")
+    ap.add_argument("--plik", action="store_true", help="podgląd jako pliki na dysku: strona startowa jako pełny dokument HTML")
     x = ap.parse_args()
     src, out = x.site, x.wyjscie
     strona = os.path.join(out, "strona")
@@ -88,6 +92,10 @@ def main():
     start = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "start.html"), encoding="utf-8").read()
     start = (start.replace("{{STAN}}", html.escape(x.stan)).replace("{{OPIS}}", html.escape(x.opis))
              .replace("{{OPCJE}}", opcje).replace("{{START}}", html.escape(nowe[0] if nowe else "index.html")))
+    if x.plik:   # plik z dysku: bez szkieletu claude.ai przeglądarka otworzyłaby stronę startową w trybie zgodności
+        start = ('<!doctype html>\n<html lang="pl">\n<head>\n<meta charset="utf-8">\n'
+                 '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n</head>\n<body>\n'
+                 + start + '\n</body>\n</html>\n')
     open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(start)
     print(f"{len(pliki)} plików strony; na liście: nowe {len(nowe)}, strony {len(strony)}, artykuły {len(artykuly)}, inne {len(inne)}")
 
