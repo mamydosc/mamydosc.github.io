@@ -1,16 +1,16 @@
-{#- Lista ciekawostek w górnym banerze strony (23.10.2026, wersja 2 – jak w podglądzie z 15.10.2026): kafelki jak teczki,
+{#- Lista… wstydu? (do 25.10.2026 „Lista ciekawostek”) w górnym banerze strony (23.10.2026, wersja 2 – jak w podglądzie z 15.10.2026): kafelki jak teczki,
     pierwszy powiększony, w prawym górnym rogu nazwa urzędu, kolorowa plakietka ze stanem sprawy.
     Na komputerze po prawej, przewija się w pionie niezależnie od strony; na telefonie pod tekstem banera, w bok. -#}
 {%- set LW = ciekawostki.wpisy | najnowszeNaGorze("data") -%}
 {%- if LW.length %}
-<aside class="lobuz" aria-label="Lista ciekawostek">
+<aside class="lobuz" aria-label="Lista… wstydu?">
   <div class="lobuz-top">
-    <a class="lobuz-h" href="/lista-ciekawostek/">Lista<b>ciekawostek</b></a>
-    <a class="lobuz-all" href="/lista-ciekawostek/">Wszystkie →</a>
+    <a class="lobuz-h" href="/lista-wstydu/">Lista…<b>wstydu?</b></a>
+    <a class="lobuz-all" href="/lista-wstydu/">Wszystkie →</a>
   </div>
   <ul class="lobuz-row">
     {%- for w in LW %}
-    <li><a class="lcard" href="/lista-ciekawostek/#{{ w.id }}">
+    <li><a class="lcard" href="/lista-wstydu/#{{ w.id }}">
       <span class="lrow"><span>{{ w.data | data }}</span>{% if w.urzad %}<span class="tab">{{ w.urzad }}</span>{% endif %}</span>
       <b class="lname">{{ w.imie }}</b>
       {% if w.funkcja %}<span class="lfun">{{ w.funkcja }}</span>{% endif %}

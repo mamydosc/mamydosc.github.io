@@ -1,38 +1,7 @@
 ---
-layout: base.njk
-title: "Lista ciekawostek"
-nav: "lobuz"
-opisStrony: "Rażące naruszenia prawa przez urzędników – fakty, daty i sygnatury dokumentów."
+layout: przekierowanie.njk
+title: "Lista… wstydu?"
+cel: "/lista-wstydu/"
+permalink: "/lista-ciekawostek/"
+eleventyExcludeFromCollections: true
 ---
-<section class="phead">
-  <div class="wrap">
-    <span class="kick" style="display: block;">Rażące naruszenia potwierdzone dokumentami</span>
-    <h1>Lista ciekawostek</h1>
-    <p>Wpisujemy rażące naruszenia prawa potwierdzone dokumentami – wyłącznie czynności służbowe. Każdy wpis to fakty, daty i sygnatury dokumentów.</p>
-  </div>
-</section>
-
-<section class="sec" aria-label="Wpisy">
-  <div class="wrap">
-    <div class="lob-lista">
-      {% for w in ciekawostki.wpisy | najnowszeNaGorze("data") %}
-      <details class="lob" id="{{ w.id }}">
-        <summary>
-          <span class="lob-imie">{{ w.imie }}</span>
-          <span class="lob-d">{{ w.data | data }}</span>
-          <span class="lob-f">{{ w.funkcja }}</span>
-          <span class="lob-k">{{ w.krotko }}</span>
-        </summary>
-        <div class="lob-t">
-          {% for p in w.tresc %}<p>{{ p }}</p>{% endfor %}
-          <p class="note">DOKUMENTY: {{ w.dokumenty | join(" · ") }}</p>
-          {% if w.link %}<p><a href="{{ w.link }}">Cała sprawa →</a></p>{% endif %}
-          {% set ankId = w.id %}{% set ankH = "h3" %}{% set ankWykres = w.wykresAnkiety %}{% include "ankieta.njk" %}
-          {% if w.przyklad %}<p><span class="sample">Dane przykładowe</span></p>{% endif %}
-        </div>
-      </details>
-      {% endfor %}
-    </div>
-    <p class="note" style="margin-top: 22px;">COŚ SIĘ NIE ZGADZA? NAPISZ – OFICJALNIE: {{ site.email | upper }}, ANONIMOWO: {{ site.emailAnonimowy | upper }}. SPRAWDZIMY DOKUMENTY I POPRAWIMY WPIS, ZAZNACZAJĄC DATĘ ZMIANY.</p>
-  </div>
-</section>

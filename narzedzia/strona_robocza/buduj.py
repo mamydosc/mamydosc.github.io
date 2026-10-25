@@ -17,7 +17,7 @@ FETCH_REL = "fetch((function(){var k=document.documentElement.getAttribute('data
 WWW = "https://mamydosc.github.io"
 STRONY = {"index.html": "Nasze publikacje (strona główna)", "zglos/index.html": "Zgłoś", "wesprzyj/index.html": "Wesprzyj",
           "o-fundacji/index.html": "O fundacji", "baza-danych/index.html": "Baza danych", "poradnik/index.html": "Poradnik",
-          "lista-ciekawostek/index.html": "Lista ciekawostek", "polityka-prywatnosci/index.html": "Polityka prywatności",
+          "lista-wstydu/index.html": "Lista… wstydu?", "polityka-prywatnosci/index.html": "Polityka prywatności",
           "404.html": "Strona błędu 404"}
 
 
