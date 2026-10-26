@@ -526,6 +526,8 @@ b.tyt{display:block;margin-bottom:2px}
   .artstrona .szukaj{position:absolute;grid-column:2 / 3;grid-row:1 / 2;top:0;left:0;right:0;max-height:100%}
   html[data-panel="zw"] .artstrona{grid-template-columns:minmax(0,1fr)}
   html[data-panel="zw"] .artstrona .szukaj{display:none}
+  /* 26.10.2026 (Michał): po zwinięciu „Szukaj” cały artykuł na całą szerokość – także tekst (bez limitu 38em) */
+  html[data-panel="zw"] .artstrona .prose{max-width:none}
   html[data-panel="zw"] .sz-rozwin{display:block;position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:15;writing-mode:vertical-rl;font:500 .74rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--file-spine);color:#fff;border:0;padding:14px 9px;cursor:pointer}
   html[data-panel="zw"] .sz-rozwin:hover{background:var(--brand-red)}
 }
